@@ -32,10 +32,6 @@ const LinkForm = React.createClass({
     this.addLink({href: this.refs.url.value});
   },
   render() {
-    if (!this.context.linkOffsets) {
-      return null;
-    }
-
     return (
       <SelectionTether>
         <form onSubmit={preventDefault(this.handleSubmit)}>

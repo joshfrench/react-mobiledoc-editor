@@ -1,8 +1,6 @@
 import React from 'react';
 import MobileDoc from 'mobiledoc-kit';
-import MarkupControl from './MarkupControl';
-import SectionControl from './SectionControl';
-import LinkControl from './LinkControl';
+import Toolbar from './Toolbar';
 import LinkForm from './LinkForm';
 
 const Editor = React.createClass({
@@ -29,13 +27,9 @@ const Editor = React.createClass({
   render() {
     return (
       <div>
-        <ul>
-          <li><MarkupControl editor={this.editor} tag='strong'><button>B</button></MarkupControl></li>
-          <li><SectionControl editor={this.editor} tag='h1'><button>H1</button></SectionControl></li>
-          <li><LinkControl editor={this.editor}><button>A</button></LinkControl></li>
-        </ul>
+        <Toolbar editor={this.editor} />
         <div ref="editor" />
-        <LinkForm editor={this.editor} />
+        {this.state.linkOffsets && <LinkForm editor={this.editor} />}
       </div>
     )
   }
