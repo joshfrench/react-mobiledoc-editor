@@ -1,8 +1,7 @@
-import MobileDoc from 'mobiledoc-kit';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Editor from './src/components/Editor';
+import * as ReactMobiledoc from '../src';
 
 const doc = {
   version: "0.3.0",
@@ -17,4 +16,4 @@ const doc = {
 };
 
 
-ReactDOM.render(<Editor doc={doc} />, document.getElementById('root'));
+ReactDOM.render(<ReactMobiledoc.Editor doc={doc} />, document.getElementById('root'));
