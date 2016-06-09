@@ -1,11 +1,11 @@
-import path from 'path';
-import webpack from 'webpack';
-import merge from 'webpack-merge';
+var path = require('path');
+var webpack = require('webpack');
+var merge = require('webpack-merge');
 
-const TARGET = process.env.npm_lifecycle_event; // start (demo server) or build (production bundle)
+var TARGET = process.env.npm_lifecycle_event; // start (demo server) or build (production bundle)
 process.env.BABEL_ENV = TARGET;
 
-let config = {
+var config = {
   entry: ['./src/index.js']
 };
 
@@ -27,7 +27,7 @@ config.module = {
 
 // dev server
 if (TARGET === 'start' || !TARGET) {
-  config = merge(config, {
+  module.exports = merge(config, {
     devtool: 'inline-source-map',
     entry: ['./demo/index.js'],
     output: {
@@ -50,7 +50,7 @@ if (TARGET === 'start' || !TARGET) {
 
 // karma and friends
 if (/^test/.test(TARGET)) {
-  config = merge(config, {
+  module.exports = merge(config, {
     devtool: 'inline-source-map',
     output: {
       devtoolModuleFilenameTemplate: '[resourcePath]',
@@ -62,7 +62,7 @@ if (/^test/.test(TARGET)) {
 
 // production build
 if (TARGET === 'build') {
-  config = merge(config, {
+  module.exports = merge(config, {
     plugins: [
       new webpack.DefinePlugin({
           'process.env.NODE_ENV': '"production"'
@@ -70,5 +70,3 @@ if (TARGET === 'build') {
     ]
   });
 }
-
-export default config;
