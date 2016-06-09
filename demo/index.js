@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Mobiledoc from 'mobiledoc-kit';
 
 import * as ReactMobiledoc from '../src';
 
@@ -15,5 +16,11 @@ const doc = {
   ]
 };
 
+const editor = new Mobiledoc.Editor({ mobiledoc: doc });
 
-ReactDOM.render(<ReactMobiledoc.Editor doc={doc} />, document.getElementById('root'));
+ReactDOM.render(<ReactMobiledoc.Container>
+                  <ReactMobiledoc.Toolbar editor={editor} />
+                  <ReactMobiledoc.Editor editor={editor} />
+                  <ReactMobiledoc.LinkForm editor={editor} />
+                </ReactMobiledoc.Container>,
+                document.getElementById('root'));

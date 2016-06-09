@@ -10,6 +10,9 @@ const SelectionTether = React.createClass({
       paddingTop: 10
     };
   },
+  getInitialState() {
+    return {};
+  },
   componentWillMount() {
     const selection = window.getSelection();
     const range = selection && selection.rangeCount && selection.getRangeAt(0);

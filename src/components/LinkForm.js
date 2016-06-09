@@ -6,7 +6,7 @@ const preventDefault = (f) => {
   return (e) => {
     e.preventDefault();
     f();
-  }
+  };
 };
 
 const LinkForm = React.createClass({
@@ -16,6 +16,21 @@ const LinkForm = React.createClass({
   contextTypes: {
     linkOffsets: React.PropTypes.object,
     setLinkOffsets: React.PropTypes.func
+  },
+  render() {
+    if (!this.context.linkOffsets) {
+      return null;
+    }
+
+    return (
+      <SelectionTether>
+        <form onSubmit={preventDefault(this.handleSubmit)}>
+          <input type="text" ref="url"></input>
+          <button>Link</button>
+          <button onClick={preventDefault(this.closeForm)}>Cancel</button>
+        </form>
+      </SelectionTether>
+    );
   },
   closeForm() {
     this.context.setLinkOffsets(null);
@@ -30,17 +45,6 @@ const LinkForm = React.createClass({
   handleSubmit() {
     this.closeForm();
     this.addLink({href: this.refs.url.value});
-  },
-  render() {
-    return (
-      <SelectionTether>
-        <form onSubmit={preventDefault(this.handleSubmit)}>
-          <input type="text" ref="url"></input>
-          <button>Link</button>
-          <button onClick={preventDefault(this.closeForm)}>Cancel</button>
-        </form>
-      </SelectionTether>
-    );
   }
 });
 
