@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --colors",
+    "build": "webpack --progress --display-reasons --display-chunks",
     "test": "karma start --single-run"
   },
   "devDependencies": {
