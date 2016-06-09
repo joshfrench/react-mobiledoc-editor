@@ -1,8 +1,9 @@
-import sinon from 'sinon';
 import chai from 'chai';
-import chaiImmutable from 'chai-immutable';
+import chaiEnzyme from 'chai-enzyme';
+import sinonChai from 'sinon-chai';
 
-chai.use(chaiImmutable);
+chai.use(chaiEnzyme());
+chai.use(sinonChai);
 
 var context = require.context('.', true, /Test.js$/);
 context.keys().forEach(context);
