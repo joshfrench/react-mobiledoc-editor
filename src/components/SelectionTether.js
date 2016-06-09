@@ -17,7 +17,7 @@ const SelectionTether = React.createClass({
     const selection = window.getSelection();
     const range = selection && selection.rangeCount && selection.getRangeAt(0);
 
-    // warn if selection/range doesn't exist here?
+    // TODO: warn if selection/range doesn't exist here?
 
     if (range) {
       const rect = range.getBoundingClientRect();

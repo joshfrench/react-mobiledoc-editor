@@ -11,7 +11,7 @@ const Container = React.createClass({
   getChildContext() {
     return {
       linkOffsets: this.state.linkOffsets,
-      setLinkOffsets: (range) => { this.setState({ linkOffsets: range }); }
+      setLinkOffsets: (range) => this.setState({ linkOffsets: range })
     };
   },
   render() {
