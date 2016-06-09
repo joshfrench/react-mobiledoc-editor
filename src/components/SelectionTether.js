@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const SelectionTether = React.createClass({
   propTypes: {
@@ -25,17 +26,17 @@ const SelectionTether = React.createClass({
     }
   },
   componentDidMount: function() {
-    const {child} = this.refs;
+    const node = ReactDOM.findDOMNode(this);
 
-    const height = child.getBoundingClientRect().height,
+    const height = node.getBoundingClientRect().height,
           top    = this.state.top - this.props.paddingTop - height,
           left   = this.state.left - this.props.paddingLeft;
 
-    child.style.left = `${left}px`;
-    child.style.top  = `${top}px`;
+    node.style.left = `${left}px`;
+    node.style.top  = `${top}px`;
   },
   render() {
-    return React.cloneElement(this.props.children, {ref: 'child', style: {position: 'fixed'}});
+    return React.cloneElement(this.props.children, {style: {position: 'fixed'}});
   }
 });
 
