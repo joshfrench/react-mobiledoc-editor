@@ -4,7 +4,7 @@
   "description": ":)",
   "main": "index.js",
   "scripts": {
-    "start": "node demo/devServer.js",
+    "start": "webpack-dev-server --progress --colors",
     "test": "karma start --single-run"
   },
   "devDependencies": {
@@ -22,7 +22,6 @@
     "eslint": "^2.9.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^5.0.1",
-    "express": "^4.13.4",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
     "karma-cli": "^1.0.0",
@@ -47,7 +46,9 @@
     "sinon-chai": "^2.8.0",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.10.0",
+    "webpack-merge": "^0.14.0"
   },
   "license": "MIT",
   "private": "true"
