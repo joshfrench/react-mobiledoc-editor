@@ -1,18 +1,8 @@
 import React from 'react';
-import MobileDoc from 'mobiledoc-kit';
 
-const SectionControl = React.createClass({
-  propTypes: {
-    children: React.PropTypes.element.isRequired,
-    tag: React.PropTypes.string.isRequired,
-    editor: React.PropTypes.instanceOf(MobileDoc.Editor).isRequired
-  },
-  handleClick() {
-    this.props.editor.toggleSection(this.props.tag);
-  },
-  render() {
-    return React.cloneElement(this.props.children, {onClick: this.handleClick});
-  }
-});
+const SectionControl = ({editor, tag, children}) => {
+  const onClick = () => editor.toggleSection(tag);
+  return React.cloneElement(children, {onClick});
+};
 
 export default SectionControl;
