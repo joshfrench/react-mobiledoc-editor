@@ -1,7 +1,8 @@
 import React from 'react';
 import SectionControl from '../src/components/SectionControl';
-import { shallow } from 'enzyme';
+import { expect } from 'chai';
 import { spy } from 'sinon';
+import { shallow } from 'enzyme';
 
 describe('<SectionControl />', () => {
   it('should render children', () => {

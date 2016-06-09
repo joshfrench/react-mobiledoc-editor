@@ -1,7 +1,8 @@
 import React from 'react';
 import MarkupControl from '../src/components/MarkupControl';
-import { shallow } from 'enzyme';
+import { expect } from 'chai';
 import { spy } from 'sinon';
+import { shallow } from 'enzyme';
 
 describe('<MarkupControl />', () => {
   it('should render children', () => {
