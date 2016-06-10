@@ -1,21 +1,20 @@
 import React from 'react';
-import MobileDoc from 'mobiledoc-kit';
 import SelectionTether from './SelectionTether';
 
 const preventDefault = (f) => {
   return (e) => {
-    e.preventDefault();
+    e && e.preventDefault && e.preventDefault();
     f();
   };
 };
 
+// TODO: Figure out how to make stateless? Currently needs `ref` to input
+// so can't be stateless.
 const LinkForm = React.createClass({
-  propTypes: {
-    editor: React.PropTypes.instanceOf(MobileDoc.Editor).isRequired
-  },
   contextTypes: {
     linkOffsets: React.PropTypes.object,
-    setLinkOffsets: React.PropTypes.func
+    setLinkOffsets: React.PropTypes.func,
+    addLink: React.PropTypes.func
   },
   render() {
     if (!this.context.linkOffsets) {
@@ -26,8 +25,8 @@ const LinkForm = React.createClass({
       <SelectionTether>
         <form onSubmit={preventDefault(this.handleSubmit)}>
           <input type="text" ref="url"></input>
-          <button>Link</button>
-          <button onClick={preventDefault(this.closeForm)}>Cancel</button>
+          <button ref="add">Link</button>
+          <button ref="cancel" onClick={preventDefault(this.closeForm)}>Cancel</button>
         </form>
       </SelectionTether>
     );
@@ -35,16 +34,9 @@ const LinkForm = React.createClass({
   closeForm() {
     this.context.setLinkOffsets(null);
   },
-  addLink(data) {
-    const {href} = data;
-    this.props.editor.run(postEditor => {
-      const markup = postEditor.builder.createMarkup('a', {href});
-      postEditor.addMarkupToRange(this.context.linkOffsets, markup);
-    });
-  },
   handleSubmit() {
     this.closeForm();
-    this.addLink({href: this.refs.url.value});
+    this.context.addLink({href: this.refs.url.value});
   }
 });
 
