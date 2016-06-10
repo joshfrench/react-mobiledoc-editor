@@ -1,27 +1,27 @@
 import React from 'react';
-import SectionControl from '../src/components/SectionControl';
+import MarkupControl from '../../src/components/MarkupControl';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { shallow } from 'enzyme';
 
-describe('<SectionControl />', () => {
-  const button = <button>UL</button>;
+describe('<MarkupControl />', () => {
+  const button = <button>A</button>;
 
   it('should render a button by default', () => {
-    const wrapper = shallow(<SectionControl tag="UL" />);
+    const wrapper = shallow(<MarkupControl tag="A" />);
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<SectionControl>{button}</SectionControl>);
+    const wrapper = shallow(<MarkupControl>{button}</MarkupControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
 
   it('should toggle markup on click', () => {
-    const editor = { toggleSection: spy() };
-    const wrapper = shallow(<SectionControl editor={editor} tag='UL'><button /></SectionControl>);
+    const editor = { toggleMarkup: spy() };
+    const wrapper = shallow(<MarkupControl editor={editor} tag='A'><button /></MarkupControl>);
     wrapper.find('button').simulate('click');
-    expect(editor.toggleSection).to.be.calledWith('UL');
+    expect(editor.toggleMarkup).calledWith('A');
   });
 
   it('should set active class');

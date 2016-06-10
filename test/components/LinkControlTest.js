@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkControl from '../src/components/LinkControl';
+import LinkControl from '../../src/components/LinkControl';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { shallow } from 'enzyme';
