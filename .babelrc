@@ -1,10 +1,12 @@
 {
   "presets": ["react", "es2015"],
+  "plugins": [
+    ["transform-object-rest-spread"],
+    ["transform-react-display-name"],
+  ],
   "env": {
-    "development": {
+    "start": {
       "plugins": [
-        ["transform-object-rest-spread"],
-        ["transform-react-display-name"],
         ["react-transform", {
           "transforms": [{
             "transform": "react-transform-hmr",
@@ -15,12 +17,6 @@
             "imports": ["react", "redbox-react"]
           }]
         }]
-      ]
-    },
-    "production": {
-      "plugins": [
-        ["transform-object-rest-spread"],
-        ["transform-react-display-name"]
       ]
     }
   }
