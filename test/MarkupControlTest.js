@@ -5,8 +5,14 @@ import { spy } from 'sinon';
 import { shallow } from 'enzyme';
 
 describe('<MarkupControl />', () => {
+  const button = <button>A</button>;
+
+  it('should render a button by default', () => {
+    const wrapper = shallow(<MarkupControl tag="A" />);
+    expect(wrapper.containsMatchingElement(button)).to.be.true;
+  });
+
   it('should render children', () => {
-    const button = <button>A</button>;
     const wrapper = shallow(<MarkupControl>{button}</MarkupControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });

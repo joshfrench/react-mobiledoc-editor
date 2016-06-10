@@ -5,8 +5,14 @@ import { spy } from 'sinon';
 import { shallow } from 'enzyme';
 
 describe('<SectionControl />', () => {
+  const button = <button>UL</button>;
+
+  it('should render a button by default', () => {
+    const wrapper = shallow(<SectionControl tag="UL" />);
+    expect(wrapper.containsMatchingElement(button)).to.be.true;
+  });
+
   it('should render children', () => {
-    const button = <button>A</button>;
     const wrapper = shallow(<SectionControl>{button}</SectionControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
@@ -15,7 +21,7 @@ describe('<SectionControl />', () => {
     const editor = { toggleSection: spy() };
     const wrapper = shallow(<SectionControl editor={editor} tag='UL'><button /></SectionControl>);
     wrapper.find('button').simulate('click');
-    expect(editor.toggleSection).calledWith('UL');
+    expect(editor.toggleSection).to.be.calledWith('UL');
   });
 
   it('should set active class');
