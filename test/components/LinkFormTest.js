@@ -1,7 +1,7 @@
 import React from 'react';
 import LinkForm from '../../src/components/LinkForm';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy } from 'sinon';
 import { mount } from 'enzyme';
 
 describe('<LinkForm />', () => {
@@ -20,14 +20,13 @@ describe('<LinkForm />', () => {
   });
 
   it('should add a link', () => {
-    const editor = { run: stub() };
-    const wrapper = mount(<LinkForm editor={editor} />, {context});
+    const wrapper = mount(<LinkForm />, {context});
     const form = wrapper.find('form');
 
     form.simulate('submit');
     expect(context.addLink).to.have.been.called;
 
-    // should close form after link added
+    // should also close form after link added
     expect(context.setLinkOffsets).to.have.been.calledWith(null);
   });
 });

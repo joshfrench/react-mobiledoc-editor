@@ -21,6 +21,6 @@ const editor = new Mobiledoc.Editor({ mobiledoc: doc });
 ReactDOM.render(<ReactMobiledoc.Container editor={editor}>
                   <ReactMobiledoc.Toolbar editor={editor} />
                   <ReactMobiledoc.Editor editor={editor} />
-                  <ReactMobiledoc.LinkForm editor={editor} />
+                  <ReactMobiledoc.LinkForm />
                 </ReactMobiledoc.Container>,
                 document.getElementById('root'));
