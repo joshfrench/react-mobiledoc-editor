@@ -36,20 +36,10 @@ const Container = React.createClass({
     if (typeof this.props.willCreateEditor === 'function') {
       this.props.willCreateEditor();
     }
+
     this.editor = new Mobiledoc.Editor({mobiledoc: this.props.mobiledoc || EMPTY_MOBILEDOC});
-    this.editor.inputModeDidChange(() => {
-      this.setState({
-        activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),
-        // editor.activeSections are leaf sections.
-        // Map parent section tag names (e.g. 'p', 'ul', 'ol') so that list buttons
-        // are updated.
-        activeSectionTags: this.editor.activeSections.map(s => {
-          return s.isNested ? s.parent.tagName : s.tagName;
-        })
-      });
-    });
-  },
-  componentDidMount() {
+    this.editor.inputModeDidChange(this.setActiveTags);
+
     if (typeof this.props.didCreateEditor === 'function') {
       this.props.didCreateEditor(this.editor);
     }
@@ -64,6 +54,17 @@ const Container = React.createClass({
     this.editor.run(postEditor => {
       const markup = postEditor.builder.createMarkup('a', {href});
       postEditor.addMarkupToRange(this.state.linkOffsets, markup);
+    });
+  },
+  setActiveTags() {
+    this.setState({
+      activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),
+      // editor.activeSections are leaf sections.
+      // Map parent section tag names (e.g. 'p', 'ul', 'ol') so that list buttons
+      // are updated.
+      activeSectionTags: this.editor.activeSections.map(s => {
+        return s.isNested ? s.parent.tagName : s.tagName;
+      })
     });
   }
 });
