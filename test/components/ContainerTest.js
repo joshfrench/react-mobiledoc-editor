@@ -50,7 +50,14 @@ describe('<Container />', () => {
     expect(wrapper.instance().editor.spellcheck).to.be.false;
   });
 
-  it('should pass autofocus to editor');
+  it('should pass autofocus to editor', () => {
+    let wrapper = mount(<Container><Editor /></Container>);
+    expect(wrapper.instance().editor.autofocus).to.be.true;
+
+    wrapper = mount(<Container autofocus={false}><Editor /></Container>);
+    expect(wrapper.instance().editor.autofocus).to.be.false;
+  });
+
   it('should pass options to editor');
 
   it('should pass serializeVersion to editor', () => {

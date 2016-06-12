@@ -20,6 +20,7 @@ const Container = React.createClass({
   getDefaultProps() {
     return {
       spellcheck: true,
+      autofocus: true,
       serializeVersion: "0.3.0"
     };
   },
@@ -45,9 +46,10 @@ const Container = React.createClass({
 
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
     this.editor = new Mobiledoc.Editor({mobiledoc,
+                                        autofocus: this.props.autofocus,
                                         placeholder: this.props.placeholder,
-                                        spellcheck: this.props.spellcheck,
-                                        serializeVersion: this.props.serializeVersion
+                                        serializeVersion: this.props.serializeVersion,
+                                        spellcheck: this.props.spellcheck
     });
 
     this.editor.inputModeDidChange(this.setActiveTags);
