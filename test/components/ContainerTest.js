@@ -38,12 +38,18 @@ describe('<Container />', () => {
   });
 
   it('should pass placeholder to editor', () => {
-    const wrapper = mount(<Container placeholder="placeholder!"><Editor /></Container>);
-    // Editor div is opaque to React and utilities, match on rendered output
-    expect(wrapper.html()).to.match(/placeholder="placeholder!"/);
+    const wrapper = mount(<Container placeholder="placeholder!" />);
+    expect(wrapper.instance().editor.placeholder).to.equal('placeholder!');
   });
 
-  it('should pass spellcheck to editor');
+  it('should pass spellcheck to editor', () => {
+    let wrapper = mount(<Container />);
+    expect(wrapper.instance().editor.spellcheck).to.be.true;
+
+    wrapper = mount(<Container spellcheck={false} />);
+    expect(wrapper.instance().editor.spellcheck).to.be.false;
+  });
+
   it('should pass autofocus to editor');
   it('should pass options to editor');
 

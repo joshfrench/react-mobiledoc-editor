@@ -17,6 +17,11 @@ const Container = React.createClass({
     activeMarkupTags: React.PropTypes.array,
     activeSectionTags: React.PropTypes.array
   },
+  getDefaultProps() {
+    return {
+      spellcheck: true
+    };
+  },
   getInitialState() {
     return {
       activeMarkupTags: [],
@@ -38,7 +43,10 @@ const Container = React.createClass({
     }
 
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
-    this.editor = new Mobiledoc.Editor({mobiledoc, placeholder: this.props.placeholder});
+    this.editor = new Mobiledoc.Editor({mobiledoc,
+                                        placeholder: this.props.placeholder,
+                                        spellcheck: this.props.spellcheck
+    });
     this.editor.inputModeDidChange(this.setActiveTags);
 
     if (typeof this.props.didCreateEditor === 'function') {
