@@ -38,7 +38,7 @@ const Container = React.createClass({
     }
 
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
-    this.editor = new Mobiledoc.Editor({mobiledoc});
+    this.editor = new Mobiledoc.Editor({mobiledoc, placeholder: this.props.placeholder});
     this.editor.inputModeDidChange(this.setActiveTags);
 
     if (typeof this.props.didCreateEditor === 'function') {
