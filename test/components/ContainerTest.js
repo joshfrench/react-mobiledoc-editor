@@ -51,10 +51,10 @@ describe('<Container />', () => {
   });
 
   it('should pass autofocus to editor', () => {
-    let wrapper = mount(<Container><Editor /></Container>);
+    let wrapper = mount(<Container />);
     expect(wrapper.instance().editor.autofocus).to.be.true;
 
-    wrapper = mount(<Container autofocus={false}><Editor /></Container>);
+    wrapper = mount(<Container autofocus={false} />);
     expect(wrapper.instance().editor.autofocus).to.be.false;
   });
 
