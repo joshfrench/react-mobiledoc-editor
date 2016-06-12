@@ -45,12 +45,9 @@ const Container = React.createClass({
     }
 
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
-    this.editor = new Mobiledoc.Editor({mobiledoc,
-                                        autofocus: this.props.autofocus,
-                                        placeholder: this.props.placeholder,
-                                        serializeVersion: this.props.serializeVersion,
-                                        spellcheck: this.props.spellcheck
-    });
+    const { autofocus, placeholder, serializeVersion, spellcheck } = this.props;
+    const editorOptions = { ...this.props.options, mobiledoc, autofocus, placeholder, serializeVersion, spellcheck };
+    this.editor = new Mobiledoc.Editor(editorOptions);
 
     this.editor.inputModeDidChange(this.setActiveTags);
 

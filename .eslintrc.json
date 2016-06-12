@@ -3,12 +3,12 @@
     "env": {
         "es6": true,
         "browser": true,
-        "node": true,
-        "jasmine": true
+        "node": true
     },
     "parserOptions": {
       "sourceType": "module",
       "ecmaFeatures": {
+          "experimentalObjectRestSpread", true,
           "jsx": true
       }
     },

@@ -58,8 +58,6 @@ describe('<Container />', () => {
     expect(wrapper.instance().editor.autofocus).to.be.false;
   });
 
-  it('should pass options to editor');
-
   it('should pass serializeVersion to editor', () => {
     const onChange = spy();
     let wrapper = mount(<Container onChange={onChange}><Editor /></Container>);
@@ -91,7 +89,15 @@ describe('<Container />', () => {
     expect(onChange).to.have.been.called;
   });
 
-  it('unmounts editor', () => {
+  it('should pass other options to editor', () => {
+    let wrapper = mount(<Container />);
+    expect(wrapper.instance().editor.undoDepth).to.equal(5);
+
+    wrapper = mount(<Container options={{undoDepth: 0}} />);
+    expect(wrapper.instance().editor.undoDepth).to.equal(0);
+  });
+
+  it('should unmount editor', () => {
     const wrapper = shallow(<Container />);
     const editor = wrapper.instance().editor;
     spy(editor, 'destroy');
