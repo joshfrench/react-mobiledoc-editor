@@ -19,6 +19,7 @@ describe('<Container />', () => {
     expect(didCreateEditor).to.have.been.calledWith(wrapper.instance().editor);
   });
 
+  it('registers inputModeDidChange with editor'); // FIXME: can't test until Container is wrapped in its own HOC?
   it('should pass mobiledoc to editor');
   it('should pass placeholder to editor');
   it('should pass spellcheck to editor');

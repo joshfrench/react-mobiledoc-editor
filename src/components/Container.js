@@ -40,6 +40,9 @@ const Container = React.createClass({
     this.editor.inputModeDidChange(() => {
       this.setState({
         activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),
+        // editor.activeSections are leaf sections.
+        // Map parent section tag names (e.g. 'p', 'ul', 'ol') so that list buttons
+        // are updated.
         activeSectionTags: this.editor.activeSections.map(s => {
           return s.isNested ? s.parent.tagName : s.tagName;
         })
