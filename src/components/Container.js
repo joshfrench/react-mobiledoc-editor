@@ -44,6 +44,9 @@ const Container = React.createClass({
       this.props.didCreateEditor(this.editor);
     }
   },
+  componentWillUnmount() {
+    this.editor.destroy();
+  },
   render() {
     const children = React.Children.map(this.props.children, (child) => {
       return React.cloneElement(child, {editor: this.editor});

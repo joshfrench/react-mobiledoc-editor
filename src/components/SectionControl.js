@@ -12,6 +12,6 @@ const SectionControl = ({editor, tag='', children=<button>{titleCase(tag)}</butt
 
 SectionControl.contextTypes = {
   activeSectionTags: React.PropTypes.array
-}
+};
 
 export default SectionControl;

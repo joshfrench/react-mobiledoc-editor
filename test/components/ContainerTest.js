@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '../../src/components/Container';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('<Container />', () => {
   it('fires willCreateEditor callback', () => {
@@ -24,6 +24,12 @@ describe('<Container />', () => {
   it('should pass spellcheck to editor');
   it('should pass autofocus to editor');
   it('should pass options to editor');
-  it('should serialize mobiledoc to mobiledocVersion');
-  it('should pass onChange to editor');
+
+  it('unmounts editor', () => {
+    const wrapper = shallow(<Container />);
+    const editor = wrapper.instance().editor;
+    spy(editor, 'destroy');
+    wrapper.unmount();
+    expect(editor.destroy).to.have.been.called;
+  });
 });
