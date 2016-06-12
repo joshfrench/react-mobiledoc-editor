@@ -53,6 +53,16 @@ describe('<Container />', () => {
   it('should pass autofocus to editor');
   it('should pass options to editor');
 
+  it('should pass onChange to editor', () => {
+    const onChange = spy();
+    const wrapper = mount(<Container onChange={onChange}><Editor /></Container>);
+    wrapper.instance().editor.run(postEditor => {
+      const section = postEditor.builder.createMarkupSection('p');
+      postEditor.insertSection(section);
+    });
+    expect(onChange).to.have.been.called;
+  });
+
   it('unmounts editor', () => {
     const wrapper = shallow(<Container />);
     const editor = wrapper.instance().editor;

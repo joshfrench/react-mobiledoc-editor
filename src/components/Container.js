@@ -48,6 +48,12 @@ const Container = React.createClass({
                                         spellcheck: this.props.spellcheck
     });
     this.editor.inputModeDidChange(this.setActiveTags);
+    if (typeof this.props.onChange === 'function') {
+      this.editor.postDidChange(() => {
+        const mobiledoc = this.editor.serialize(this.props.serializeVersion);
+        this.props.onChange(mobiledoc);
+      });
+    }
 
     if (typeof this.props.didCreateEditor === 'function') {
       this.props.didCreateEditor(this.editor);
