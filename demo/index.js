@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Mobiledoc from 'mobiledoc-kit';
 
 import * as ReactMobiledoc from '../src';
 
@@ -16,11 +15,14 @@ const doc = {
   ]
 };
 
-const editor = new Mobiledoc.Editor({ mobiledoc: doc });
+// const editor = new Mobiledoc.Editor({ mobiledoc: doc });
+// editor.inputModeDidChange(() => { console.log(editor.activeMarkups, editor.activeSections); });
+const willCreateEditor = () => { console.log('create editor'); };
+const didCreateEditor = (e) => { console.log('created', e); };
 
-ReactDOM.render(<ReactMobiledoc.Container editor={editor}>
-                  <ReactMobiledoc.Toolbar editor={editor} />
-                  <ReactMobiledoc.Editor editor={editor} />
+ReactDOM.render(<ReactMobiledoc.Container mobiledoc={doc} willCreateEditor={willCreateEditor} didCreateEditor={didCreateEditor} >
+                  <ReactMobiledoc.Toolbar />
+                  <ReactMobiledoc.Editor />
                   <ReactMobiledoc.LinkForm />
                 </ReactMobiledoc.Container>,
                 document.getElementById('root'));

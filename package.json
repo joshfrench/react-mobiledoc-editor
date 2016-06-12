@@ -11,6 +11,9 @@
     "test:watch": "npm test -- --watch",
     "lint": "eslint src"
   },
+  "dependencies": {
+    "mobiledoc-kit": "^0.9.7"
+  },
   "devDependencies": {
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.4",
@@ -28,19 +31,14 @@
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^5.0.1",
     "jsdom": "^9.2.1",
-    "mobiledoc-kit": "^0.9.7",
     "mocha": "^2.5.3",
     "mocha-cli": "^1.0.0",
     "react": "^15.0.2",
     "react-addons-test-utils": "^15.0.0-rc.2",
     "react-dom": "^15.0.2",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.4.0",
-    "react-router-redux": "^4.0.4",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.3",
-    "redux": "^3.5.2",
     "sinon": "^2.0.0-pre",
     "sinon-chai": "^2.8.0",
     "webpack": "^1.13.0",
