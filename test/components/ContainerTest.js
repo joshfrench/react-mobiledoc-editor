@@ -19,7 +19,23 @@ describe('<Container />', () => {
     expect(didCreateEditor).to.have.been.calledWith(wrapper.instance().editor);
   });
 
-  it('should pass mobiledoc to editor');
+  it('should pass mobiledoc to editor', () => {
+    const doc = {
+      version: "0.3.0",
+      markups: [],
+      atoms: [],
+      cards: [],
+      sections: [
+        [1, "p", [
+          [0, [], 0, "Ohai"]
+        ]]
+      ]
+    };
+
+    const wrapper = mount(<Container mobiledoc={doc} />);
+    expect(wrapper.instance().editor.mobiledoc).to.equal(doc);
+  });
+
   it('should pass placeholder to editor');
   it('should pass spellcheck to editor');
   it('should pass autofocus to editor');
