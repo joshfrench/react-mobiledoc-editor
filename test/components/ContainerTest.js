@@ -53,6 +53,27 @@ describe('<Container />', () => {
   it('should pass autofocus to editor');
   it('should pass options to editor');
 
+  it('should pass serializeVersion to editor', () => {
+    const onChange = spy();
+    let wrapper = mount(<Container onChange={onChange}><Editor /></Container>);
+    let editor = wrapper.instance().editor;
+
+    editor.run(postEditor => {
+      const section = postEditor.builder.createMarkupSection('p');
+      postEditor.insertSection(section);
+    });
+    expect(onChange).to.have.been.calledWithMatch({ version: "0.3.0" });
+
+    wrapper = mount(<Container serializeVersion="0.2.0" onChange={onChange}><Editor /></Container>);
+    editor = wrapper.instance().editor;
+
+    editor.run(postEditor => {
+      const section = postEditor.builder.createMarkupSection('p');
+      postEditor.insertSection(section);
+    });
+    expect(onChange).to.have.been.calledWithMatch({"version": "0.2.0"});
+  });
+
   it('should pass onChange to editor', () => {
     const onChange = spy();
     const wrapper = mount(<Container onChange={onChange}><Editor /></Container>);

@@ -19,7 +19,8 @@ const Container = React.createClass({
   },
   getDefaultProps() {
     return {
-      spellcheck: true
+      spellcheck: true,
+      serializeVersion: "0.3.0"
     };
   },
   getInitialState() {
@@ -45,9 +46,12 @@ const Container = React.createClass({
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
     this.editor = new Mobiledoc.Editor({mobiledoc,
                                         placeholder: this.props.placeholder,
-                                        spellcheck: this.props.spellcheck
+                                        spellcheck: this.props.spellcheck,
+                                        serializeVersion: this.props.serializeVersion
     });
+
     this.editor.inputModeDidChange(this.setActiveTags);
+
     if (typeof this.props.onChange === 'function') {
       this.editor.postDidChange(() => {
         const mobiledoc = this.editor.serialize(this.props.serializeVersion);
