@@ -42,5 +42,10 @@ describe('<LinkControl />', () => {
     expect(context.setLinkOffsets).to.have.been.calledWith("Range");
   });
 
-  it('should set active class');
+  it('should set active class', () => {
+    const context = {activeMarkupTags: ['a']};
+    const wrapper = shallow(<LinkControl><button className="keep" /></LinkControl>, {context});
+    expect(wrapper).to.have.className('keep');
+    expect(wrapper).to.have.className('active');
+  });
 });

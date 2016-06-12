@@ -12,6 +12,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "mobiledoc-kit": "^0.9.7"
   },
   "devDependencies": {

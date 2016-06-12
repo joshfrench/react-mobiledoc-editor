@@ -24,5 +24,10 @@ describe('<SectionControl />', () => {
     expect(editor.toggleSection).to.be.calledWith('UL');
   });
 
-  it('should set active class');
+  it('should set active class', () => {
+    const context = {activeSectionTags: ['ul']};
+    const wrapper = shallow(<SectionControl tag='UL'><button className="keep" /></SectionControl>, {context});
+    expect(wrapper).to.have.className('keep');
+    expect(wrapper).to.have.className('active');
+  });
 });

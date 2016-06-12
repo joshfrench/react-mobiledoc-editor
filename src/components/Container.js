@@ -13,16 +13,23 @@ const Container = React.createClass({
   childContextTypes: {
     linkOffsets: React.PropTypes.object,
     setLinkOffsets: React.PropTypes.func,
-    addLink: React.PropTypes.func
+    addLink: React.PropTypes.func,
+    activeMarkupTags: React.PropTypes.array,
+    activeSectionTags: React.PropTypes.array
   },
   getInitialState() {
-    return {};
+    return {
+      activeMarkupTags: [],
+      activeSectionTags: []
+    };
   },
   getChildContext() {
     return {
       linkOffsets: this.state.linkOffsets,
       setLinkOffsets: (range) => this.setState({ linkOffsets: range }),
-      addLink: this.addLink
+      addLink: this.addLink,
+      activeMarkupTags: this.state.activeMarkupTags,
+      activeSectionTags: this.state.activeSectionTags
     };
   },
   componentWillMount() {
@@ -30,6 +37,14 @@ const Container = React.createClass({
       this.props.willCreateEditor();
     }
     this.editor = new Mobiledoc.Editor({mobiledoc: this.props.mobiledoc || EMPTY_MOBILEDOC});
+    this.editor.inputModeDidChange(() => {
+      this.setState({
+        activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),
+        activeSectionTags: this.editor.activeSections.map(s => {
+          return s.isNested ? s.parent.tagName : s.tagName;
+        })
+      });
+    });
   },
   componentDidMount() {
     if (typeof this.props.didCreateEditor === 'function') {
@@ -43,7 +58,7 @@ const Container = React.createClass({
     return <div>{children}</div>;
   },
   addLink({href}) {
-    this.props.editor.run(postEditor => {
+    this.editor.run(postEditor => {
       const markup = postEditor.builder.createMarkup('a', {href});
       postEditor.addMarkupToRange(this.state.linkOffsets, markup);
     });

@@ -24,5 +24,10 @@ describe('<MarkupControl />', () => {
     expect(editor.toggleMarkup).calledWith('A');
   });
 
-  it('should set active class');
+  it('should set active class', () => {
+    const context = {activeMarkupTags: ['a']};
+    const wrapper = shallow(<MarkupControl tag='A'><button className="keep" /></MarkupControl>, {context});
+    expect(wrapper).to.have.className('keep');
+    expect(wrapper).to.have.className('active');
+  });
 });
