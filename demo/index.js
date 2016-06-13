@@ -27,7 +27,7 @@ const componentToCard = (name, component) => ({
 
 const preventDefault = (f) => (e) => { e.preventDefault(); f() };
 
-const FB = React.createClass({
+const Hello = React.createClass({
   render() {
     const {env, options, payload, isEditing} = this.props;
     if (isEditing) {
@@ -44,7 +44,7 @@ const FB = React.createClass({
   }
 });
 
-const FBCard = componentToCard('FBCard', FB);
+const HelloCard = componentToCard('HelloCard', Hello); // TODO: accept options such as didRender callback
 
 const doc = {
   version: "0.3.0",
@@ -63,14 +63,14 @@ const didCreateEditor = (e) => { console.log('created editor:', e); };
 const onChange = (doc) => { console.log(doc); };
 
 const CardButton = ({editor}) => {
-  return <button onClick={() => editor.insertCard('FBCard', {name: 'World'}, true)}>FB</button>;
+  return <button onClick={() => editor.insertCard('HelloCard', {name: 'World'}, true)}>Hello</button>;
 };
 
 ReactDOM.render(<ReactMobiledoc.Container mobiledoc={doc}
                                           willCreateEditor={willCreateEditor}
                                           didCreateEditor={didCreateEditor}
                                           onChange={onChange}
-                                          options={{cards: [FBCard]}}>
+                                          options={{cards: [HelloCard]}}>
                   <ReactMobiledoc.Toolbar />
                   <CardButton />
                   <ReactMobiledoc.Editor />
