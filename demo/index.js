@@ -11,8 +11,11 @@ const doc = {
   atoms: [],
   cards: [],
   sections: [
-    [1, "p", [
+    [1, "h1", [
       [0, [], 0, "Welcome to Mobiledoc"]
+    ]],
+    [1, "p", [
+      [0, [], 0, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare sit amet velit sit amet posuere. Etiam quis urna in justo elementum suscipit eget quis eros. Curabitur in blandit ligula. Sed ac nunc rhoncus, lobortis ex at, varius nulla."]
     ]]
   ]
 };
