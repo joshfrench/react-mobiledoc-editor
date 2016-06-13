@@ -54,34 +54,8 @@ const Container = React.createClass({
     const { autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
     const editorOptions = { ...this.props.options, mobiledoc, autofocus, cards, placeholder, serializeVersion, spellcheck };
     editorOptions.cardOptions = {
-      addComponent: (component, {env, options, payload}, isEditing=false) => {
-        const cardId = shortid();
-        const cardName = env.name;
-        const destinationElementId = `mobiledoc-editor-card-${cardId}`;
-        const destinationElement = document.createElement('div');
-        destinationElement.id = destinationElementId;
-
-        // not allowed to share ref to payload
-        payload = { ...payload };
-
-        const card = {
-          component,
-          destinationElementId,
-          cardName,
-          payload,
-          env,
-          editor: this.editor,
-          postModel: env.postModel,
-          isEditing
-        };
-
-        this.setState({ componentCards: [ ...this.state.componentCards, card ] });
-        return {card, destinationElement};
-      },
-      removeComponent: (card) => {
-        // TODO: remove object from this.state.componentCards
-        console.log(`should remove ${card.cardName}`);
-      }
+      addComponent: this.addCard,
+      removeComponent: this.removeCard
     };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
@@ -129,6 +103,43 @@ const Container = React.createClass({
   },
   render() {
     return <div>{this.props.children}</div>;
+  },
+  addCard(component, {env, options, payload}, isEditing=false) {
+    const cardId = shortid();
+    const cardName = env.name;
+    const destinationElementId = `mobiledoc-editor-card-${cardId}`;
+    const destinationElement = document.createElement('div');
+    destinationElement.id = destinationElementId;
+
+    // deref payload
+    payload = { ...payload };
+
+    const card = {
+      component,
+      destinationElementId,
+      cardName,
+      payload,
+      env,
+      editor: this.editor,
+      postModel: env.postModel,
+      isEditing
+    };
+
+    // gross, slow, and i'll almost definitely regret this later. but we
+    // need to delay setting state until after the current loop finishes
+    // or addCard will fire before removeCard has flushed, thereby
+    // clobbering the removal. Maybe a +1 for Redux?
+    window.requestAnimationFrame(() =>
+      { this.setState({componentCards: [ ...this.state.componentCards, card ]}); }
+    );
+
+    return {card, destinationElement};
+  },
+  removeCard(card) {
+    ReactDOM.unmountComponentAtNode(document.getElementById(card.destinationElementId));
+    const cards = this.state.componentCards;
+    const componentCards = cards.filter((c) => c.destinationElementId != card.destinationElementId);
+    this.setState({componentCards});
   },
   addLink({href}) {
     this.editor.run(postEditor => {
