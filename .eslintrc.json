@@ -3,12 +3,13 @@
     "env": {
         "es6": true,
         "browser": true,
-        "node": true
+        "node": true,
+        "mocha": true
     },
     "parserOptions": {
       "sourceType": "module",
       "ecmaFeatures": {
-          "experimentalObjectRestSpread", true,
+          "experimentalObjectRestSpread": true,
           "jsx": true
       }
     },

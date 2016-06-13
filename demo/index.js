@@ -33,10 +33,10 @@ const ImageButton = ({editor}) => {
 };
 
 ReactDOM.render(<ReactMobiledoc.Container mobiledoc={doc}
+                                          cards={[ImageCard]}
                                           willCreateEditor={willCreateEditor}
                                           didCreateEditor={didCreateEditor}
-                                          onChange={onChange}
-                                          options={{cards: [ImageCard]}}>
+                                          onChange={onChange}>
                   <ReactMobiledoc.Toolbar />
                   <ImageButton />
                   <ReactMobiledoc.Editor />

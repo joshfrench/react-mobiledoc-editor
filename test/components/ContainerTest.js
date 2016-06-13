@@ -89,6 +89,12 @@ describe('<Container />', () => {
     expect(onChange).to.have.been.called;
   });
 
+  it('should pass cards to editor', () => {
+    const Card = { name: 'aCard', type: 'dom', render: () => null };
+    const wrapper = mount(<Container cards={[Card]} />);
+    expect(wrapper.instance().editor.cards).to.contain(Card);
+  });
+
   it('should pass other options to editor', () => {
     let wrapper = mount(<Container />);
     expect(wrapper.instance().editor.undoDepth).to.equal(5);

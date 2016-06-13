@@ -6,7 +6,7 @@ const elementToNode = (component, props) => {
   const root = document.createElement('DIV');
   ReactDOM.render(element, root);
   return root.firstChild;
-}
+};
 
 /**
  * TODO: accept options such as didRender callback
