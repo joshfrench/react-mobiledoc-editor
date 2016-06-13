@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Mobiledoc from 'mobiledoc-kit';
+import {generate as shortid} from 'shortid';
 
 const EMPTY_MOBILEDOC = {
   version: "0.3.0",
@@ -28,7 +30,8 @@ const Container = React.createClass({
   getInitialState() {
     return {
       activeMarkupTags: [],
-      activeSectionTags: []
+      activeSectionTags: [],
+      componentCards: []
     };
   },
   getChildContext() {
@@ -48,6 +51,36 @@ const Container = React.createClass({
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
     const { autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
     const editorOptions = { ...this.props.options, mobiledoc, autofocus, cards, placeholder, serializeVersion, spellcheck };
+    editorOptions.cardOptions = {
+      addComponent: (component, {env, options, payload}, isEditing=false) => {
+        const cardId = shortid();
+        const cardName = env.name;
+        const destinationElementId = `mobiledoc-editor-card-${cardId}`;
+        const destinationElement = document.createElement('div');
+        destinationElement.id = destinationElementId;
+
+        // not allowed to share ref to payload
+        payload = { ...payload };
+
+        const card = {
+          component,
+          destinationElementId,
+          cardName,
+          payload,
+          env,
+          editor: this.editor,
+          postModel: env.postModel,
+          isEditing
+        };
+
+        this.setState({ componentCards: [ ...this.state.componentCards, card ] });
+        return {card, destinationElement};
+      },
+      removeComponent: (card) => {
+        // TODO: remove object from this.state.componentCards
+        console.log(`should remove ${card.cardName}`);
+      }
+    };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
     this.editor.inputModeDidChange(this.setActiveTags);
@@ -62,6 +95,30 @@ const Container = React.createClass({
     if (typeof this.props.didCreateEditor === 'function') {
       this.props.didCreateEditor(this.editor);
     }
+  },
+  componentDidUpdate() {
+    this.state.componentCards.map((card) => {
+      const { env, payload, postModel, cardName, isEditing } = card;
+      const editCard   = env.edit,
+            saveCard   = env.save,
+            cancelCard = env.cancel,
+            removeCard = env.remove;
+      const component = React.createElement(card.component, {
+        editor: this.editor,
+        env,
+        payload,
+        postModel,
+        cardName,
+        isEditing,
+        editCard,
+        saveCard,
+        cancelCard,
+        removeCard
+      });
+      if (document.getElementById(card.destinationElementId)) {
+        ReactDOM.render(component, document.getElementById(card.destinationElementId));
+      }
+    });
   },
   componentWillUnmount() {
     this.editor.destroy();

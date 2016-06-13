@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import * as ReactMobiledoc from '../src';
 import HelloCard from './HelloCard';
 import ImageCard from './ImageCard';
-
+console.log(ImageCard);
 const doc = {
   version: "0.3.0",
   markups: [],

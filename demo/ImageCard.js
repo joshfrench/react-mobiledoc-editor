@@ -1,5 +1,5 @@
 import React from 'react';
-import {componentToDOMCard} from '../src';
+import {classToDOMCard} from '../src';
 
 const Image = React.createClass({
   render() {
@@ -25,6 +25,6 @@ const Image = React.createClass({
   }
 });
 
-const ImageCard = componentToDOMCard('ImageCard', Image);
+const ImageCard = classToDOMCard(Image);
 
 export default ImageCard;

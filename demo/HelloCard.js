@@ -1,11 +1,11 @@
 import React from 'react';
-import {componentToDOMCard} from '../src';
+import {classToDOMCard} from '../src';
 
-const preventDefault = (f) => (e) => { e.preventDefault(); f() };
+const preventDefault = (f) => (e) => { e.preventDefault(); f(); };
 
 const Hello = React.createClass({
   render() {
-    const {env, options, payload, isEditing} = this.props;
+    const {env, payload, isEditing} = this.props;
     if (isEditing) {
       return (
         <form onSubmit={preventDefault(() => env.save({ name: this.refs.name.value }))}>
@@ -20,6 +20,6 @@ const Hello = React.createClass({
   }
 });
 
-const HelloCard = componentToDOMCard('HelloCard', Hello);
+const HelloCard = classToDOMCard(Hello);
 
 export default HelloCard;

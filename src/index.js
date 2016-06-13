@@ -5,7 +5,7 @@ import LinkForm from './components/LinkForm';
 import MarkupControl from './components/MarkupControl';
 import SectionControl from './components/SectionControl';
 import Toolbar from './components/Toolbar';
-import {componentToDOMCard} from './utils/componentToCard';
+import {classToDOMCard} from './utils/classToCard';
 
 
 export {
@@ -16,5 +16,5 @@ export {
   MarkupControl,
   SectionControl,
   Toolbar,
-  componentToDOMCard
+  classToDOMCard
 };
