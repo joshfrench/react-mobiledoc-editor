@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import * as ReactMobiledoc from '../src';
-import HelloCard from './HelloCard';
 import ImageCard from './ImageCard';
-console.log(ImageCard);
+
 const doc = {
   version: "0.3.0",
   markups: [],
@@ -24,12 +23,12 @@ const willCreateEditor = () => { console.log('creating editor...'); };
 const didCreateEditor = (e) => { console.log('created editor:', e); };
 const onChange = (doc) => { console.log(doc); };
 
-const CardButton = ({editor}) => {
-  return <button onClick={() => editor.insertCard('HelloCard', {name: 'World'}, true)}>Hello</button>;
+const ImageButton = (props, {editor}) => {
+  return <button onClick={() => editor.insertCard('ImageCard', {src: 'http://placekitten.com/200/200', caption: "Hi, I'm a kitten"}, false)}>Image</button>;
 };
 
-const ImageButton = ({editor}) => {
-  return <button onClick={() => editor.insertCard('ImageCard', {src: 'http://placekitten.com/200/200', caption: "Hi, I'm a kitten"}, false)}>Image</button>;
+ImageButton.contextTypes = {
+  editor: React.PropTypes.object
 };
 
 ReactDOM.render(<ReactMobiledoc.Container mobiledoc={doc}

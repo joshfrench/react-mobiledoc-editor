@@ -19,7 +19,8 @@ describe('<MarkupControl />', () => {
 
   it('should toggle markup on click', () => {
     const editor = { toggleMarkup: spy() };
-    const wrapper = shallow(<MarkupControl editor={editor} tag='A'><button /></MarkupControl>);
+    const context = {editor};
+    const wrapper = shallow(<MarkupControl tag='A'><button /></MarkupControl>, {context});
     wrapper.find('button').simulate('click');
     expect(editor.toggleMarkup).calledWith('A');
   });

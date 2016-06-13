@@ -19,7 +19,8 @@ describe('<SectionControl />', () => {
 
   it('should toggle markup on click', () => {
     const editor = { toggleSection: spy() };
-    const wrapper = shallow(<SectionControl editor={editor} tag='UL'><button /></SectionControl>);
+    const context = {editor};
+    const wrapper = shallow(<SectionControl tag='UL'><button /></SectionControl>, {context});
     wrapper.find('button').simulate('click');
     expect(editor.toggleSection).to.be.calledWith('UL');
   });

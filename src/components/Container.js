@@ -13,6 +13,7 @@ const EMPTY_MOBILEDOC = {
 
 const Container = React.createClass({
   childContextTypes: {
+    editor: React.PropTypes.object,
     linkOffsets: React.PropTypes.object,
     setLinkOffsets: React.PropTypes.func,
     addLink: React.PropTypes.func,
@@ -36,6 +37,7 @@ const Container = React.createClass({
   },
   getChildContext() {
     return {
+      editor: this.editor,
       linkOffsets: this.state.linkOffsets,
       setLinkOffsets: (range) => this.setState({ linkOffsets: range }),
       addLink: this.addLink,
@@ -126,10 +128,7 @@ const Container = React.createClass({
     this.editor.destroy();
   },
   render() {
-    const children = React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, {editor: this.editor});
-    });
-    return <div>{children}</div>;
+    return <div>{this.props.children}</div>;
   },
   addLink({href}) {
     this.editor.run(postEditor => {

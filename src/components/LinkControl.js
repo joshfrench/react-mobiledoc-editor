@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const LinkControl = ({editor, children=<button>Link</button>}, {setLinkOffsets, activeMarkupTags=[]}) => {
+const LinkControl = ({children=<button>Link</button>}, {editor, setLinkOffsets, activeMarkupTags=[]}) => {
   const onClick = () => {
     if (!editor.hasCursor()) {
       return;
@@ -22,6 +22,7 @@ const LinkControl = ({editor, children=<button>Link</button>}, {setLinkOffsets, 
 };
 
 LinkControl.contextTypes = {
+  editor: React.PropTypes.object,
   setLinkOffsets: React.PropTypes.func,
   activeMarkupTags: React.PropTypes.array
 };

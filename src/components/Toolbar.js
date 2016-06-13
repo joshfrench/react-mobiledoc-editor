@@ -3,17 +3,17 @@ import MarkupControl from './MarkupControl';
 import SectionControl from './SectionControl';
 import LinkControl from './LinkControl';
 
-const Toolbar = ({editor}) =>
+const Toolbar = () =>
   <ul>
-    <li><MarkupControl editor={editor} tag='strong'></MarkupControl></li>
-    <li><MarkupControl editor={editor} tag='em'></MarkupControl></li>
-    <li><LinkControl editor={editor}></LinkControl></li>
-    <li><MarkupControl editor={editor} tag='em'></MarkupControl></li>
-    <li><SectionControl editor={editor} tag='h1'></SectionControl></li>
-    <li><SectionControl editor={editor} tag='h2'></SectionControl></li>
-    <li><SectionControl editor={editor} tag='blockquote'></SectionControl></li>
-    <li><SectionControl editor={editor} tag='ul'></SectionControl></li>
-    <li><SectionControl editor={editor} tag='ol'></SectionControl></li>
+    <li><MarkupControl tag='strong' /></li>
+    <li><MarkupControl tag='em' /></li>
+    <li><LinkControl /></li>
+    <li><MarkupControl tag='em' /></li>
+    <li><SectionControl tag='h1' /></li>
+    <li><SectionControl tag='h2' /></li>
+    <li><SectionControl tag='blockquote' /></li>
+    <li><SectionControl tag='ul' /></li>
+    <li><SectionControl tag='ol' /></li>
   </ul>;
 
 export default Toolbar;

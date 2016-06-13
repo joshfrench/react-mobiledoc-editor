@@ -24,8 +24,9 @@ describe('<LinkControl />', () => {
   it('should add a link', () => {
     editor.hasActiveMarkup.returns(true);
     editor.toggleMarkup = spy();
+    const context = {editor};
 
-    const wrapper = shallow(<LinkControl editor={editor} />);
+    const wrapper = shallow(<LinkControl />, {context});
     wrapper.find('button').simulate('click');
     expect(editor.toggleMarkup).to.be.calledWith('a');
   });
@@ -34,10 +35,11 @@ describe('<LinkControl />', () => {
     editor.hasActiveMarkup.returns(false);
     editor.range = "Range";
     const context = {
-      setLinkOffsets: spy()
+      setLinkOffsets: spy(),
+      editor
     };
 
-    const wrapper = shallow(<LinkControl editor={editor} />, {context});
+    const wrapper = shallow(<LinkControl />, {context});
     wrapper.find('button').simulate('click');
     expect(context.setLinkOffsets).to.have.been.calledWith("Range");
   });
