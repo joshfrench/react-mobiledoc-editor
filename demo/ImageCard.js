@@ -3,22 +3,22 @@ import {classToDOMCard} from '../src';
 
 const Image = React.createClass({
   render() {
-    const {env, payload, isEditing} = this.props;
+    const {isInEditor, payload, saveCard, editCard, isEditing} = this.props;
     if (isEditing) {
       return (
         <div>
           <input type="text" ref="src" defaultValue={payload.src} /><br />
           <input type="text" ref="caption" defaultValue={payload.caption} /><br/>
-          <button onClick={() => env.save({ src: this.refs.src.value, caption: this.refs.caption.value })}>Save</button>
+          <button onClick={() => saveCard({ src: this.refs.src.value, caption: this.refs.caption.value })}>Save</button>
         </div>
       );
     } else {
-      const onClick = env.isInEditor ? env.edit : null;
+      const onClick = isInEditor ? editCard : null;
       return (
         <div>
           <img src={payload.src} onClick={onClick} /><br/>
           <small>{payload.caption}</small><br/>
-          {env.isInEditor && <button onClick={onClick}>Edit</button>}
+          {isInEditor && <button onClick={onClick}>Edit</button>}
         </div>
       );
     }

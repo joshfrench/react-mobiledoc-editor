@@ -99,7 +99,8 @@ const Container = React.createClass({
   componentDidUpdate() {
     this.state.componentCards.map((card) => {
       const { env, payload, postModel, cardName, isEditing } = card;
-      const editCard   = env.edit,
+      const isInEditor = env.isInEditor,
+            editCard   = env.edit,
             saveCard   = env.save,
             cancelCard = env.cancel,
             removeCard = env.remove;
@@ -109,6 +110,7 @@ const Container = React.createClass({
         payload,
         postModel,
         cardName,
+        isInEditor,
         isEditing,
         editCard,
         saveCard,
