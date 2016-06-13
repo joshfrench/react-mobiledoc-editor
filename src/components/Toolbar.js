@@ -3,7 +3,7 @@ import MarkupControl from './MarkupControl';
 import SectionControl from './SectionControl';
 import LinkControl from './LinkControl';
 
-const Toolbar = () =>
+const Toolbar = ({children}) =>
   <ul>
     <li><MarkupControl tag='strong' /></li>
     <li><MarkupControl tag='em' /></li>
@@ -14,6 +14,7 @@ const Toolbar = () =>
     <li><SectionControl tag='blockquote' /></li>
     <li><SectionControl tag='ul' /></li>
     <li><SectionControl tag='ol' /></li>
+    {React.Children.map(children, (child) => <li>{child}</li>)}
   </ul>;
 
 export default Toolbar;
