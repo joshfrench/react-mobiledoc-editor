@@ -29,7 +29,7 @@ const CardButton = ({editor}) => {
 };
 
 const ImageButton = ({editor}) => {
-  return <button onClick={() => editor.insertCard('ImageCard', {src: 'http://placekitten.com/200/100'}, true)}>Image</button>;
+  return <button onClick={() => editor.insertCard('ImageCard', {src: 'http://placekitten.com/200/200'}, true)}>Image</button>;
 };
 
 ReactDOM.render(<ReactMobiledoc.Container mobiledoc={doc}

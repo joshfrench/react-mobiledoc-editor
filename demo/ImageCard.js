@@ -13,11 +13,12 @@ const Image = React.createClass({
         </div>
       );
     } else {
+      const onClick = env.isInEditor ? env.edit : null;
       return (
         <div>
-          <img src={payload.src} /><br/>
+          <img src={payload.src} onClick={onClick} /><br/>
           <small>{payload.caption}</small><br/>
-          {env.isInEditor && <button onClick={env.edit}>Edit</button>}
+          {env.isInEditor && <button onClick={onClick}>Edit</button>}
         </div>
       );
     }
