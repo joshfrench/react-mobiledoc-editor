@@ -38,7 +38,7 @@ ReactDOM.render(<ReactMobiledoc.Container mobiledoc={doc}
                                           didCreateEditor={didCreateEditor}
                                           onChange={onChange}>
                   <ReactMobiledoc.Toolbar>
-                    <ImageButton />
+                    <ReactMobiledoc.CardControl card={ImageCard} edit={false} payload={{caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200"}} />
                   </ReactMobiledoc.Toolbar>
                   <ReactMobiledoc.Editor />
                   <ReactMobiledoc.LinkForm />
