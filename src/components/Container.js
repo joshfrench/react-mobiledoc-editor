@@ -54,8 +54,8 @@ const Container = React.createClass({
     const { autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
     const editorOptions = { ...this.props.options, mobiledoc, autofocus, cards, placeholder, serializeVersion, spellcheck };
     editorOptions.cardOptions = {
-      addComponent: this.addCard,
-      removeComponent: this.removeCard
+      addComponent: this.addComponentCard,
+      removeComponent: this.removeComponentCard
     };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
@@ -73,30 +73,7 @@ const Container = React.createClass({
     }
   },
   componentDidUpdate() {
-    this.state.componentCards.map((card) => {
-      const { env, payload, postModel, cardName, isEditing } = card;
-      const isInEditor = env.isInEditor,
-            editCard   = env.edit,
-            saveCard   = env.save,
-            cancelCard = env.cancel,
-            removeCard = env.remove;
-      const component = React.createElement(card.component, {
-        editor: this.editor,
-        env,
-        payload,
-        postModel,
-        cardName,
-        isInEditor,
-        isEditing,
-        editCard,
-        saveCard,
-        cancelCard,
-        removeCard
-      });
-      if (document.getElementById(card.destinationElementId)) {
-        ReactDOM.render(component, document.getElementById(card.destinationElementId));
-      }
-    });
+    this.state.componentCards.forEach(this.mountComponentCard);
   },
   componentWillUnmount() {
     this.editor.destroy();
@@ -104,7 +81,7 @@ const Container = React.createClass({
   render() {
     return <div>{this.props.children}</div>;
   },
-  addCard(component, {env, options, payload}, isEditing=false) {
+  addComponentCard(component, {env, options, payload}, isEditing=false) {
     const cardId = shortid();
     const cardName = env.name;
     const destinationElementId = `mobiledoc-editor-card-${cardId}`;
@@ -135,11 +112,37 @@ const Container = React.createClass({
 
     return {card, destinationElement};
   },
-  removeCard(card) {
+  removeComponentCard(card) {
     ReactDOM.unmountComponentAtNode(document.getElementById(card.destinationElementId));
     const cards = this.state.componentCards;
     const componentCards = cards.filter((c) => c.destinationElementId != card.destinationElementId);
     this.setState({componentCards});
+  },
+  mountComponentCard(card) {
+    const { env, payload, postModel, cardName, isEditing } = card;
+    const isInEditor = env.isInEditor,
+          editCard   = env.edit,
+          saveCard   = env.save,
+          cancelCard = env.cancel,
+          removeCard = env.remove;
+    const component = React.createElement(card.component, {
+      editor: this.editor,
+      env,
+      payload,
+      postModel,
+      cardName,
+      isInEditor,
+      isEditing,
+      editCard,
+      saveCard,
+      cancelCard,
+      removeCard
+    });
+
+    const destinationElement = document.getElementById(card.destinationElementId);
+    if (destinationElement) {
+      ReactDOM.render(component, destinationElement);
+    }
   },
   addLink({href}) {
     this.editor.run(postEditor => {
