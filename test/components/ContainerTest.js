@@ -110,4 +110,45 @@ describe('<Container />', () => {
     wrapper.unmount();
     expect(editor.destroy).to.have.been.called;
   });
+
+  describe('component cards', () => {
+    const Child = ({payload}) => <button>{payload.text}</button>;
+    const childCard = {
+      component: Child,
+      destinationElementId: 'root',
+      env: {},
+      payload: { text: 'Ohai' }
+    };
+
+    it('should mount a component card', () => {
+      const wrapper = shallow(<Container />);
+      wrapper.instance().mountComponentCard(childCard);
+      const node = document.querySelector('#root button');
+      expect(node.textContent).to.equal('Ohai');
+    });
+
+    it('should add a component card', () => {
+      const wrapper = shallow(<Container />);
+      const cardArg = {
+        env: { name: 'ChildCard' },
+        payload: { text: 'Ohai' }
+      };
+      const {card, destinationElement} = wrapper.instance().addComponentCard(Child, cardArg);
+
+      expect(card.component).to.eql(Child);
+      expect(card.payload).to.eql(cardArg.payload);
+      expect(destinationElement.id).to.eql(card.destinationElementId);
+      expect(wrapper.state('componentCards')).to.include(card);
+    });
+
+    it('should remove a component card', () => {
+      const wrapper = shallow(<Container />);
+      wrapper.instance().mountComponentCard(childCard);
+      wrapper.setState({ componentCards: [childCard] });
+
+      wrapper.instance().removeComponentCard(childCard);
+      expect(document.querySelector('#root button')).not.to.exist;
+      expect(wrapper.state('componentCards')).to.eql([]);
+    });
+  });
 });
