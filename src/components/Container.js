@@ -65,8 +65,8 @@ const Container = React.createClass({
     const { autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
     const editorOptions = { ...this.props.options, mobiledoc, autofocus, cards, placeholder, serializeVersion, spellcheck };
     editorOptions.cardOptions = {
-      addComponent: this.addComponentCard,
-      removeComponent: this.removeComponentCard
+      addComponentCard: this.addComponentCard,
+      removeComponentCard: this.removeComponentCard
     };
     this.editor = new Mobiledoc.Editor(editorOptions);
 

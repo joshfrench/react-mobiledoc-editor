@@ -16,27 +16,27 @@ export const classToDOMCard = (component, name, doc=window.document) => {
     type: 'dom',
     render(cardArg) {
       const {env, options} = cardArg;
-      if (!options.addComponent) {
+      if (!options.addComponentCard) {
         return renderFallback(doc);
       }
 
-      const {card, destinationElement} = options.addComponent(component, cardArg);
+      const {card, destinationElement} = options.addComponentCard(component, cardArg);
       const {onTeardown} = env;
 
-      onTeardown(() => options.removeComponent(card));
+      onTeardown(() => options.removeComponentCard(card));
       return destinationElement;
     },
     edit(cardArg) {
       const {env, options} = cardArg;
-      if (!options.addComponent) {
+      if (!options.addComponentCard) {
         return renderFallback(doc);
       }
 
       const isEditing = true;
-      const { card, destinationElement } = options.addComponent(component, cardArg, isEditing);
+      const { card, destinationElement } = options.addComponentCard(component, cardArg, isEditing);
       const { onTeardown } = env;
 
-      onTeardown(() => options.removeComponent(card));
+      onTeardown(() => options.removeComponentCard(card));
 
       return destinationElement;
     }

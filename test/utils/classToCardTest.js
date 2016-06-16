@@ -14,10 +14,10 @@ describe('classToDOMCard()', () => {
     expect(card.name).to.eql('TestCard');
   });
 
-  it('returns element created by options.addComponent', () => {
+  it('returns element created by options.addComponentCard', () => {
     const card = classToDOMCard(Component);
     const destinationElement = "destinationElement";
-    const cardArg = { options: { addComponent: (card) => ({card, destinationElement}) },
+    const cardArg = { options: { addComponentCard: (card) => ({card, destinationElement}) },
                       env:     { onTeardown: stub() }};
 
     expect(card.render(cardArg)).to.eql(destinationElement);
