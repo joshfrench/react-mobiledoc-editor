@@ -15,6 +15,11 @@ describe('<CardControl />', () => {
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
 
+  it('should pass arbitrary props to default child', () => {
+    const wrapper = shallow(<CardControl card={Card} className="foo" />);
+    expect(wrapper).to.have.className('foo');
+  });
+
   it('should render children', () => {
     const wrapper = shallow(<CardControl>{button}</CardControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;

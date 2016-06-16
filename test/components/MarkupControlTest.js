@@ -12,6 +12,11 @@ describe('<MarkupControl />', () => {
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
 
+  it('should pass props to default child', () => {
+    const wrapper = shallow(<MarkupControl disabled />);
+    expect(wrapper).to.be.disabled();
+  });
+
   it('should render children', () => {
     const wrapper = shallow(<MarkupControl>{button}</MarkupControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;

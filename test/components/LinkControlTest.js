@@ -16,6 +16,11 @@ describe('<LinkControl />', () => {
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
 
+  it('should pass props to default child', () => {
+    const wrapper = shallow(<LinkControl disabled />);
+    expect(wrapper).to.be.disabled();
+  });
+
   it('should render children', () => {
     const wrapper = shallow(<LinkControl>{button}</LinkControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;

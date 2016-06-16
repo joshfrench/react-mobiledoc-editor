@@ -21,9 +21,10 @@ const LinkForm = React.createClass({
       return null;
     }
 
+    const props = { ...this.props, onSubmit: preventDefault(this.handleSubmit) };
     return (
       <SelectionTether>
-        <form onSubmit={preventDefault(this.handleSubmit)}>
+        <form {...props}>
           <input type="text" ref="url"></input>
           <button ref="add">Link</button>
           <button ref="cancel" onClick={preventDefault(this.closeForm)}>Cancel</button>

@@ -79,7 +79,8 @@ const Container = React.createClass({
     this.editor.destroy();
   },
   render() {
-    return <div>{this.props.children}</div>;
+    const { children, ...props } = this.props;
+    return <div {...props}>{children}</div>;
   },
   addComponentCard(component, {env, options, payload}, isEditing=false) {
     const cardId = shortid();

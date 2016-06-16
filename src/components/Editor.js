@@ -12,7 +12,7 @@ const Editor = React.createClass({
     }
   },
   render() {
-    return <div />;
+    return <div {...this.props} />;
   }
 });
 

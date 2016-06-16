@@ -6,6 +6,11 @@ import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
 
 describe('<Container />', () => {
+  it('passes arbitrary props to child', () => {
+    const wrapper = shallow(<Container className="foo" />);
+    expect(wrapper).to.have.className('foo');
+  });
+
   it('fires willCreateEditor callback', () => {
     const willCreateEditor = spy();
     mount(<Container willCreateEditor={willCreateEditor} />);

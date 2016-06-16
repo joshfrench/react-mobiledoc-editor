@@ -2,7 +2,7 @@ import React from 'react';
 import LinkForm from '../../src/components/LinkForm';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('<LinkForm />', () => {
   const context = {
@@ -10,6 +10,11 @@ describe('<LinkForm />', () => {
     setLinkOffsets: spy(),
     addLink: spy()
   };
+
+  it('should pass arbitrary props to form', () => {
+    const wrapper = shallow(<LinkForm className="foo" />, {context});
+    expect(wrapper.find('form.foo')).to.exist;
+  });
 
   it('should close the form', () => {
     const wrapper = mount(<LinkForm />, {context});

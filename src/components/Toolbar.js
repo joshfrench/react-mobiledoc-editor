@@ -3,8 +3,8 @@ import MarkupControl from './MarkupControl';
 import SectionControl from './SectionControl';
 import LinkControl from './LinkControl';
 
-const Toolbar = ({children}) =>
-  <ul>
+const Toolbar = ({children, ...props}) =>
+  <ul {...props}>
     <li><MarkupControl tag='strong' /></li>
     <li><MarkupControl tag='em' /></li>
     <li><LinkControl /></li>
