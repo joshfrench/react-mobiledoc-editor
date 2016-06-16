@@ -90,6 +90,7 @@ const Container = React.createClass({
     this.editor.destroy();
   },
   render() {
+    // TODO: spellcheck throws "Unknown DOM property" on React 0.14
     const { children, ...props } = this.props;
     return <div {...props}>{children}</div>;
   },

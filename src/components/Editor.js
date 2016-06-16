@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const Editor = React.createClass({
   contextTypes: {
@@ -8,11 +7,12 @@ const Editor = React.createClass({
   componentDidMount() {
     const {editor} = this.context;
     if (editor) {
-      editor.render(ReactDOM.findDOMNode(this));
+      editor.render(this.refs.editor);
     }
   },
   render() {
-    return <div {...this.props} />;
+    const props = { ...this.props, ref: "editor" };
+    return <div {...props} />;
   }
 });
 
