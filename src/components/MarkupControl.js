@@ -10,6 +10,11 @@ const MarkupControl = ({tag='', children=<button>{titleCase(tag)}</button>, ...p
   return React.cloneElement(children, {...props, onClick, className});
 };
 
+MarkupControl.propTypes = {
+  tag: React.PropTypes.string.isRequired,
+  children: React.PropTypes.element
+};
+
 MarkupControl.contextTypes = {
   editor: React.PropTypes.object,
   activeMarkupTags: React.PropTypes.array

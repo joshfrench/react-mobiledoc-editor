@@ -10,6 +10,13 @@ const CardControl = ({card, edit=true, payload={}, children, ...props}, {editor}
   return React.cloneElement(children, {onClick});
 };
 
+CardControl.propTypes = {
+  card: React.PropTypes.object.isRequired,
+  edit: React.PropTypes.bool,
+  payload: React.PropTypes.object,
+  children: React.PropTypes.element
+};
+
 CardControl.contextTypes = {
   editor: React.PropTypes.object
 };

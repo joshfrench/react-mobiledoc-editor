@@ -21,7 +21,7 @@ describe('<CardControl />', () => {
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<CardControl>{button}</CardControl>);
+    const wrapper = shallow(<CardControl card={Card}>{button}</CardControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
 

@@ -21,6 +21,10 @@ const LinkControl = ({children=<button>Link</button>, ...props}, {editor, setLin
   return React.cloneElement(children, {...props, onClick, className});
 };
 
+LinkControl.propTypes = {
+  children: React.PropTypes.element
+};
+
 LinkControl.contextTypes = {
   editor: React.PropTypes.object,
   setLinkOffsets: React.PropTypes.func,

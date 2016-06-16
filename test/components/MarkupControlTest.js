@@ -13,12 +13,12 @@ describe('<MarkupControl />', () => {
   });
 
   it('should pass props to default child', () => {
-    const wrapper = shallow(<MarkupControl disabled />);
+    const wrapper = shallow(<MarkupControl tag="A" disabled />);
     expect(wrapper).to.be.disabled();
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<MarkupControl>{button}</MarkupControl>);
+    const wrapper = shallow(<MarkupControl tag="A">{button}</MarkupControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
 

@@ -13,12 +13,12 @@ describe('<SectionControl />', () => {
   });
 
   it('should pass props to default child', () => {
-    const wrapper = shallow(<SectionControl disabled />);
+    const wrapper = shallow(<SectionControl tag="UL" disabled />);
     expect(wrapper).to.be.disabled();
   });
 
   it('should render children', () => {
-    const wrapper = shallow(<SectionControl>{button}</SectionControl>);
+    const wrapper = shallow(<SectionControl tag="UL">{button}</SectionControl>);
     expect(wrapper.containsMatchingElement(button)).to.be.true;
   });
 

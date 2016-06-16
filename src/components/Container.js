@@ -12,6 +12,17 @@ const EMPTY_MOBILEDOC = {
 };
 
 const Container = React.createClass({
+  propTypes: {
+    autofocus: React.PropTypes.bool,
+    cards: React.PropTypes.array,
+    didCreateEditor: React.PropTypes.func,
+    mobiledoc: React.PropTypes.object,
+    onChange: React.PropTypes.func,
+    options: React.PropTypes.object,
+    serializeVersion: React.PropTypes.string,
+    spellcheck: React.PropTypes.bool,
+    willCreateEditor: React.PropTypes.func
+  },
   childContextTypes: {
     editor: React.PropTypes.object,
     linkOffsets: React.PropTypes.object,

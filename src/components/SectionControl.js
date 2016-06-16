@@ -10,6 +10,11 @@ const SectionControl = ({tag='', children=<button>{titleCase(tag)}</button>, ...
   return React.cloneElement(children, {...props, onClick, className});
 };
 
+SectionControl.propTypes = {
+  tag: React.PropTypes.string.isRequired,
+  children: React.PropTypes.element
+};
+
 SectionControl.contextTypes = {
   editor: React.PropTypes.object,
   activeSectionTags: React.PropTypes.array
