@@ -5,8 +5,6 @@ import {generate as shortid} from 'shortid';
 
 export const ADD_CARD_HOOK = 'addCardComponent';
 export const REMOVE_CARD_HOOK = 'removeCardComponent';
-export const ADD_ATOM_HOOK = 'addAtomComponent';
-export const REMOVE_ATOM_HOOK = 'removeAtomComponent';
 
 const EMPTY_MOBILEDOC = {
   version: "0.3.0",
@@ -128,29 +126,6 @@ const Container = React.createClass({
     );
 
     return {card, destinationElement};
-  },
-  [ADD_ATOM_HOOK](component, {env, options, payload, value}) {
-    const atomId = shortid();
-    const atomName = env.name;
-    const destinationElementId = `mobiledoc-editor-atom-${atomId}`;
-    const destinationElement = document.createElement('span');
-    destinationElement.id = destinationElementId;
-
-    // deref payload
-    payload = { ...payload };
-
-    const atom = {
-      component,
-      destinationElementId,
-      atomName,
-      payload,
-      env,
-      value,
-      editor: this.editor,
-      postModel: env.postModel
-    };
-
-    return {atom, destinationElement};
   },
   [REMOVE_CARD_HOOK](card) {
     ReactDOM.unmountComponentAtNode(document.getElementById(card.destinationElementId));
