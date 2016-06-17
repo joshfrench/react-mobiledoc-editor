@@ -18,6 +18,7 @@ const EMPTY_MOBILEDOC = {
 
 const Container = React.createClass({
   propTypes: {
+    atoms: React.PropTypes.array,
     autofocus: React.PropTypes.bool,
     cards: React.PropTypes.array,
     didCreateEditor: React.PropTypes.func,
@@ -38,6 +39,7 @@ const Container = React.createClass({
   },
   getDefaultProps() {
     return {
+      atoms: [],
       autofocus: true,
       cards: [],
       serializeVersion: "0.3.0",
@@ -48,7 +50,8 @@ const Container = React.createClass({
     return {
       activeMarkupTags: [],
       activeSectionTags: [],
-      componentCards: []
+      componentCards: [],
+      componentAtoms: []
     };
   },
   getChildContext() {
@@ -67,11 +70,13 @@ const Container = React.createClass({
     }
 
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
-    const { autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
-    const editorOptions = { ...this.props.options, mobiledoc, autofocus, cards, placeholder, serializeVersion, spellcheck };
+    const { atoms, autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
+    const editorOptions = { ...this.props.options, mobiledoc, atoms, autofocus, cards, placeholder, serializeVersion, spellcheck };
     editorOptions.cardOptions = {
       [ADD_CARD_HOOK]: this[ADD_CARD_HOOK],
-      [REMOVE_CARD_HOOK]: this[REMOVE_CARD_HOOK]
+      [REMOVE_CARD_HOOK]: this[REMOVE_CARD_HOOK],
+      [ADD_ATOM_HOOK]: this[ADD_ATOM_HOOK],
+      [REMOVE_ATOM_HOOK]: this[REMOVE_ATOM_HOOK]
     };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
@@ -89,6 +94,7 @@ const Container = React.createClass({
     }
   },
   componentDidUpdate() {
+    this.state.componentAtoms.forEach(this.mountComponentAtom);
     this.state.componentCards.forEach(this.mountComponentCard);
   },
   componentWillUnmount() {
@@ -123,13 +129,13 @@ const Container = React.createClass({
     // need to delay setting state until after the current loop finishes
     // or addCard will fire before removeCard has flushed, thereby
     // clobbering the removal. Maybe a +1 for Redux?
-    window.requestAnimationFrame(() =>
-      { this.setState({componentCards: [ ...this.state.componentCards, card ]}); }
-    );
+    window.requestAnimationFrame(() => {
+      this.setState({componentCards: [ ...this.state.componentCards, card ]});
+    });
 
     return {card, destinationElement};
   },
-  [ADD_ATOM_HOOK](component, {env, options, payload, value}) {
+  [ADD_ATOM_HOOK](component, {env, options, payload, value}) { // eslint-disable-line no-unused-vars
     const atomId = shortid();
     const atomName = env.name;
     const destinationElementId = `mobiledoc-editor-atom-${atomId}`;
@@ -150,6 +156,10 @@ const Container = React.createClass({
       postModel: env.postModel
     };
 
+    window.requestAnimationFrame(() => {
+      this.setState({componentAtoms: [ ...this.state.componentAtoms, atom ]});
+    });
+
     return {atom, destinationElement};
   },
   [REMOVE_CARD_HOOK](card) {
@@ -157,6 +167,12 @@ const Container = React.createClass({
     const cards = this.state.componentCards;
     const componentCards = cards.filter((c) => c.destinationElementId != card.destinationElementId);
     this.setState({componentCards});
+  },
+  [REMOVE_ATOM_HOOK](atom) {
+    ReactDOM.unmountComponentAtNode(document.getElementById(atom.destinationElementId));
+    const atoms = this.state.componentAtoms;
+    const componentAtoms = atoms.filter((a) => a.destinationElementId != atom.destinationElementId);
+    this.setState({componentAtoms});
   },
   mountComponentCard(card) {
     const { env, payload, postModel, cardName, isEditing } = card;
@@ -180,6 +196,22 @@ const Container = React.createClass({
     });
 
     const destinationElement = document.getElementById(card.destinationElementId);
+    if (destinationElement) {
+      ReactDOM.render(component, destinationElement);
+    }
+  },
+  mountComponentAtom(atom) {
+    const { env, value, payload, atomName } = atom;
+    const component = React.createElement(atom.component, {
+      atomName,
+      value,
+      payload,
+      env,
+      editor: this.editor,
+      postModel: this.postmodel
+    });
+
+    const destinationElement = document.getElementById(atom.destinationElementId);
     if (destinationElement) {
       ReactDOM.render(component, destinationElement);
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../../src/components/Container';
-import {ADD_CARD_HOOK, REMOVE_CARD_HOOK} from '../../src/components/Container';
+import {ADD_CARD_HOOK, REMOVE_CARD_HOOK, ADD_ATOM_HOOK, REMOVE_ATOM_HOOK} from '../../src/components/Container';
 import Editor from '../../src/components/Editor';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -117,7 +117,7 @@ describe('<Container />', () => {
     expect(editor.destroy).to.have.been.called;
   });
 
-  describe('component cards', () => {
+  describe('card components', () => {
     const Child = ({payload}) => <button>{payload.text}</button>;
     const childCard = {
       component: Child,
@@ -126,14 +126,14 @@ describe('<Container />', () => {
       payload: { text: 'Ohai' }
     };
 
-    it('should mount a component card', () => {
+    it('should mount a card component', () => {
       const wrapper = shallow(<Container />);
       wrapper.instance().mountComponentCard(childCard);
       const node = document.querySelector('#root button');
       expect(node.textContent).to.equal('Ohai');
     });
 
-    it('should add a component card', () => {
+    it('should add a card component', () => {
       const wrapper = shallow(<Container />);
       const cardArg = {
         env: { name: 'ChildCard' },
@@ -147,7 +147,7 @@ describe('<Container />', () => {
       expect(wrapper.state('componentCards')).to.include(card);
     });
 
-    it('should remove a component card', () => {
+    it('should remove a card component', () => {
       const wrapper = shallow(<Container />);
       wrapper.instance().mountComponentCard(childCard);
       wrapper.setState({ componentCards: [childCard] });
@@ -155,6 +155,47 @@ describe('<Container />', () => {
       wrapper.instance()[REMOVE_CARD_HOOK](childCard);
       expect(document.querySelector('#root button')).not.to.exist;
       expect(wrapper.state('componentCards')).to.eql([]);
+    });
+  });
+
+  describe('component atoms', () => {
+    const Child = ({value}) => <span>{value}</span>;
+    const childAtom = {
+      component: Child,
+      destinationElementId: 'root',
+      env: {},
+      value: "Ohai"
+    };
+
+    it('should add an atom component', () => {
+      const wrapper = shallow(<Container />);
+      const atomArg = {
+        env: { name: 'ChildAtom' },
+        value: 'Ohai'
+      };
+      const {atom, destinationElement} = wrapper.instance()[ADD_ATOM_HOOK](Child, atomArg);
+
+      expect(atom.component).to.eql(Child);
+      expect(atom.value).to.eql(atomArg.value);
+      expect(destinationElement.id).to.eql(atom.destinationElementId);
+      expect(wrapper.state('componentAtoms')).to.include(atom);
+    });
+
+    it('should mount an atom component', () => {
+      const wrapper = shallow(<Container />);
+      wrapper.instance().mountComponentAtom(childAtom);
+      const node = document.querySelector('#root span');
+      expect(node.textContent).to.equal('Ohai');
+    });
+
+    it('should remove an atom component', () => {
+      const wrapper = shallow(<Container />);
+      wrapper.instance().mountComponentAtom(childAtom);
+      wrapper.setState({ componentAtoms: [childAtom] });
+
+      wrapper.instance()[REMOVE_ATOM_HOOK](childAtom);
+      expect(document.querySelector('#root span')).not.to.exist;
+      expect(wrapper.state('componentAtoms')).to.eql([]);
     });
   });
 });

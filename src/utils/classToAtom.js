@@ -22,8 +22,7 @@ export const classToDOMAtom = (component, name, doc=window.document) => {
         return renderFallback(doc);
       }
 
-      // console.log(options[ADD_ATOM_HOOK]('ok'));
-      const { atom, destinationElement } = options[ADD_ATOM_HOOK](atomArg);
+      const { atom, destinationElement } = options[ADD_ATOM_HOOK](component, atomArg);
       const { onTeardown } = env;
 
       onTeardown(() => options[REMOVE_ATOM_HOOK](atom));

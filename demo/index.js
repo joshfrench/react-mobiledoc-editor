@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import * as ReactMobiledoc from '../src';
 import ImageCard from './ImageCard';
+import {MentionAtom, expandMention} from './MentionAtom';
 
 const ImageButton = (props, {editor}) => {
   return <button onClick={() => editor.insertCard('ImageCard', {src: 'http://placekitten.com/200/200', caption: "Hi, I'm a kitten"}, false)}>Image</button>;
@@ -28,11 +29,11 @@ const doc = {
 };
 
 const willCreateEditor = () => { console.log('creating editor...'); };
-const didCreateEditor = (e) => { console.log('created editor:', e); };
+const didCreateEditor = (e) => e.onTextInput(expandMention);
 const onChange = (doc) => { console.log(doc); };
 
-
 ReactDOM.render(<ReactMobiledoc.Container mobiledoc={doc}
+                                          atoms={[MentionAtom]}
                                           cards={[ImageCard]}
                                           willCreateEditor={willCreateEditor}
                                           didCreateEditor={didCreateEditor}
