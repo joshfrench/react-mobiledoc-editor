@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import Mobiledoc from 'mobiledoc-kit';
 import {generate as shortid} from 'shortid';
 
+export const ADD_CARD_HOOK = 'addCardComponent';
+export const REMOVE_CARD_HOOK = 'removeCardComponent';
+
 const EMPTY_MOBILEDOC = {
   version: "0.3.0",
   markups: [],
@@ -65,8 +68,8 @@ const Container = React.createClass({
     const { autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
     const editorOptions = { ...this.props.options, mobiledoc, autofocus, cards, placeholder, serializeVersion, spellcheck };
     editorOptions.cardOptions = {
-      addComponentCard: this.addComponentCard,
-      removeComponentCard: this.removeComponentCard
+      [ADD_CARD_HOOK]: this[ADD_CARD_HOOK],
+      [REMOVE_CARD_HOOK]: this[REMOVE_CARD_HOOK]
     };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
@@ -90,11 +93,10 @@ const Container = React.createClass({
     this.editor.destroy();
   },
   render() {
-    // TODO: spellcheck throws "Unknown DOM property" on React 0.14
     const { children, ...props } = this.props;
     return <div {...props}>{children}</div>;
   },
-  addComponentCard(component, {env, options, payload}, isEditing=false) {
+  [ADD_CARD_HOOK](component, {env, options, payload}, isEditing=false) {
     const cardId = shortid();
     const cardName = env.name;
     const destinationElementId = `mobiledoc-editor-card-${cardId}`;
@@ -125,7 +127,7 @@ const Container = React.createClass({
 
     return {card, destinationElement};
   },
-  removeComponentCard(card) {
+  [REMOVE_CARD_HOOK](card) {
     ReactDOM.unmountComponentAtNode(document.getElementById(card.destinationElementId));
     const cards = this.state.componentCards;
     const componentCards = cards.filter((c) => c.destinationElementId != card.destinationElementId);

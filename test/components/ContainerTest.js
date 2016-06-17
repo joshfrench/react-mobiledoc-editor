@@ -1,5 +1,6 @@
 import React from 'react';
 import Container from '../../src/components/Container';
+import {ADD_CARD_HOOK, REMOVE_CARD_HOOK} from '../../src/components/Container';
 import Editor from '../../src/components/Editor';
 import { expect } from 'chai';
 import { spy } from 'sinon';
@@ -138,7 +139,7 @@ describe('<Container />', () => {
         env: { name: 'ChildCard' },
         payload: { text: 'Ohai' }
       };
-      const {card, destinationElement} = wrapper.instance().addComponentCard(Child, cardArg);
+      const {card, destinationElement} = wrapper.instance()[ADD_CARD_HOOK](Child, cardArg);
 
       expect(card.component).to.eql(Child);
       expect(card.payload).to.eql(cardArg.payload);
@@ -151,7 +152,7 @@ describe('<Container />', () => {
       wrapper.instance().mountComponentCard(childCard);
       wrapper.setState({ componentCards: [childCard] });
 
-      wrapper.instance().removeComponentCard(childCard);
+      wrapper.instance()[REMOVE_CARD_HOOK](childCard);
       expect(document.querySelector('#root button')).not.to.exist;
       expect(wrapper.state('componentCards')).to.eql([]);
     });

@@ -1,3 +1,5 @@
+import {ADD_CARD_HOOK, REMOVE_CARD_HOOK} from '../components/Container';
+
 const renderFallback = (doc) => {
   const element = doc.createElement('div');
   const text = doc.createTextNode('[placeholder for React component card]');
@@ -16,27 +18,27 @@ export const classToDOMCard = (component, name, doc=window.document) => {
     type: 'dom',
     render(cardArg) {
       const {env, options} = cardArg;
-      if (!options.addComponentCard) {
+      if (!options[ADD_CARD_HOOK]) {
         return renderFallback(doc);
       }
 
-      const {card, destinationElement} = options.addComponentCard(component, cardArg);
+      const {card, destinationElement} = options[ADD_CARD_HOOK](component, cardArg);
       const {onTeardown} = env;
 
-      onTeardown(() => options.removeComponentCard(card));
+      onTeardown(() => options[REMOVE_CARD_HOOK](card));
       return destinationElement;
     },
     edit(cardArg) {
       const {env, options} = cardArg;
-      if (!options.addComponentCard) {
+      if (!options[ADD_CARD_HOOK]) {
         return renderFallback(doc);
       }
 
       const isEditing = true;
-      const { card, destinationElement } = options.addComponentCard(component, cardArg, isEditing);
+      const { card, destinationElement } = options[ADD_CARD_HOOK](component, cardArg, isEditing);
       const { onTeardown } = env;
 
-      onTeardown(() => options.removeComponentCard(card));
+      onTeardown(() => options[REMOVE_CARD_HOOK](card));
 
       return destinationElement;
     }
