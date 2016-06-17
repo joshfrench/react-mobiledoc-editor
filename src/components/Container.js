@@ -78,7 +78,18 @@ const Container = React.createClass({
       [ADD_ATOM_HOOK]: this[ADD_ATOM_HOOK],
       [REMOVE_ATOM_HOOK]: this[REMOVE_ATOM_HOOK]
     };
+
     this.editor = new Mobiledoc.Editor(editorOptions);
+
+    this.editor.willRender(() => {
+      // FIXME: Atoms continuously rerender, this just cleans out orphaned components
+      this.state.componentAtoms.forEach(({destinationElementId}) => {
+        const node = document.getElementById(destinationElementId);
+        if (node) {
+          ReactDOM.unmountComponentAtNode(document.getElementById(destinationElementId));
+        }
+      });
+    });
 
     this.editor.inputModeDidChange(this.setActiveTags);
 
@@ -135,44 +146,11 @@ const Container = React.createClass({
 
     return {card, destinationElement};
   },
-  [ADD_ATOM_HOOK](component, {env, options, payload, value}) { // eslint-disable-line no-unused-vars
-    const atomId = shortid();
-    const atomName = env.name;
-    const destinationElementId = `mobiledoc-editor-atom-${atomId}`;
-    const destinationElement = document.createElement('span');
-    destinationElement.id = destinationElementId;
-
-    // deref payload
-    payload = { ...payload };
-
-    const atom = {
-      component,
-      destinationElementId,
-      atomName,
-      payload,
-      env,
-      value,
-      editor: this.editor,
-      postModel: env.postModel
-    };
-
-    window.requestAnimationFrame(() => {
-      this.setState({componentAtoms: [ ...this.state.componentAtoms, atom ]});
-    });
-
-    return {atom, destinationElement};
-  },
   [REMOVE_CARD_HOOK](card) {
     ReactDOM.unmountComponentAtNode(document.getElementById(card.destinationElementId));
     const cards = this.state.componentCards;
     const componentCards = cards.filter((c) => c.destinationElementId != card.destinationElementId);
     this.setState({componentCards});
-  },
-  [REMOVE_ATOM_HOOK](atom) {
-    ReactDOM.unmountComponentAtNode(document.getElementById(atom.destinationElementId));
-    const atoms = this.state.componentAtoms;
-    const componentAtoms = atoms.filter((a) => a.destinationElementId != atom.destinationElementId);
-    this.setState({componentAtoms});
   },
   mountComponentCard(card) {
     const { env, payload, postModel, cardName, isEditing } = card;
@@ -200,6 +178,39 @@ const Container = React.createClass({
       ReactDOM.render(component, destinationElement);
     }
   },
+  [ADD_ATOM_HOOK](component, {env, options, payload, value}) { // eslint-disable-line no-unused-vars
+    const atomId = shortid();
+    const atomName = env.name;
+    const destinationElementId = `mobiledoc-editor-atom-${atomId}`;
+    const destinationElement = document.createElement('span');
+    destinationElement.id = destinationElementId;
+
+    // deref payload
+    payload = { ...payload };
+
+    const atom = {
+      component,
+      destinationElementId,
+      atomName,
+      payload,
+      env,
+      value,
+      editor: this.editor,
+      postModel: env.postModel
+    };
+
+    window.requestAnimationFrame(() => {
+      this.setState({componentAtoms: [ ...this.state.componentAtoms, atom ]});
+    });
+
+    return {atom, destinationElement};
+  },
+  [REMOVE_ATOM_HOOK](atom) {
+    ReactDOM.unmountComponentAtNode(document.getElementById(atom.destinationElementId));
+    const atoms = this.state.componentAtoms;
+    const componentAtoms = atoms.filter((a) => a.destinationElementId != atom.destinationElementId);
+    this.setState({componentAtoms});
+  },
   mountComponentAtom(atom) {
     const { env, value, payload, atomName } = atom;
     const component = React.createElement(atom.component, {
@@ -214,6 +225,10 @@ const Container = React.createClass({
     const destinationElement = document.getElementById(atom.destinationElementId);
     if (destinationElement) {
       ReactDOM.render(component, destinationElement);
+    } else {
+      const atoms = this.state.componentAtoms;
+      const componentAtoms = atoms.filter((a) => a.destinationElementId != atom.destinationElementId);
+      this.setState({componentAtoms});
     }
   },
   addLink({href}) {
