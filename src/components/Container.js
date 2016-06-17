@@ -93,7 +93,7 @@ const Container = React.createClass({
     this.editor.destroy();
   },
   render() {
-    const { children, ...props } = this.props;
+    const { children, spellcheck, ...props } = this.props; // eslint-disable-line no-unused-vars
     return <div {...props}>{children}</div>;
   },
   [ADD_CARD_HOOK](component, {env, options, payload}, isEditing=false) {

@@ -8,7 +8,6 @@ const Toolbar = ({children, ...props}) =>
     <li><MarkupControl tag='strong' /></li>
     <li><MarkupControl tag='em' /></li>
     <li><LinkControl /></li>
-    <li><MarkupControl tag='em' /></li>
     <li><SectionControl tag='h1' /></li>
     <li><SectionControl tag='h2' /></li>
     <li><SectionControl tag='blockquote' /></li>
