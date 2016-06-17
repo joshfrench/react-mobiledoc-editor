@@ -27,7 +27,6 @@ export const classToDOMAtom = (component, name, doc=window.document) => {
       const { onTeardown } = env;
 
       onTeardown(() => options[REMOVE_ATOM_HOOK](atom));
-
       return destinationElement;
     }
   };
