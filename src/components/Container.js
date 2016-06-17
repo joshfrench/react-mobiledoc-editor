@@ -1,10 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Mobiledoc from 'mobiledoc-kit';
-import {generate as shortid} from 'shortid';
-
-export const ADD_CARD_HOOK = 'addCardComponent';
-export const REMOVE_CARD_HOOK = 'removeCardComponent';
 
 const EMPTY_MOBILEDOC = {
   version: "0.3.0",
@@ -45,8 +40,7 @@ const Container = React.createClass({
   getInitialState() {
     return {
       activeMarkupTags: [],
-      activeSectionTags: [],
-      componentCards: []
+      activeSectionTags: []
     };
   },
   getChildContext() {
@@ -67,10 +61,6 @@ const Container = React.createClass({
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
     const { autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
     const editorOptions = { ...this.props.options, mobiledoc, autofocus, cards, placeholder, serializeVersion, spellcheck };
-    editorOptions.cardOptions = {
-      [ADD_CARD_HOOK]: this[ADD_CARD_HOOK],
-      [REMOVE_CARD_HOOK]: this[REMOVE_CARD_HOOK]
-    };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
     this.editor.inputModeDidChange(this.setActiveTags);
@@ -86,78 +76,12 @@ const Container = React.createClass({
       this.props.didCreateEditor(this.editor);
     }
   },
-  componentDidUpdate() {
-    this.state.componentCards.forEach(this.mountComponentCard);
-  },
   componentWillUnmount() {
     this.editor.destroy();
   },
   render() {
     const { children, spellcheck, ...props } = this.props; // eslint-disable-line no-unused-vars
     return <div {...props}>{children}</div>;
-  },
-  [ADD_CARD_HOOK](component, {env, options, payload}, isEditing=false) {
-    const cardId = shortid();
-    const cardName = env.name;
-    const destinationElementId = `mobiledoc-editor-card-${cardId}`;
-    const destinationElement = document.createElement('div');
-    destinationElement.id = destinationElementId;
-
-    // deref payload
-    payload = { ...payload };
-
-    const card = {
-      component,
-      destinationElementId,
-      cardName,
-      payload,
-      env,
-      editor: this.editor,
-      postModel: env.postModel,
-      isEditing
-    };
-
-    // gross, slow, and i'll almost definitely regret this later. but we
-    // need to delay setting state until after the current loop finishes
-    // or addCard will fire before removeCard has flushed, thereby
-    // clobbering the removal. Maybe a +1 for Redux?
-    window.requestAnimationFrame(() =>
-      { this.setState({componentCards: [ ...this.state.componentCards, card ]}); }
-    );
-
-    return {card, destinationElement};
-  },
-  [REMOVE_CARD_HOOK](card) {
-    ReactDOM.unmountComponentAtNode(document.getElementById(card.destinationElementId));
-    const cards = this.state.componentCards;
-    const componentCards = cards.filter((c) => c.destinationElementId != card.destinationElementId);
-    this.setState({componentCards});
-  },
-  mountComponentCard(card) {
-    const { env, payload, postModel, cardName, isEditing } = card;
-    const isInEditor = env.isInEditor,
-          editCard   = env.edit,
-          saveCard   = env.save,
-          cancelCard = env.cancel,
-          removeCard = env.remove;
-    const component = React.createElement(card.component, {
-      editor: this.editor,
-      env,
-      payload,
-      postModel,
-      cardName,
-      isInEditor,
-      isEditing,
-      editCard,
-      saveCard,
-      cancelCard,
-      removeCard
-    });
-
-    const destinationElement = document.getElementById(card.destinationElementId);
-    if (destinationElement) {
-      ReactDOM.render(component, destinationElement);
-    }
   },
   addLink({href}) {
     this.editor.run(postEditor => {

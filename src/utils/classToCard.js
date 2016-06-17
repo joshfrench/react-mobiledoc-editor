@@ -1,13 +1,23 @@
-import {ADD_CARD_HOOK, REMOVE_CARD_HOOK} from '../components/Container';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const renderFallback = (doc) => {
-  const element = doc.createElement('div');
-  const text = doc.createTextNode('[placeholder for React component card]');
-  element.appendChild(text);
-  return element;
+const cardRenderer = (component, isEditing=false) => ({env, payload}) => {
+  const targetNode = document.createElement('div');
+
+  const {didRender, onTeardown} = env;
+
+  didRender(() => {
+    payload = {...payload}; // deref payload
+    const element = React.createElement(component, { ...env, payload, isEditing });
+    ReactDOM.render(element, targetNode);
+  });
+
+  onTeardown(() => ReactDOM.unmountComponentAtNode(targetNode));
+
+  return targetNode;
 };
 
-export const classToDOMCard = (component, name, doc=window.document) => {
+export const classToDOMCard = (component, name) => {
   if (!name && typeof component.displayName === 'undefined') {
     throw new Error("Can't create card from component, no displayName defined: " + component);
   }
@@ -16,31 +26,7 @@ export const classToDOMCard = (component, name, doc=window.document) => {
     name: name || `${component.displayName}Card`,
     component,
     type: 'dom',
-    render(cardArg) {
-      const {env, options} = cardArg;
-      if (!options[ADD_CARD_HOOK]) {
-        return renderFallback(doc);
-      }
-
-      const {card, destinationElement} = options[ADD_CARD_HOOK](component, cardArg);
-      const {onTeardown} = env;
-
-      onTeardown(() => options[REMOVE_CARD_HOOK](card));
-      return destinationElement;
-    },
-    edit(cardArg) {
-      const {env, options} = cardArg;
-      if (!options[ADD_CARD_HOOK]) {
-        return renderFallback(doc);
-      }
-
-      const isEditing = true;
-      const { card, destinationElement } = options[ADD_CARD_HOOK](component, cardArg, isEditing);
-      const { onTeardown } = env;
-
-      onTeardown(() => options[REMOVE_CARD_HOOK](card));
-
-      return destinationElement;
-    }
+    render: cardRenderer(component),
+    edit: cardRenderer(component, true)
   };
 };

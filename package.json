@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "mobiledoc-kit": "^0.9.7",
-    "shortid": "^2.2.6"
+    "mobiledoc-kit": "^0.9.7"
   },
   "peerDependencies": {
     "react": "^0.14.7 || ^15.0.2",
