@@ -13,7 +13,7 @@ ImageButton.contextTypes = {
   editor: React.PropTypes.object
 };
 
-const doc = {
+const mobiledoc = {
   version: "0.3.0",
   markups: [],
   atoms: [],
@@ -32,12 +32,16 @@ const willCreateEditor = () => { console.log('creating editor...'); };
 const didCreateEditor = (e) => e.onTextInput(expandMention);
 const onChange = (doc) => { console.log(doc); };
 
-ReactDOM.render(<ReactMobiledoc.Container mobiledoc={doc}
-                                          atoms={[MentionAtom]}
-                                          cards={[ImageCard]}
-                                          willCreateEditor={willCreateEditor}
-                                          didCreateEditor={didCreateEditor}
-                                          onChange={onChange}>
+const config = {
+  mobiledoc,
+  atoms: [MentionAtom],
+  cards: [ImageCard],
+  willCreateEditor() { console.log('Creating editor'); },
+  didCreateEditor(e) { e.onTextInput(expandMention); },
+  onChange(doc) { console.log(doc); }
+};
+
+ReactDOM.render(<ReactMobiledoc.Container {...config}>
                   <ReactMobiledoc.Toolbar>
                     <ReactMobiledoc.CardControl card={ImageCard} edit={false} payload={{caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200"}} />
                   </ReactMobiledoc.Toolbar>
