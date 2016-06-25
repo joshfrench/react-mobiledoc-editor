@@ -1,5 +1,5 @@
 import React from 'react';
-import {classToDOMCard} from '../src';
+import { classToDOMCard } from '../src';
 
 /**
  * Component-based cards are rendered with these props:
@@ -26,7 +26,7 @@ import {classToDOMCard} from '../src';
  */
 const Image = React.createClass({
   render() {
-    const {isInEditor, payload, save, edit, isEditing} = this.props;
+    const { isInEditor, payload, save, edit, isEditing } = this.props;
     if (isEditing) {
       return (
         <div>

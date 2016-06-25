@@ -1,4 +1,4 @@
-import {jsdom} from 'jsdom';
+import { jsdom } from 'jsdom';
 
 global.document = jsdom('<div id="root"></div>');
 global.window = document.defaultView;

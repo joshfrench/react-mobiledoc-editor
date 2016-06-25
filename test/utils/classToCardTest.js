@@ -1,5 +1,5 @@
-import {classToDOMCard} from '../../src/utils/classToCard';
-import {expect} from 'chai';
+import { classToDOMCard } from '../../src/utils/classToCard';
+import { expect } from 'chai';
 
 describe('classToDOMCard()', () => {
   const Component = { displayName: "Test" };

@@ -29,14 +29,14 @@ const SelectionTether = React.createClass({
     const node = ReactDOM.findDOMNode(this);
 
     const height = node.getBoundingClientRect().height,
-          top    = this.state.top - this.props.paddingTop - height,
-          left   = this.state.left - this.props.paddingLeft;
+      top    = this.state.top - this.props.paddingTop - height,
+      left   = this.state.left - this.props.paddingLeft;
 
     node.style.left = `${left}px`;
     node.style.top  = `${top}px`;
   },
   render() {
-    return React.cloneElement(this.props.children, {style: {position: 'fixed'}});
+    return React.cloneElement(this.props.children, { style: { position: 'fixed' }});
   }
 });
 

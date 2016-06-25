@@ -37,7 +37,7 @@ const LinkForm = React.createClass({
   },
   handleSubmit() {
     this.closeForm();
-    this.context.addLink({href: this.refs.url.value});
+    this.context.addLink({ href: this.refs.url.value });
   }
 });
 

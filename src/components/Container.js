@@ -83,9 +83,9 @@ const Container = React.createClass({
     const { children, spellcheck, ...props } = this.props; // eslint-disable-line no-unused-vars
     return <div {...props}>{children}</div>;
   },
-  addLink({href}) {
+  addLink({ href }) {
     this.editor.run(postEditor => {
-      const markup = postEditor.builder.createMarkup('a', {href});
+      const markup = postEditor.builder.createMarkup('a', { href });
       postEditor.addMarkupToRange(this.state.linkOffsets, markup);
     });
   },

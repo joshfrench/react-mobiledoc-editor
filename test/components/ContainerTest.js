@@ -81,7 +81,7 @@ describe('<Container />', () => {
       const section = postEditor.builder.createMarkupSection('p');
       postEditor.insertSection(section);
     });
-    expect(onChange).to.have.been.calledWithMatch({"version": "0.2.0"});
+    expect(onChange).to.have.been.calledWithMatch({ "version": "0.2.0" });
   });
 
   it('should pass onChange to editor', () => {
@@ -104,7 +104,7 @@ describe('<Container />', () => {
     let wrapper = mount(<Container />);
     expect(wrapper.instance().editor.undoDepth).to.equal(5);
 
-    wrapper = mount(<Container options={{undoDepth: 0}} />);
+    wrapper = mount(<Container options={{ undoDepth: 0 }} />);
     expect(wrapper.instance().editor.undoDepth).to.equal(0);
   });
 

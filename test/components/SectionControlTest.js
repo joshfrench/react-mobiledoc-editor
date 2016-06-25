@@ -24,15 +24,15 @@ describe('<SectionControl />', () => {
 
   it('should toggle markup on click', () => {
     const editor = { toggleSection: spy() };
-    const context = {editor};
-    const wrapper = shallow(<SectionControl tag='UL'><button /></SectionControl>, {context});
+    const context = { editor };
+    const wrapper = shallow(<SectionControl tag='UL'><button /></SectionControl>, { context });
     wrapper.find('button').simulate('click');
     expect(editor.toggleSection).to.be.calledWith('UL');
   });
 
   it('should set active class', () => {
-    const context = {activeSectionTags: ['ul']};
-    const wrapper = shallow(<SectionControl tag='UL'><button className="keep" /></SectionControl>, {context});
+    const context = { activeSectionTags: ['ul']};
+    const wrapper = shallow(<SectionControl tag='UL'><button className="keep" /></SectionControl>, { context });
     expect(wrapper).to.have.className('keep');
     expect(wrapper).to.have.className('active');
   });

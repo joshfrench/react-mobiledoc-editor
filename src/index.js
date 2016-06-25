@@ -1,5 +1,5 @@
 import CardControl from './components/CardControl';
-import {classToDOMCard} from './utils/classToCard';
+import { classToDOMCard } from './utils/classToCard';
 import Container from './components/Container';
 import Editor from './components/Editor';
 import LinkControl from './components/LinkControl';

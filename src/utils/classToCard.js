@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const cardRenderer = (component, isEditing=false) => ({env, payload}) => {
+const cardRenderer = (component, isEditing = false) => ({ env, payload }) => {
   const targetNode = document.createElement('div');
 
-  const {didRender, onTeardown} = env;
+  const { didRender, onTeardown } = env;
 
   didRender(() => {
-    payload = {...payload}; // deref payload
+    payload = { ...payload }; // deref payload
     const element = React.createElement(component, { ...env, payload, isEditing });
     ReactDOM.render(element, targetNode);
   });

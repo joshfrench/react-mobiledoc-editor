@@ -29,9 +29,9 @@ describe('<LinkControl />', () => {
   it('should add a link', () => {
     editor.hasActiveMarkup.returns(true);
     editor.toggleMarkup = spy();
-    const context = {editor};
+    const context = { editor };
 
-    const wrapper = shallow(<LinkControl />, {context});
+    const wrapper = shallow(<LinkControl />, { context });
     wrapper.find('button').simulate('click');
     expect(editor.toggleMarkup).to.be.calledWith('a');
   });
@@ -44,14 +44,14 @@ describe('<LinkControl />', () => {
       editor
     };
 
-    const wrapper = shallow(<LinkControl />, {context});
+    const wrapper = shallow(<LinkControl />, { context });
     wrapper.find('button').simulate('click');
     expect(context.setLinkOffsets).to.have.been.calledWith("Range");
   });
 
   it('should set active class', () => {
-    const context = {activeMarkupTags: ['a']};
-    const wrapper = shallow(<LinkControl><button className="keep" /></LinkControl>, {context});
+    const context = { activeMarkupTags: ['a']};
+    const wrapper = shallow(<LinkControl><button className="keep" /></LinkControl>, { context });
     expect(wrapper).to.have.className('keep');
     expect(wrapper).to.have.className('active');
   });

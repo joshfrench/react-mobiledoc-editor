@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import * as ReactMobiledoc from '../src';
 import ImageCard from './ImageCard';
 
-const ImageButton = (props, {editor}) => {
-  return <button onClick={() => editor.insertCard('ImageCard', {src: 'http://placekitten.com/200/200', caption: "Hi, I'm a kitten"}, false)}>Image</button>;
+const ImageButton = (props, { editor }) => {
+  return <button onClick={() => editor.insertCard('ImageCard', { src: 'http://placekitten.com/200/200', caption: "Hi, I'm a kitten" }, false)}>Image</button>;
 };
 
 ImageButton.contextTypes = {
@@ -40,7 +40,7 @@ const config = {
 
 ReactDOM.render(<ReactMobiledoc.Container {...config}>
                   <ReactMobiledoc.Toolbar>
-                    <ReactMobiledoc.CardControl card={ImageCard} edit={false} payload={{caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200"}} />
+                    <ReactMobiledoc.CardControl card={ImageCard} edit={false} payload={{ caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200" }} />
                   </ReactMobiledoc.Toolbar>
                   <ReactMobiledoc.Editor />
                   <ReactMobiledoc.LinkForm />

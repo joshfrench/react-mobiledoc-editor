@@ -6,18 +6,18 @@ import { shallow, mount } from 'enzyme';
 
 describe('<LinkForm />', () => {
   const context = {
-    linkOffsets: {foo: "bar"},
+    linkOffsets: { foo: "bar" },
     setLinkOffsets: spy(),
     addLink: spy()
   };
 
   it('should pass arbitrary props to form', () => {
-    const wrapper = shallow(<LinkForm className="foo" />, {context});
+    const wrapper = shallow(<LinkForm className="foo" />, { context });
     expect(wrapper.find('form.foo')).to.exist;
   });
 
   it('should close the form', () => {
-    const wrapper = mount(<LinkForm />, {context});
+    const wrapper = mount(<LinkForm />, { context });
     const button = wrapper.ref('cancel');
 
     button.simulate('click');
@@ -25,7 +25,7 @@ describe('<LinkForm />', () => {
   });
 
   it('should add a link', () => {
-    const wrapper = mount(<LinkForm />, {context});
+    const wrapper = mount(<LinkForm />, { context });
     const form = wrapper.find('form');
 
     form.simulate('submit');

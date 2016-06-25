@@ -6,8 +6,8 @@ import { shallow, mount } from 'enzyme';
 
 describe('<Editor />', () => {
   it('mounts Mobiledoc.Editor', () => {
-    const context = { editor: { render: spy() } };
-    mount(<Editor />, {context});
+    const context = { editor: { render: spy() }};
+    mount(<Editor />, { context });
 
     expect(context.editor.render).to.have.been.called;
   });

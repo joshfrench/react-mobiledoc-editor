@@ -5,7 +5,7 @@ const Editor = React.createClass({
     editor: React.PropTypes.object
   },
   componentDidMount() {
-    const {editor} = this.context;
+    const { editor } = this.context;
     if (editor) {
       editor.render(this.refs.editor);
     }

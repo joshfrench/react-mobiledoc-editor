@@ -24,15 +24,15 @@ describe('<MarkupControl />', () => {
 
   it('should toggle markup on click', () => {
     const editor = { toggleMarkup: spy() };
-    const context = {editor};
-    const wrapper = shallow(<MarkupControl tag='A'><button /></MarkupControl>, {context});
+    const context = { editor };
+    const wrapper = shallow(<MarkupControl tag='A'><button /></MarkupControl>, { context });
     wrapper.find('button').simulate('click');
     expect(editor.toggleMarkup).calledWith('A');
   });
 
   it('should set active class', () => {
-    const context = {activeMarkupTags: ['a']};
-    const wrapper = shallow(<MarkupControl tag='A'><button className="keep" /></MarkupControl>, {context});
+    const context = { activeMarkupTags: ['a']};
+    const wrapper = shallow(<MarkupControl tag='A'><button className="keep" /></MarkupControl>, { context });
     expect(wrapper).to.have.className('keep');
     expect(wrapper).to.have.className('active');
   });
