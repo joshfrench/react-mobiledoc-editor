@@ -11,6 +11,7 @@ export const EMPTY_MOBILEDOC = {
 
 const Container = React.createClass({
   propTypes: {
+    atoms: React.PropTypes.array,
     autofocus: React.PropTypes.bool,
     cards: React.PropTypes.array,
     didCreateEditor: React.PropTypes.func,
@@ -31,6 +32,7 @@ const Container = React.createClass({
   },
   getDefaultProps() {
     return {
+      atoms: [],
       autofocus: true,
       cards: [],
       serializeVersion: "0.3.0",
@@ -59,8 +61,8 @@ const Container = React.createClass({
     }
 
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
-    const { autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
-    const editorOptions = { ...this.props.options, mobiledoc, autofocus, cards, placeholder, serializeVersion, spellcheck };
+    const { atoms, autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
+    const editorOptions = { ...this.props.options, mobiledoc, atoms, autofocus, cards, placeholder, serializeVersion, spellcheck };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
     this.editor.inputModeDidChange(this.setActiveTags);
