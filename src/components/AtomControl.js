@@ -3,8 +3,12 @@ import titleCase from '../utils/titleCase';
 
 // TODO: Click again to replace atom with plain text value? May not apply to all atoms (BR, HR, &c)
 
-const AtomControl = ({ atom = '', value = null, payload = null, children = <button>{titleCase(atom)}</button>, ...props }, { editor }) => {
-  const onClick = () => editor.insertAtom(atom, value, payload);
+const AtomControl = ({ atom = '', value = "", payload = null, children = <button>{titleCase(atom)}</button>, ...props }, { editor }) => {
+  const onClick = () => {
+    if (editor.activeSection && editor.activeSection.isMarkerable) {
+      editor.insertAtom(atom, value, payload);
+    }
+  };
   return React.cloneElement(children, { ...props, onClick });
 };
 
