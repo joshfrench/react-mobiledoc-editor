@@ -36,6 +36,7 @@ const Container = React.createClass({
       autofocus: true,
       cardProps: {},
       cards: [],
+      placeholder: "",
       serializeVersion: "0.3.0",
       spellcheck: true
     };
