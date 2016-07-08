@@ -34,6 +34,7 @@ const Container = React.createClass({
     return {
       atoms: [],
       autofocus: true,
+      cardProps: {},
       cards: [],
       serializeVersion: "0.3.0",
       spellcheck: true
@@ -61,8 +62,8 @@ const Container = React.createClass({
     }
 
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
-    const { atoms, autofocus, cards, placeholder, serializeVersion, spellcheck } = this.props;
-    const editorOptions = { ...this.props.options, mobiledoc, atoms, autofocus, cards, placeholder, serializeVersion, spellcheck };
+    const { atoms, autofocus, cardProps, cards, placeholder, serializeVersion, spellcheck } = this.props;
+    const editorOptions = { ...this.props.options, mobiledoc, atoms, autofocus, cardOptions: { cardProps }, cards, placeholder, serializeVersion, spellcheck };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
     this.editor.inputModeDidChange(this.setActiveTags);

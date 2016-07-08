@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Container from '../../src/components/Container';
 import Editor from '../../src/components/Editor';
+import { classToDOMCard } from '../../src/utils/classToCard';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
@@ -106,6 +107,34 @@ describe('<Container />', () => {
 
     wrapper = mount(<Container options={{ undoDepth: 0 }} />);
     expect(wrapper.instance().editor.undoDepth).to.equal(0);
+  });
+
+  it('should forward cardOptions to card components', () => {
+    class Button extends Component {
+      componentDidMount() {
+        this.props.didMount();
+      }
+      render() {
+        return <span>Ohai</span>;
+      }
+    }
+    Button.displayName = 'Button';
+    const ButtonCard = classToDOMCard(Button);
+
+    const doc = {
+      version: '0.3.0',
+      atoms: [],
+      cards: [['ButtonCard', {}]],
+      markups: [],
+      sections: [[10, 0]]
+    };
+
+    const callback = spy();
+    mount(<Container cardProps={{ didMount: callback }} mobiledoc={doc} cards={[ButtonCard]}>
+            <Editor />
+          </Container>);
+
+    expect(callback).to.have.been.called;
   });
 
   it('should unmount editor', () => {
