@@ -109,8 +109,8 @@ describe('<Container />', () => {
     expect(wrapper.instance().editor.undoDepth).to.equal(0);
   });
 
-  it('should forward cardOptions to card components', () => {
-    class Button extends Component {
+  it('should forward cardProps to card components', () => {
+    class Prop extends Component {
       componentDidMount() {
         this.props.didMount();
       }
@@ -118,19 +118,18 @@ describe('<Container />', () => {
         return <span>Ohai</span>;
       }
     }
-    Button.displayName = 'Button';
-    const ButtonCard = classToDOMCard(Button);
+    const PropCard = classToDOMCard(Prop, 'PropCard');
 
     const doc = {
       version: '0.3.0',
       atoms: [],
-      cards: [['ButtonCard', {}]],
+      cards: [['PropCard', {}]],
       markups: [],
       sections: [[10, 0]]
     };
 
     const callback = spy();
-    mount(<Container cardProps={{ didMount: callback }} mobiledoc={doc} cards={[ButtonCard]}>
+    mount(<Container cardProps={{ didMount: callback }} mobiledoc={doc} cards={[PropCard]}>
             <Editor />
           </Container>);
 
