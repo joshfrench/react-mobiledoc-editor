@@ -1,3 +1,4 @@
+import AtomControl from './components/AtomControl';
 import CardControl from './components/CardControl';
 import { classToDOMCard } from './utils/classToCard';
 import Container, { EMPTY_MOBILEDOC } from './components/Container';
@@ -10,6 +11,7 @@ import SectionControl from './components/SectionControl';
 import Toolbar from './components/Toolbar';
 
 export {
+  AtomControl,
   CardControl,
   classToDOMCard,
   Container,
