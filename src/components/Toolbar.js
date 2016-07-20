@@ -11,6 +11,7 @@ const Toolbar = ({ children, ...props }) =>
     <li><SectionControl tag='h1' /></li>
     <li><SectionControl tag='h2' /></li>
     <li><SectionControl tag='blockquote' /></li>
+    <li><SectionControl tag='pull-quote' /></li>
     <li><SectionControl tag='ul' /></li>
     <li><SectionControl tag='ol' /></li>
     {React.Children.map(children, (child) => <li>{child}</li>)}
