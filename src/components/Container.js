@@ -1,7 +1,7 @@
 import React from 'react';
 import Mobiledoc from 'mobiledoc-kit';
 
-const EMPTY_MOBILEDOC = {
+export const EMPTY_MOBILEDOC = {
   version: "0.3.0",
   markups: [],
   atoms: [],

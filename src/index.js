@@ -1,6 +1,6 @@
 import CardControl from './components/CardControl';
 import { classToDOMCard } from './utils/classToCard';
-import Container from './components/Container';
+import Container, { EMPTY_MOBILEDOC } from './components/Container';
 import DropWrapper from './components/DropWrapper';
 import Editor from './components/Editor';
 import LinkControl from './components/LinkControl';
@@ -15,6 +15,7 @@ export {
   Container,
   DropWrapper,
   Editor,
+  EMPTY_MOBILEDOC,
   LinkControl,
   LinkForm,
   MarkupControl,
