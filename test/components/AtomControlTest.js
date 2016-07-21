@@ -1,18 +1,13 @@
 import React from 'react';
 import AtomControl  from '../../src/components/AtomControl';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import { shallow } from 'enzyme';
 
 describe('<AtomControl />', () => {
-  const HrAtom = {
-    name: "hr",
-    type: "dom",
-    render() {
-      return document.createElement('br');
-    }
-  };
   const button = <button>Hr</button>;
+  const editor = { insertAtom: spy(), activeSection: { isMarkerable: stub().returns(true) }};
+  const context = { editor };
 
   it('should render a button by default', () => {
     const wrapper = shallow(<AtomControl atom="hr" />);
@@ -30,16 +25,12 @@ describe('<AtomControl />', () => {
   });
 
   it('should insert atom on click', () => {
-    const editor = { insertAtom: spy() };
-    const context = { editor };
     const wrapper = shallow(<AtomControl atom="hr"><button /></AtomControl>, { context });
     wrapper.find('button').simulate('click');
-    expect(editor.insertAtom).calledWith('hr');
+    expect(editor.insertAtom).to.have.been.calledWith('hr');
   });
 
   it('should insert atom with options on click', () => {
-    const editor = { insertAtom: spy() };
-    const context = { editor };
     const payload = { foo: true };
     const value = "OHAI";
 

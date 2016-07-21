@@ -31,8 +31,8 @@ describe('<CardControl />', () => {
     expect(editor.insertCard).calledWith('TestCard', {}, true);
   });
 
-  it('should add a card in edit mode', () => {
-    const wrapper = shallow(<CardControl card={Card} edit={false} />, { context });
+  it('should pass edit mode to inserted card', () => {
+    const wrapper = shallow(<CardControl card={Card} isEditing={false} />, { context });
     wrapper.find('button').simulate('click');
     expect(editor.insertCard).calledWith('TestCard', {}, false);
   });
