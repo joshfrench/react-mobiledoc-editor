@@ -43,6 +43,13 @@ describe('<Container />', () => {
     expect(wrapper.instance().editor.mobiledoc).to.equal(doc);
   });
 
+  it('should pass html to editor', () => {
+    const html = '<p>Ohai</p>';
+
+    const wrapper = mount(<Container html={html}/>);
+    expect(wrapper.instance().editor.html).to.equal(html);
+  });
+
   it('should pass placeholder to editor', () => {
     const wrapper = mount(<Container placeholder="placeholder!" />);
     expect(wrapper.instance().editor.placeholder).to.equal('placeholder!');

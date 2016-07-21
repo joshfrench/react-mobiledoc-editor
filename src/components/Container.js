@@ -15,6 +15,7 @@ const Container = React.createClass({
     autofocus: React.PropTypes.bool,
     cards: React.PropTypes.array,
     didCreateEditor: React.PropTypes.func,
+    html: React.PropTypes.string,
     mobiledoc: React.PropTypes.object,
     onChange: React.PropTypes.func,
     options: React.PropTypes.object,
@@ -63,8 +64,8 @@ const Container = React.createClass({
     }
 
     const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
-    const { atoms, autofocus, cardProps, cards, placeholder, serializeVersion, spellcheck } = this.props;
-    const editorOptions = { ...this.props.options, mobiledoc, atoms, autofocus, cardOptions: { cardProps }, cards, placeholder, serializeVersion, spellcheck };
+    const { atoms, autofocus, cardProps, cards, html, placeholder, serializeVersion, spellcheck } = this.props;
+    const editorOptions = { ...this.props.options, atoms, autofocus, cardOptions: { cardProps }, cards, html, mobiledoc, placeholder, serializeVersion, spellcheck };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
     this.editor.inputModeDidChange(this.setActiveTags);
