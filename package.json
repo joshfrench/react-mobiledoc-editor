@@ -15,7 +15,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.6.5",
     "babel-plugin-transform-react-display-name": "^6.5.0",
     "classnames": "^2.2.5",
-    "mobiledoc-kit": "^0.9.7"
+    "mobiledoc-kit": "^0.10.1"
   },
   "peerDependencies": {
     "react": "^0.14.7 || ^15.0.0",
