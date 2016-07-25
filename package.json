@@ -8,7 +8,9 @@
     "pretest": "npm run lint",
     "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",
     "test:watch": "npm test -- --watch",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "mocha": "mocha-phantomjs test/index.html",
+    "devtest": "webpack-dev-server --port 8001 --config webpack.test.js"
   },
   "dependencies": {
     "babel-plugin-react-transform": "^2.0.2",
@@ -37,7 +39,11 @@
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
     "mocha-cli": "^1.0.0",
-    "react-addons-test-utils": "^15.0.0-rc.2",
+    "mocha-loader": "^0.7.1",
+    "mocha-phantomjs": "^4.1.0",
+    "react": "^15.0.0",
+    "react-addons-test-utils": "^15.0.0",
+    "react-dom": "^15.0.0",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.3",
