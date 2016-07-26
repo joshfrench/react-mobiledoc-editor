@@ -22,6 +22,7 @@ module.exports = function(config) {
     },
 
     webpack: {
+      devtool: 'inline-source-map',
       module: {
         loaders: [
           {
