@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress",
-    "pretest": "npm run lint",
+    "lint": "eslint src",
     "test": "karma start --single-run",
     "test:watch": "karma start",
-    "lint": "eslint src"
+    "posttest": "npm run lint"
   },
   "dependencies": {
     "babel-plugin-react-transform": "^2.0.2",
