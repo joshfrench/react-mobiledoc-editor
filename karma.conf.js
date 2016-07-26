@@ -37,8 +37,6 @@ module.exports = function(config) {
         ]
       },
       externals: {
-        'describe': 'window',
-        'it': 'window',
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': true
