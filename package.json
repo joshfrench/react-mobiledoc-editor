@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --progress",
     "pretest": "npm run lint",
-    "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",
-    "test:watch": "npm test -- --watch",
+    "test": "karma start --single-run",
+    "test:watch": "karma start",
     "lint": "eslint src"
   },
   "dependencies": {
