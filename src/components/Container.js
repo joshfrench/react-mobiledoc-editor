@@ -85,8 +85,8 @@ const Container = React.createClass({
     this.editor.destroy();
   },
   render() {
-    const { children, spellcheck, ...props } = this.props; // eslint-disable-line no-unused-vars
-    return <div {...props}>{children}</div>;
+    const { atoms, autofocus, cardProps, cards, children, html, placeholder, serializeVersion, spellcheck, ...componentProps } = this.props; // eslint-disable-line no-unused-vars
+    return <div {...componentProps}>{children}</div>;
   },
   addLink({ href }) {
     this.editor.run(postEditor => {
