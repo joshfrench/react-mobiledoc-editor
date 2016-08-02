@@ -25,12 +25,17 @@ const LinkForm = React.createClass({
     return (
       <SelectionTether>
         <form {...props}>
-          <input type="text" ref="url" autoFocus></input>
+          <input type="text" ref="url" onKeyUp={this.handleEsc} autoFocus></input>
           <button ref="add">Link</button>
           <button ref="cancel" onClick={preventDefault(this.closeForm)}>Cancel</button>
         </form>
       </SelectionTether>
     );
+  },
+  handleEsc(e) {
+    if (e.key === 'Escape') {
+      this.closeForm();
+    }
   },
   closeForm() {
     this.context.setLinkOffsets(null);
