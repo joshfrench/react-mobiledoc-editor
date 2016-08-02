@@ -25,7 +25,7 @@ const LinkForm = React.createClass({
     return (
       <SelectionTether>
         <form {...props}>
-          <input type="text" ref="url"></input>
+          <input type="text" ref="url" autoFocus></input>
           <button ref="add">Link</button>
           <button ref="cancel" onClick={preventDefault(this.closeForm)}>Cancel</button>
         </form>
