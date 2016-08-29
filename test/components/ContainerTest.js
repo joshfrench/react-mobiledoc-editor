@@ -46,7 +46,7 @@ describe('<Container />', () => {
   it('should pass html to editor', () => {
     const html = '<p>Ohai</p>';
 
-    const wrapper = mount(<Container html={html}/>);
+    const wrapper = mount(<Container html={html} />);
     expect(wrapper.instance().editor.html).to.equal(html);
   });
 

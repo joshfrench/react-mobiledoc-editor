@@ -31,7 +31,7 @@ const Image = React.createClass({
       return (
         <div>
           <input type="text" ref="src" defaultValue={payload.src} /><br />
-          <input type="text" ref="caption" defaultValue={payload.caption} /><br/>
+          <input type="text" ref="caption" defaultValue={payload.caption} /><br />
           <button onClick={() => save({ src: this.refs.src.value, caption: this.refs.caption.value })}>Save</button>
         </div>
       );
@@ -39,8 +39,8 @@ const Image = React.createClass({
       const onClick = isInEditor ? edit : null;
       return (
         <div>
-          <img src={payload.src} onClick={onClick} /><br/>
-          <small>{payload.caption}</small><br/>
+          <img src={payload.src} onClick={onClick} /><br />
+          <small>{payload.caption}</small><br />
           {isInEditor && <button onClick={onClick}>Edit</button>}
         </div>
       );
