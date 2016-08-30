@@ -23,7 +23,7 @@ export const classToDOMCard = (component, name) => {
   }
 
   return {
-    name: name || `${component.displayName}Card`,
+    name: name || component.displayName,
     component,
     type: 'dom',
     render: cardRenderer(component),
