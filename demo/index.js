@@ -18,12 +18,6 @@ const mobiledoc = {
   atoms: [],
   cards: [],
   sections: [
-    [1, "h1", [
-      [0, [], 0, "Welcome to Mobiledoc"]
-    ]],
-    [1, "p", [
-      [0, [], 0, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare sit amet velit sit amet posuere. Etiam quis urna in justo elementum suscipit eget quis eros. Curabitur in blandit ligula. Sed ac nunc rhoncus, lobortis ex at, varius nulla."]
-    ]]
   ]
 };
 
@@ -34,8 +28,10 @@ const onChange = (doc) => { console.log(doc); };
 const config = {
   mobiledoc,
   cards: [ImageCard],
-  willCreateEditor() { console.log('Creating editor'); },
-  onChange(doc) { console.log(doc); }
+  placeholder: "Welcome to Mobiledoc!",
+  willCreateEditor,
+  didCreateEditor,
+  onChange
 };
 
 ReactDOM.render(<ReactMobiledoc.Container {...config}>

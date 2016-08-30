@@ -71,6 +71,11 @@ describe('<Container />', () => {
     expect(wrapper.instance().editor.autofocus).to.be.false;
   });
 
+  it('should pass placeholder to editor', () => {
+    const wrapper = mount(<Container placeholder="Say something" />);
+    expect(wrapper.instance().editor.placeholder).to.eq("Say something");
+  });
+
   it('should pass serializeVersion to editor', () => {
     const onChange = spy();
     let wrapper = mount(<Container onChange={onChange}><Editor /></Container>);
