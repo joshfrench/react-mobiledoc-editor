@@ -42,3 +42,5 @@ ReactDOM.render(<ReactMobiledoc.Container {...config}>
                   <ReactMobiledoc.LinkForm />
                 </ReactMobiledoc.Container>,
                 document.getElementById('root'));
+
+require("!style!css!../node_modules/mobiledoc-kit/dist/css/mobiledoc-kit.css");
