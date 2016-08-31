@@ -1,7 +1,7 @@
 import React from 'react';
 import titleCase from '../utils/titleCase';
 
-const CardControl = ({ card, isEditing = true, payload = {}, children, ...props }, { editor }) => {
+const CardControl = ({ card, edit, isEditing = true, payload = {}, children, ...props }, { editor }) => {
   if (!children) {
     const name = card.name.replace(/[_-]?card$/i, '');
     children = <button {...props}>{titleCase(name)}</button>;

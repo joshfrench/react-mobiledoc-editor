@@ -85,7 +85,10 @@ const Container = React.createClass({
     this.editor.destroy();
   },
   render() {
-    const { atoms, autofocus, cardProps, cards, children, html, placeholder, serializeVersion, spellcheck, ...componentProps } = this.props; // eslint-disable-line no-unused-vars
+    /* eslint-disable no-unused-vars */
+    const { atoms, autofocus, cardProps, cards, children, didCreateEditor, html, mobiledoc,
+            placeholder, serializeVersion, spellcheck, willCreateEditor, ...componentProps } = this.props;
+    /* eslint-enable no-unused-vars */
     return <div {...componentProps}>{children}</div>;
   },
   addLink({ href }) {
