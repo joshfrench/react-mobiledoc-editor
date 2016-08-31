@@ -59,6 +59,6 @@
     "webpack-hot-middleware": "^2.10.0",
     "webpack-merge": "^0.14.0"
   },
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "private": "true"
 }
