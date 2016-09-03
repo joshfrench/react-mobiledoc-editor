@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 
 describe('<CardControl />', () => {
   const Card = { name: "TestCard" };
-  const button = <button>Test</button>;
+  const button = <button>TestCard</button>;
   const editor = { insertCard: spy() };
   const context = { editor };
 
