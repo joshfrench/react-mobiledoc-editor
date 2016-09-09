@@ -1,12 +1,12 @@
 import React from 'react';
-import MarkupControl from './MarkupControl';
+import MarkupButton from './MarkupButton';
 import SectionControl from './SectionControl';
 import LinkControl from './LinkControl';
 
 const Toolbar = ({ children, ...props }) =>
   <ul {...props}>
-    <li><MarkupControl tag='strong' /></li>
-    <li><MarkupControl tag='em' /></li>
+    <li><MarkupButton tag='strong' /></li>
+    <li><MarkupButton tag='em' /></li>
     <li><LinkControl /></li>
     <li><SectionControl tag='h1' /></li>
     <li><SectionControl tag='h2' /></li>
