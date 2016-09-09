@@ -1,13 +1,13 @@
 import React from 'react';
 import MarkupButton from './MarkupButton';
 import SectionButton from './SectionButton';
-import LinkControl from './LinkControl';
+import LinkButton from './LinkButton';
 
 const Toolbar = ({ children, ...props }) =>
   <ul {...props}>
     <li><MarkupButton tag='strong' /></li>
     <li><MarkupButton tag='em' /></li>
-    <li><LinkControl /></li>
+    <li><LinkButton /></li>
     <li><SectionButton tag='h1' /></li>
     <li><SectionButton tag='h2' /></li>
     <li><SectionButton tag='blockquote' /></li>

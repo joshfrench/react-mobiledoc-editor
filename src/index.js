@@ -1,7 +1,7 @@
 import { classToDOMCard } from './utils/classToCard';
 import Container, { EMPTY_MOBILEDOC } from './components/Container';
 import Editor from './components/Editor';
-import LinkControl from './components/LinkControl';
+import LinkButton from './components/LinkButton';
 import LinkForm from './components/LinkForm';
 import MarkupButton from './components/MarkupButton';
 import SectionButton from './components/SectionButton';
@@ -12,7 +12,7 @@ export {
   Container,
   Editor,
   EMPTY_MOBILEDOC,
-  LinkControl,
+  LinkButton,
   LinkForm,
   MarkupButton,
   SectionButton,

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const LinkControl = ({ children = <button>Link</button>, ...props }, { editor, setLinkOffsets, activeMarkupTags = []}) => {
+const LinkButton = ({ children = "Link", className, ...props }, { editor, setLinkOffsets, activeMarkupTags = []}) => {
   const onClick = () => {
     if (!editor.hasCursor()) {
       return;
@@ -14,21 +14,22 @@ const LinkControl = ({ children = <button>Link</button>, ...props }, { editor, s
     }
   };
 
-  const className = classNames(children.props.className, {
+  className = classNames(className, {
     active: activeMarkupTags.indexOf('a') > -1
   });
 
-  return React.cloneElement(children, { ...props, onClick, className });
+  props = { ...props, onClick, className };
+  return <button { ...props }>{children}</button>;
 };
 
-LinkControl.propTypes = {
-  children: React.PropTypes.element
+LinkButton.propTypes = {
+  children: React.PropTypes.node
 };
 
-LinkControl.contextTypes = {
+LinkButton.contextTypes = {
   editor: React.PropTypes.object,
   setLinkOffsets: React.PropTypes.func,
   activeMarkupTags: React.PropTypes.array
 };
 
-export default LinkControl;
+export default LinkButton;
