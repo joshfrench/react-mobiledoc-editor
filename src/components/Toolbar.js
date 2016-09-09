@@ -3,7 +3,7 @@ import MarkupButton from './MarkupButton';
 import SectionButton from './SectionButton';
 import LinkButton from './LinkButton';
 
-const Toolbar = ({ children, ...props }) =>
+const Toolbar = (props) =>
   <ul {...props}>
     <li><MarkupButton tag='strong' /></li>
     <li><MarkupButton tag='em' /></li>
@@ -14,7 +14,6 @@ const Toolbar = ({ children, ...props }) =>
     <li><SectionButton tag='pull-quote' /></li>
     <li><SectionButton tag='ul' /></li>
     <li><SectionButton tag='ol' /></li>
-    {React.Children.map(children, (child) => <li>{child}</li>)}
   </ul>;
 
 export default Toolbar;

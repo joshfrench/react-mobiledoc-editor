@@ -8,10 +8,4 @@ describe('<Toolbar />', () => {
     const wrapper = shallow(<Toolbar className="foo" />);
     expect(wrapper).to.have.className('foo');
   });
-
-  it('renders additional items', () => {
-    const button = <button>Add Widget</button>;
-    const wrapper = shallow(<Toolbar>{button}</Toolbar>);
-    expect(wrapper).to.contain(button);
-  });
 });
