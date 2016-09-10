@@ -38,7 +38,7 @@ The most basic usage with standard toolbar and empty editor is:
 
 Read on for how to provide more typical configurations to each component.
 
-#### `<Container />`
+#### `<Container>`
 
 This is the top-level component, which _must_ be present and wrap the rest
 of your editor UI. It accepts the configuration for your mobiledoc editor
@@ -55,7 +55,7 @@ The `Container` component accepts these Mobiledoc-specific props:
 
 - _tktktk_
 
-#### `<Editor />`
+#### `<Editor>`
 
 The `Editor` component is the actual editor interface. In its most basic form
 it renders an empty editor with no toolbar. It accepts no Mobiledoc-specific
@@ -63,13 +63,13 @@ props, but will respect any known React props like `className` or `onDrop`.
 (See the [How To](https://github.com/upworthy/react-mobiledoc-editor/wiki/How-To#drag--drop)
 page in the wiki for more information on drag & drop.)
 
-#### `<Toolbar />`
+#### `<Toolbar>`
 
 Creates a toolbar with the standard set of buttons. To customize the button
 set, see the [How To](https://github.com/upworthy/react-mobiledoc-editor/wiki/How-To#customizing-the-toolbar)
 page in the wiki.
 
-#### `<SectionButton />`
+#### `<SectionButton>`
 
 Creates a button that, when clicked, toggles the supplied tag on the section
 under the editor cursor.
@@ -92,7 +92,7 @@ than the tag name within the button:
 </SectionButton>
 ```
 
-#### `<MarkupButton />`
+#### `<MarkupButton>`
 
 Creates a button that, when clicked, toggles the supplied tag on the selected
 range in the editor.
@@ -115,7 +115,7 @@ than the tag name within the button:
 </MarkupButton>
 ```
 
-#### `<LinkButton />`
+#### `<LinkButton>`
 
 Creates a button that, when clicked, toggles the presence of a link on the
 selected range in the editor. User will be prompted for a URL if necessary.
