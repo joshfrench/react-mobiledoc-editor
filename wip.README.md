@@ -20,12 +20,12 @@ _tktk_
 This package contains a number of React components suitable for building
 your own editor UI.
 
-* [`Container`](#Container)
-* [`Editor`](#Editor)
-* [`SectionButton`](#SectionButton)
-* [`MarkupButton`](#MarkupButton)
-* [`LinkButton`](#LinkButton)
-* [`Toolbar`](#Toolbar)
+* [`Container`](#container)
+* [`Editor`](#editor)
+* [`SectionButton`](#sectionButton)
+* [`MarkupButton`](#markupButton)
+* [`LinkButton`](#linkButton)
+* [`Toolbar`](#toolbar)
 
 The most basic usage with standard toolbar and empty editor is:
 
