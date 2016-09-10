@@ -22,10 +22,10 @@ your own editor UI.
 
 * [`Container`](#container)
 * [`Editor`](#editor)
-* [`SectionButton`](#sectionButton)
-* [`MarkupButton`](#markupButton)
-* [`LinkButton`](#linkButton)
 * [`Toolbar`](#toolbar)
+* [`SectionButton`](#sectionbutton)
+* [`MarkupButton`](#markupbutton)
+* [`LinkButton`](#linkbutton)
 
 The most basic usage with standard toolbar and empty editor is:
 
