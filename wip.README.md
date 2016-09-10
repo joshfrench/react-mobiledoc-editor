@@ -81,7 +81,7 @@ than the tag name within the button:
 ```jsx
 <SectionButton tag="ul">
   List
-</Section>
+</SectionButton>
 ```
 
 ### `<MarkupButton />`
@@ -102,7 +102,7 @@ than the tag name within the button:
 ```jsx
 <MarkupButton tag="strong">
   Bold
-</Section>
+</MarkupButton>
 ```
 
 ### `<LinkButton />`
