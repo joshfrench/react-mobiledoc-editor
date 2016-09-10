@@ -73,7 +73,9 @@ known React props, like `className` or `title`. The returned `<button>`
 component will have a class of `active` when the corresponding tag is active
 under the editor cursor.
 
-`<SectionButton tag="h2" />`
+```jsx
+<SectionButton tag="h2" />
+```
 
 Alternately, custom child node(s) may be yielded to render something other
 than the tag name within the button:
@@ -94,7 +96,9 @@ known React props, like `className` or `title`. The returned `<button>`
 component will have a class of `active` when the corresponding tag is active
 under the editor cursor.
 
-`<MarkupButton tag="em" />`
+```jsx
+<MarkupButton tag="em" />
+```
 
 Alternately, custom child node(s) may be yielded to render something other
 than the tag name within the button:
@@ -114,7 +118,9 @@ Accepts any known React props, like `className` or `title`. The returned
 `<button>` component will have a class of `active` when an anchor tag is
 active under the editor cursor.
 
-`<LinkButton />`
+```jsx
+<LinkButton />
+```
 
 Alternately, custom child node(s) may be yielded to render something other
 than the default label on the button:
