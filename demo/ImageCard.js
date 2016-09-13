@@ -17,7 +17,6 @@ import { classToDOMCard } from '../src';
  * - `cancel` A callback for toggling this card to display mode
  *    without saving (a no-op if the card is already in display mode).
  * - `name` The name of this card.
- * - `editor` A reference to the mobiledoc-kit editor instance.
  * - `postModel` A reference to this card's model in the editor's
  *    abstract tree. This may be necessary to do programmatic editing.
  * - `isEditing` A bool indicating if the card is in Edit mode or not.
@@ -48,6 +47,6 @@ const Image = React.createClass({
   }
 });
 
-const ImageCard = classToDOMCard(Image);
+const ImageCard = classToDOMCard(Image, 'ImageCard');
 
 export default ImageCard;

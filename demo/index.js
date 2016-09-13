@@ -4,14 +4,6 @@ import ReactDOM from 'react-dom';
 import * as ReactMobiledoc from '../src';
 import ImageCard from './ImageCard';
 
-const ImageButton = (props, { editor }) => {
-  return <button onClick={() => editor.insertCard('ImageCard', { src: 'http://placekitten.com/200/200', caption: "Hi, I'm a kitten" }, false)}>Image</button>;
-};
-
-ImageButton.contextTypes = {
-  editor: React.PropTypes.object
-};
-
 const mobiledoc = {
   version: "0.3.0",
   markups: [],
@@ -34,10 +26,20 @@ const config = {
   onChange
 };
 
+const imgPayload = { caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200" };
+
+const ImageButton = ({ isEditing = true }, { editor }) => {
+  const onClick = () => editor.insertCard('ImageCard', imgPayload, isEditing);
+  return <button onClick={onClick}>Image</button>;
+};
+
+ImageButton.contextTypes = {
+  editor: React.PropTypes.object
+};
+
 ReactDOM.render(<ReactMobiledoc.Container {...config}>
-                  <ReactMobiledoc.Toolbar>
-                    <ReactMobiledoc.CardControl card={ImageCard} edit={false} payload={{ caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200" }} />
-                  </ReactMobiledoc.Toolbar>
+                  <ReactMobiledoc.Toolbar />
+                  <ImageButton />
                   <ReactMobiledoc.Editor />
                   <ReactMobiledoc.LinkForm />
                 </ReactMobiledoc.Container>,
