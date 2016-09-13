@@ -19,6 +19,7 @@ const Container = React.createClass({
     mobiledoc: React.PropTypes.object,
     onChange: React.PropTypes.func,
     options: React.PropTypes.object,
+    placeholder: React.PropTypes.string,
     serializeVersion: React.PropTypes.string,
     spellcheck: React.PropTypes.bool,
     willCreateEditor: React.PropTypes.func

@@ -53,7 +53,28 @@ React props (like `className`) will be passed to the root-level component.
 
 The `Container` component accepts these Mobiledoc-specific props:
 
-- _tktktk_
+- `mobiledoc`: A Mobiledoc to be edited.
+- `cards`: An array of available cards for use by the editor. Jump to the
+  section on [Card-based components](#component-based-cards) for more detail
+  on how to create cards as React components.
+- `atoms`: An array of available atoms for use by the editor.
+- `spellcheck`: Boolean.
+- `autofocus`: Boolean.
+- `placeholder`: A string to use as the placeholder text when the mobiledoc
+  is blank.
+- `options`: A hash of additional options that will be passed through to the
+  Mobiledoc editor constructor.
+- `serializeVersion`: A string representing the mobiledoc version to serialize
+  to when firing the `onChange` action. Defaults to `0.3.0`.
+- `onChange`: A callback that will fire whenever the underlying document
+  changes. Use this to persist and/or serialize your mobiledoc to another
+  format as it's being edited. Will be called with the serialized mobiledoc.
+- `willCreateEditor`: A callback that fires when the Mobiledoc editor instance
+  is about to be created. Takes no arguments.
+- `didCreateEditor`: A callback that fires once the Mobiledoc editor instance
+  has been created. Will be called with the editor instance and may be used
+  to configure it further.
+
 
 #### `<Editor>`
 
@@ -174,9 +195,27 @@ need to provide your own card name to `classToDOMCard`:
 Once your components have been wrapped in the card interface, they can be
 passed to a `<Container>` component via the `cards` prop, like any other card.
 
-Card components will be passed the following mobiledoc-specific props:
+Card-based components will be instantiated with the following
+mobiledoc-specific props:
 
-_tktktk_
+- `payload`: The payload for this card. Please note the payload object is
+  disconnected from the card's representation in the serialized mobiledoc; to
+  update the payload as it exists in the mobiledoc, use the `save` callback.
+- `edit`: A callback for toggling this card into edit mode (no-op if the card
+  is already in edit mode).
+- `save`: A callback which accepts a new payload for the card, then saves that
+  payload to the underlying mobiledoc and toggles the card back into display
+  mode. Can optionally be passed `false` as an extra argument to avoid toggling
+  to display mode.
+- `cancel`: A callback for toggling this card to display mode without saving (a
+  no-op if the card is already in display mode).
+- `remove`: A callback for removing this card entirely.
+- `name`: The name of this card.
+- `postModel`: A reference to this card's model in the editor's abstract tree.
+  This may be necessary to do programmatic editing.
+- `isInEditor`: A bool indicating if the card is displayed inside an editor
+  interface or not.
+- `isEditing`: A bool indicating if the card is in Edit mode or not.
 
 ## Developing `react-mobiledoc-editor`
 
