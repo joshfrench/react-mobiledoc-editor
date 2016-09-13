@@ -41,7 +41,6 @@ ReactDOM.render(<ReactMobiledoc.Container {...config}>
                   <ReactMobiledoc.Toolbar />
                   <ImageButton />
                   <ReactMobiledoc.Editor />
-                  <ReactMobiledoc.LinkForm />
                 </ReactMobiledoc.Container>,
                 document.getElementById('root'));
 

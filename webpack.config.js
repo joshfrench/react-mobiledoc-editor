@@ -27,7 +27,6 @@ config.module = {
   ]
 };
 
-
 // dev server
 if (TARGET === 'start' || !TARGET) {
   module.exports = merge(config, {

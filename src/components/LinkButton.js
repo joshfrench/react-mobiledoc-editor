@@ -1,7 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
+import Mobiledoc from 'mobiledoc-kit';
 
-const LinkButton = ({ children = "Link", className, ...props }, { editor, setLinkOffsets, activeMarkupTags = []}) => {
+const LinkButton = ({ children = "Link", className, ...props }, { editor, activeMarkupTags = []}) => {
   const onClick = () => {
     if (!editor.hasCursor()) {
       return;
@@ -10,7 +11,7 @@ const LinkButton = ({ children = "Link", className, ...props }, { editor, setLin
     if (editor.hasActiveMarkup('a')) {
       editor.toggleMarkup('a');
     } else {
-      setLinkOffsets(editor.range);
+      Mobiledoc.default.UI.toggleLink(editor);
     }
   };
 
@@ -28,7 +29,6 @@ LinkButton.propTypes = {
 
 LinkButton.contextTypes = {
   editor: React.PropTypes.object,
-  setLinkOffsets: React.PropTypes.func,
   activeMarkupTags: React.PropTypes.array
 };
 

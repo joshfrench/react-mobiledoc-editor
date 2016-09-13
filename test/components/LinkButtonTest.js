@@ -3,11 +3,15 @@ import LinkButton from '../../src/components/LinkButton';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { shallow } from 'enzyme';
+import Mobiledoc from 'mobiledoc-kit';
 
 describe('<LinkButton />', () => {
   const editor = {
     hasCursor: stub().returns(true),
-    hasActiveMarkup: stub()
+    hasActiveMarkup: stub(),
+    range: {
+      isCollapsed: stub().returns(false)
+    }
   };
 
   it('should render a button by default', () => {
@@ -25,7 +29,7 @@ describe('<LinkButton />', () => {
     expect(wrapper.containsMatchingElement(<button>A</button>)).to.be.true;
   });
 
-  it('should add a link', () => {
+  it('should remove existing link markup', () => {
     editor.hasActiveMarkup.returns(true);
     editor.toggleMarkup = spy();
     const context = { editor };
@@ -35,17 +39,16 @@ describe('<LinkButton />', () => {
     expect(editor.toggleMarkup).to.be.calledWith('a');
   });
 
-  it('should toggle link if a link is already active', () => {
+  it('should delegate link creation to Mobiledoc.UI.toggleLink', () => {
+    spy(Mobiledoc.default.UI, 'toggleLink');
     editor.hasActiveMarkup.returns(false);
-    editor.range = "Range";
-    const context = {
-      setLinkOffsets: spy(),
-      editor
-    };
 
+    const context = { editor };
     const wrapper = shallow(<LinkButton />, { context });
     wrapper.find('button').simulate('click');
-    expect(context.setLinkOffsets).to.have.been.calledWith("Range");
+
+    expect(Mobiledoc.default.UI.toggleLink).to.have.been.calledWith(editor);
+    Mobiledoc.default.UI.toggleLink.restore();
   });
 
   it('should set active class', () => {

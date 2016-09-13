@@ -26,9 +26,6 @@ const Container = React.createClass({
   },
   childContextTypes: {
     editor: React.PropTypes.object,
-    linkOffsets: React.PropTypes.object,
-    setLinkOffsets: React.PropTypes.func,
-    addLink: React.PropTypes.func,
     activeMarkupTags: React.PropTypes.array,
     activeSectionTags: React.PropTypes.array
   },
@@ -52,9 +49,6 @@ const Container = React.createClass({
   getChildContext() {
     return {
       editor: this.editor,
-      linkOffsets: this.state.linkOffsets,
-      setLinkOffsets: (range) => this.setState({ linkOffsets: range }),
-      addLink: this.addLink,
       activeMarkupTags: this.state.activeMarkupTags,
       activeSectionTags: this.state.activeSectionTags
     };
@@ -92,12 +86,6 @@ const Container = React.createClass({
             placeholder, serializeVersion, spellcheck, willCreateEditor, ...componentProps } = this.props;
     /* eslint-enable no-unused-vars */
     return <div {...componentProps}>{children}</div>;
-  },
-  addLink({ href }) {
-    this.editor.run(postEditor => {
-      const markup = postEditor.builder.createMarkup('a', { href });
-      postEditor.addMarkupToRange(this.state.linkOffsets, markup);
-    });
   },
   setActiveTags() {
     this.setState({
