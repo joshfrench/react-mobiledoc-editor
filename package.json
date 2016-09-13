@@ -1,14 +1,15 @@
 {
   "name": "react-mobiledoc-editor",
   "version": "0.0.1",
-  "description": ":)",
-  "main": "index.js",
+  "description": "A Mobiledoc editor for React apps",
+  "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server --progress",
     "lint": "eslint src",
     "test": "karma start --single-run",
     "test:watch": "karma start",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "build": "rm -rf ./dist && webpack --config webpack.config.js -p"
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.6.5",
@@ -59,6 +60,18 @@
     "webpack-hot-middleware": "^2.10.0",
     "webpack-merge": "^0.14.0"
   },
+  "contributors": [
+    "Josh French <josh@upworthy.com>"
+  ],
+  "repository": "upworthy/react-mobiledoc-editor",
+  "homepage": "https://github.com/upworthy/react-mobiledoc-editor",
+  "bugs": "https://github.com/upworthy/react-mobiledoc-editor/issues",
   "license": "BSD-3-Clause",
+  "keywords": [
+    "mobiledoc",
+    "mobiledoc-editor",
+    "react-component",
+    "react"
+  ],
   "private": "true"
 }

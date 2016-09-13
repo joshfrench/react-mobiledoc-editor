@@ -70,6 +70,11 @@ if (/^test/.test(TARGET)) {
 // production build
 if (TARGET === 'build') {
   module.exports = merge(config, {
+    externals: {
+      "react": "commonjs react",
+      "react-dom": "commonjs reactdom",
+      "mobiledoc-kit": "commonjs mobiledoc-kit"
+    },
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': '"production"'
