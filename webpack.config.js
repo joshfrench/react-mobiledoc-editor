@@ -11,7 +11,10 @@ var config = {
 
 config.output = {
   path: path.join(__dirname, 'dist'),
-  filename: 'index.js'
+  filename: 'index.js',
+  library: 'ReactMobiledocEditor',
+  libraryTarget: 'umd',
+  umdNamedDefine: true
 };
 
 config.module = {
@@ -71,9 +74,9 @@ if (/^test/.test(TARGET)) {
 if (TARGET === 'build') {
   module.exports = merge(config, {
     externals: {
-      "react": "commonjs react",
-      "react-dom": "commonjs reactdom",
-      "mobiledoc-kit": "commonjs mobiledoc-kit"
+      "react": "umd react",
+      "react-dom": "umd reactdom",
+      "mobiledoc-kit": "umd mobiledoc-kit"
     },
     plugins: [
       new webpack.DefinePlugin({
