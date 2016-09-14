@@ -74,7 +74,7 @@ if (TARGET === 'build') {
   module.exports = merge(config, {
     externals: {
       "react": "umd react",
-      "react-dom": "umd reactdom",
+      "react-dom": "umd react-dom",
       "mobiledoc-kit": "umd mobiledoc-kit"
     },
     plugins: [
