@@ -17,7 +17,7 @@
     "classnames": "^2.2.5"
   },
   "peerDependencies": {
-    "mobiledoc-kit": "^0.10.11-beta.1",
+    "mobiledoc-kit": "^0.10.11",
     "react": "^0.14.7 || ^15.0.0",
     "react-dom": "^0.14.7 || ^15.0.0"
   },

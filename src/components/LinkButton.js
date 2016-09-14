@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Mobiledoc from 'mobiledoc-kit';
+import { UI } from 'mobiledoc-kit';
 
 const LinkButton = ({ children = "Link", className, ...props }, { editor, activeMarkupTags = []}) => {
   const onClick = () => {
@@ -11,7 +11,7 @@ const LinkButton = ({ children = "Link", className, ...props }, { editor, active
     if (editor.hasActiveMarkup('a')) {
       editor.toggleMarkup('a');
     } else {
-      Mobiledoc.default.UI.toggleLink(editor);
+      UI.toggleLink(editor);
     }
   };
 
