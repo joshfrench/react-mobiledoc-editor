@@ -5,4 +5,4 @@ machine:
     - npm install -g npm@3.x.x
 dependencies:
   override:
-    - npm install --no-progress
+    - npm install
