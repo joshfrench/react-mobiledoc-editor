@@ -45,4 +45,4 @@ general questions about our policies, please contact us at
 [opensource@upworthy.com](mailto:opensource@upworthy.com).
 
 [issues]: https://github.com/upworthy/react-mobiledoc-editor/issues
-[conduct]: ./CODE_OF_CONDUCT
+[conduct]: ./CODE_OF_CONDUCT.md
