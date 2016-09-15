@@ -73,6 +73,5 @@
     "mobiledoc-editor",
     "react-component",
     "react"
-  ],
-  "private": "true"
+  ]
 }
