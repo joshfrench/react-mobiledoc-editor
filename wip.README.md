@@ -224,6 +224,22 @@ mobiledoc-specific props:
   interface or not.
 - `isEditing`: A bool indicating if the card is in Edit mode or not.
 
-## Developing `react-mobiledoc-editor`
+## Development
 
-_tktktk_
+### Testing
+
+`npm test` or `npm run test:watch` to start Karma in continuous watch mode. The
+test script will automatically apply linting according to our house style, but
+can be run independently with `npm run lint`.
+
+### Running the Demo
+
+A small demo of basic usage and simple card integration is available under the
+`/demo` directory. To start the demo server, run `npm start` from the project
+root.
+
+### Getting Help
+
+If you'd like to report a bug or request a feature, please [open an
+issue](http://github.com/upworthy/react-mobiledoc-editor/issues) or
+email us at [opensource@upworthy.com](mailto:opensource@upworthy.com).
