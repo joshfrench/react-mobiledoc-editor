@@ -14,7 +14,7 @@ build React components once and share them between Mobiledoc and other contexts.
 ## Installation
 
 ```sh
-npm install react-mobiledoc-kit
+npm install react-mobiledoc-editor
 ```
 
 **Please note:** MobiledocKit and React are specified as peer dependencies,
