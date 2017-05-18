@@ -113,6 +113,37 @@ describe('<Container />', () => {
     expect(wrapper.instance().editor.cards).to.contain(Card);
   });
 
+  it('should use contenteditable=false in card HOC', () => {
+    class Prop extends Component {
+      render() {
+        return <span>Ohai</span>;
+      }
+    }
+    const PropCard = classToDOMCard(Prop, 'PropCard');
+
+    const doc = {
+      version: '0.3.0',
+      atoms: [],
+      cards: [['PropCard', {}]],
+      markups: [],
+      sections: [
+        [1, "p", [
+          [0, [], 0, "Hola"]
+        ]],
+        [10, 0]
+      ]
+    };
+
+    const wrapper = mount(<Container mobiledoc={doc} cards={[PropCard]}>
+            <Editor />
+          </Container>);
+
+    const element = wrapper.instance().editor.element;
+    const hoc = element.querySelector('[contenteditable=false]');
+
+    expect(hoc.innerText).to.equal('Ohai');
+  });
+
   it('should pass other options to editor', () => {
     let wrapper = mount(<Container />);
     expect(wrapper.instance().editor.undoDepth).to.equal(5);

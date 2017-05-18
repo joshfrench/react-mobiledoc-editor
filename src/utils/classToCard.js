@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 const cardRenderer = (component, isEditing = false) => ({ env, options, payload }) => {
   const targetNode = document.createElement('div');
+  targetNode.contenteditable = 'false';
+
   const { didRender, onTeardown } = env;
 
   didRender(() => {
