@@ -17,13 +17,13 @@ const cardRenderer = (component, isEditing = false) => ({ env, options, payload 
   return targetNode;
 };
 
-export const classToDOMCard = (component, name) => {
-  if (!name && typeof component.displayName === 'undefined') {
+export const classToDOMCard = (component) => {
+  if (!component.displayName) {
     throw new Error("Can't create card from component, no displayName defined: " + component);
   }
 
   return {
-    name: name || component.displayName,
+    name: component.displayName,
     component,
     type: 'dom',
     render: cardRenderer(component),

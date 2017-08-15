@@ -194,10 +194,8 @@ MyComponent.displayName = 'MyComponent';
 const MyComponentCard = classToDOMCard(MyComponent);
 ```
 
-Please note that if your component does not implement a display name, you'll
-need to provide your own card name to `classToDOMCard`:
-
-`const MyCard = classToDOMCard(NamelessComponent, 'MyCardName');`
+Please note that your component MUST implement `displayName`. This is so the
+editor and other mobiledoc consumers can identify your custom cards.
 
 Once your components have been wrapped in the card interface, they can be
 passed to a `<Container>` component via the `cards` prop, like any other card.

@@ -24,6 +24,7 @@ import { classToDOMCard } from '../src';
  *    editor interface or not.
  */
 const Image = React.createClass({
+  displayName: 'ImageCard',
   render() {
     const { isInEditor, payload, save, edit, isEditing } = this.props;
     if (isEditing) {
@@ -47,6 +48,6 @@ const Image = React.createClass({
   }
 });
 
-const ImageCard = classToDOMCard(Image, 'ImageCard');
+const ImageCard = classToDOMCard(Image);
 
 export default ImageCard;

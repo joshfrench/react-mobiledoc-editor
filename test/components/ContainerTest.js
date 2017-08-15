@@ -130,7 +130,8 @@ describe('<Container />', () => {
         return <span>Ohai</span>;
       }
     }
-    const PropCard = classToDOMCard(Prop, 'PropCard');
+    Prop.displayName = 'PropCard';
+    const PropCard = classToDOMCard(Prop);
 
     const doc = {
       version: '0.3.0',
