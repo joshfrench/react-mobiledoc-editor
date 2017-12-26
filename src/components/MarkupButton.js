@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import titleCase from '../utils/titleCase';
@@ -12,13 +13,13 @@ const MarkupButton = ({ tag = '', children = titleCase(tag), className, ...props
 };
 
 MarkupButton.propTypes = {
-  tag: React.PropTypes.string.isRequired,
-  children: React.PropTypes.node
+  tag: PropTypes.string.isRequired,
+  children: PropTypes.node
 };
 
 MarkupButton.contextTypes = {
-  editor: React.PropTypes.object,
-  activeMarkupTags: React.PropTypes.array
+  editor: PropTypes.object,
+  activeMarkupTags: PropTypes.array
 };
 
 export default MarkupButton;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import titleCase from '../utils/titleCase';
@@ -12,13 +13,13 @@ const SectionButton = ({ tag = '', children = titleCase(tag), className, ...prop
 };
 
 SectionButton.propTypes = {
-  tag: React.PropTypes.string.isRequired,
-  children: React.PropTypes.node
+  tag: PropTypes.string.isRequired,
+  children: PropTypes.node
 };
 
 SectionButton.contextTypes = {
-  editor: React.PropTypes.object,
-  activeSectionTags: React.PropTypes.array
+  editor: PropTypes.object,
+  activeSectionTags: PropTypes.array
 };
 
 export default SectionButton;

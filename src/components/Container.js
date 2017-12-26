@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import createReactClass from 'create-react-class';
 import Mobiledoc from 'mobiledoc-kit';
 
 export const EMPTY_MOBILEDOC = {
@@ -9,26 +11,30 @@ export const EMPTY_MOBILEDOC = {
   sections: []
 };
 
-const Container = React.createClass({
+const Container = createReactClass({
+  displayName: 'Container',
+
   propTypes: {
-    atoms: React.PropTypes.array,
-    autofocus: React.PropTypes.bool,
-    cards: React.PropTypes.array,
-    didCreateEditor: React.PropTypes.func,
-    html: React.PropTypes.string,
-    mobiledoc: React.PropTypes.object,
-    onChange: React.PropTypes.func,
-    options: React.PropTypes.object,
-    placeholder: React.PropTypes.string,
-    serializeVersion: React.PropTypes.string,
-    spellcheck: React.PropTypes.bool,
-    willCreateEditor: React.PropTypes.func
+    atoms: PropTypes.array,
+    autofocus: PropTypes.bool,
+    cards: PropTypes.array,
+    didCreateEditor: PropTypes.func,
+    html: PropTypes.string,
+    mobiledoc: PropTypes.object,
+    onChange: PropTypes.func,
+    options: PropTypes.object,
+    placeholder: PropTypes.string,
+    serializeVersion: PropTypes.string,
+    spellcheck: PropTypes.bool,
+    willCreateEditor: PropTypes.func
   },
+
   childContextTypes: {
-    editor: React.PropTypes.object,
-    activeMarkupTags: React.PropTypes.array,
-    activeSectionTags: React.PropTypes.array
+    editor: PropTypes.object,
+    activeMarkupTags: PropTypes.array,
+    activeSectionTags: PropTypes.array
   },
+
   getDefaultProps() {
     return {
       atoms: [],
@@ -40,12 +46,14 @@ const Container = React.createClass({
       spellcheck: true
     };
   },
+
   getInitialState() {
     return {
       activeMarkupTags: [],
       activeSectionTags: []
     };
   },
+
   getChildContext() {
     return {
       editor: this.editor,
@@ -53,6 +61,7 @@ const Container = React.createClass({
       activeSectionTags: this.state.activeSectionTags
     };
   },
+
   componentWillMount() {
     if (typeof this.props.willCreateEditor === 'function') {
       this.props.willCreateEditor();
@@ -76,9 +85,11 @@ const Container = React.createClass({
       this.props.didCreateEditor(this.editor);
     }
   },
+
   componentWillUnmount() {
     this.editor.destroy();
   },
+
   render() {
     /* eslint-disable no-unused-vars */
     /* deconstruct out non-React props before passing to children */
@@ -87,6 +98,7 @@ const Container = React.createClass({
     /* eslint-enable no-unused-vars */
     return <div {...componentProps}>{children}</div>;
   },
+
   setActiveTags() {
     this.setState({
       activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),

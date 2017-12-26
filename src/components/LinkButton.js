@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { UI } from 'mobiledoc-kit';
@@ -24,12 +25,12 @@ const LinkButton = ({ children = "Link", className, ...props }, { editor, active
 };
 
 LinkButton.propTypes = {
-  children: React.PropTypes.node
+  children: PropTypes.node
 };
 
 LinkButton.contextTypes = {
-  editor: React.PropTypes.object,
-  activeMarkupTags: React.PropTypes.array
+  editor: PropTypes.object,
+  activeMarkupTags: PropTypes.array
 };
 
 export default LinkButton;

@@ -1,15 +1,22 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const Editor = React.createClass({
+import createReactClass from 'create-react-class';
+
+const Editor = createReactClass({
+  displayName: 'Editor',
+
   contextTypes: {
-    editor: React.PropTypes.object
+    editor: PropTypes.object
   },
+
   componentDidMount() {
     const { editor } = this.context;
     if (editor) {
       editor.render(this.refs.editor);
     }
   },
+
   render() {
     const props = { ...this.props, ref: "editor" };
     return <div {...props} />;
