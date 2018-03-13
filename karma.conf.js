@@ -24,15 +24,11 @@ module.exports = function(config) {
     webpack: {
       devtool: 'inline-source-map',
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.js$/,
-            loader: 'babel',
+            loader: 'babel-loader',
             exclude: /node_modules\//
-          },
-          {
-            test: /\.json$/,
-            loader: 'json'
           }
         ]
       },
