@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { UI } from 'mobiledoc-kit';
 
-const LinkButton = ({ children = "Link", className, ...props }, { editor, activeMarkupTags = []}) => {
+const LinkButton = ({ children = "Link", type = "button", className, ...props }, { editor, activeMarkupTags = []}) => {
   const onClick = () => {
     if (!editor.hasCursor()) {
       return;
@@ -20,7 +20,7 @@ const LinkButton = ({ children = "Link", className, ...props }, { editor, active
     active: activeMarkupTags.indexOf('a') > -1
   });
 
-  props = { ...props, onClick, className };
+  props = { type, ...props, onClick, className };
   return <button { ...props }>{children}</button>;
 };
 

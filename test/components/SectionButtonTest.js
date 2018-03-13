@@ -10,6 +10,16 @@ describe('<SectionButton />', () => {
     expect(wrapper.containsMatchingElement(<button>UL</button>)).to.be.true;
   });
 
+  it('should have semantic input type', () => {
+    const wrapper = shallow(<SectionButton tag="UL" />);
+    expect(wrapper).to.have.attr('type', 'button');
+  });
+
+  it('should allow custom input type', () => {
+    const wrapper = shallow(<SectionButton type="reset" />);
+    expect(wrapper).to.have.attr('type', 'reset');
+  });
+
   it('should pass props to default child', () => {
     const wrapper = shallow(<SectionButton tag="UL" title="List" />);
     expect(wrapper).to.have.attr('title', 'List');

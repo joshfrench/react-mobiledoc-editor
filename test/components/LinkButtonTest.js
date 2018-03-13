@@ -19,6 +19,16 @@ describe('<LinkButton />', () => {
     expect(wrapper.containsMatchingElement(<button>Link</button>)).to.be.true;
   });
 
+  it('should have semantic input type', () => {
+    const wrapper = shallow(<LinkButton />);
+    expect(wrapper).to.have.attr('type', 'button');
+  });
+
+  it('should allow custom input type', () => {
+    const wrapper = shallow(<LinkButton type="reset" />);
+    expect(wrapper).to.have.attr('type', 'reset');
+  });
+
   it('should pass props to default child', () => {
     const wrapper = shallow(<LinkButton title="link" />);
     expect(wrapper).to.have.attr('title', 'link');
