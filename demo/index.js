@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import * as ReactMobiledoc from '../src';
@@ -34,7 +35,7 @@ const ImageButton = ({ isEditing = true }, { editor }) => {
 };
 
 ImageButton.contextTypes = {
-  editor: React.PropTypes.object
+  editor: PropTypes.object
 };
 
 ReactDOM.render(<ReactMobiledoc.Container {...config}>
@@ -44,4 +45,4 @@ ReactDOM.render(<ReactMobiledoc.Container {...config}>
                 </ReactMobiledoc.Container>,
                 document.getElementById('root'));
 
-require("!style!css!../node_modules/mobiledoc-kit/dist/css/mobiledoc-kit.css");
+require("!style-loader!css-loader!../node_modules/mobiledoc-kit/dist/css/mobiledoc-kit.css");

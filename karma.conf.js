@@ -22,6 +22,7 @@ module.exports = function(config) {
     },
 
     webpack: {
+      mode: 'development',
       devtool: 'inline-source-map',
       module: {
         rules: [
@@ -31,11 +32,6 @@ module.exports = function(config) {
             exclude: /node_modules\//
           }
         ]
-      },
-      externals: {
-        'react/addons': true,
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true
       }
     },
 

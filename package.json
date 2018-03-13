@@ -2,17 +2,18 @@
   "name": "react-mobiledoc-editor",
   "version": "0.3.2",
   "description": "A Mobiledoc editor for React apps",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "start": "webpack-dev-server --progress",
+    "start": "webpack-dev-server --mode development --hot --progress",
     "lint": "eslint src",
     "test": "karma start --single-run",
     "test:watch": "karma start",
-    "posttest": "npm run lint",
-    "build": "rm -rf ./dist && webpack --config webpack.config.js -p",
-    "prepublish": "npm run build"
+    "posttest": "yarn lint",
+    "build": "rm -rf ./dist && webpack --mode production",
+    "prepublish": "yarn build"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.0.0-beta.40",
     "classnames": "^2.2.5",
     "create-react-class": "^15.6.2",
     "prop-types": "^15.6.0"
@@ -23,19 +24,20 @@
     "react-dom": "^0.14.7 || ^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.7.7",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^7.1.4",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-object-rest-spread": "^6.6.5",
     "babel-polyfill": "^6.7.4",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
     "chai": "^3.5.0",
     "chai-enzyme": "1.0.0-beta.0",
     "cheerio": "^1.0.0-rc.2",
     "css-loader": "^0.24.0",
-    "enzyme": "^3.0.0",
+    "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^2.9.0",
     "eslint-plugin-babel": "^3.2.0",
@@ -60,9 +62,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11",
-    "webpack-dev-middleware": "^3.0.1",
     "webpack-dev-server": "^3.1.1",
-    "webpack-hot-middleware": "^2.10.0",
     "webpack-merge": "^0.14.0"
   },
   "contributors": [
