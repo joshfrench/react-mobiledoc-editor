@@ -5,6 +5,11 @@ var TARGET = process.env.npm_lifecycle_event; // start (demo server) or build (p
 process.env.BABEL_ENV = TARGET;
 
 var config = {
+  output: {
+    library: 'ReactMobiledocEditor',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  },
   module: {
     rules: [
       {
