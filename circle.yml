@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test:
+  build:
     working_directory: ~/react-mobiledoc-editor
     docker:
       - image: node:8.10.0
