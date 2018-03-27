@@ -1,5 +1,10 @@
-machine:
-  node:
-    version: 5.4.0
-  post:
-    - npm install -g npm@3.x.x
+version: 2
+jobs:
+  test:
+    working_directory: ~/react-mobiledoc-editor
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - run: yarn install --pure-lockfile
+      - run: yarn test
