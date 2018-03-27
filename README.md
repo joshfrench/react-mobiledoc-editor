@@ -165,6 +165,31 @@ than the default label on the button:
 </LinkButton>
 ```
 
+If you need to customize the link dialogue or use something other than
+`window.prompt`, you may supply your own handler. This is a function that
+should take three arguments:
+
+- `message`: This is the default text prompt ("Enter a URL".)
+- `defaultUrl`: If the currently selected text appears to be a URL, it will
+be passed in this parameter. Useful for auto-linking.
+- `promptCallback`: Once you've processed any user input (or the `defaultUrl`
+param) you must pass the final URL to this callback in order to actually
+link the selected text.
+
+```jsx
+function myPrompt(message, defaultURL, promptCallback) {
+  let url = window.prompt(message, defaultURL);
+
+  if (url.indexOf('file://') > -1) {
+    console.warn('Unable to create local link.');
+  } else {
+    promptCallback(url);
+  }
+}
+
+<LinkButton handler={myPrompt} />
+```
+
 ## Component-based Cards
 
 Mobiledoc supports "cards", blocks of rich content that are embedded in a

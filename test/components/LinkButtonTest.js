@@ -74,7 +74,7 @@ describe('<LinkButton />', () => {
     editor.hasActiveMarkup.returns(false);
 
     const context = { editor };
-    const wrapper = shallow(<LinkButton prompt={myPrompt} />, { context });
+    const wrapper = shallow(<LinkButton handler={myPrompt} />, { context });
     wrapper.find('button').simulate('click');
 
     expect(Mobiledoc.default.UI.toggleLink).to.have.been.calledWith(editor, myPrompt);

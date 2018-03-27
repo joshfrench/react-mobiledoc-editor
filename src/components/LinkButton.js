@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { UI } from 'mobiledoc-kit';
 
-const LinkButton = ({ children = "Link", type = "button", prompt, className, ...props }, { editor, activeMarkupTags = []}) => {
+const LinkButton = ({ children = "Link", type = "button", handler, className, ...props }, { editor, activeMarkupTags = []}) => {
   const onClick = () => {
     if (!editor.hasCursor()) {
       return;
@@ -12,7 +12,7 @@ const LinkButton = ({ children = "Link", type = "button", prompt, className, ...
     if (editor.hasActiveMarkup('a')) {
       editor.toggleMarkup('a');
     } else {
-      UI.toggleLink(editor, prompt);
+      UI.toggleLink(editor, handler);
     }
   };
 
