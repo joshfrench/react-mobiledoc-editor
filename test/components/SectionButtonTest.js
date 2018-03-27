@@ -16,7 +16,7 @@ describe('<SectionButton />', () => {
   });
 
   it('should allow custom input type', () => {
-    const wrapper = shallow(<SectionButton type="reset" />);
+    const wrapper = shallow(<SectionButton tag="UL" type="reset" />);
     expect(wrapper).to.have.attr('type', 'reset');
   });
 
