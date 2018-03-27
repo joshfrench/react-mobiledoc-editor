@@ -1,5 +1,10 @@
-machine:
-  node:
-    version: 5.4.0
-  post:
-    - npm install -g npm@3.x.x
+version: 2
+jobs:
+  build:
+    working_directory: ~/react-mobiledoc-editor
+    docker:
+      - image: circleci/node:8.10-browsers
+    steps:
+      - checkout
+      - run: yarn install --pure-lockfile
+      - run: yarn test
