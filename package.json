@@ -1,6 +1,6 @@
 {
   "name": "react-mobiledoc-editor",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "A Mobiledoc editor for React apps",
   "main": "dist/main.js",
   "scripts": {
