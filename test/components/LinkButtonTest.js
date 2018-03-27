@@ -67,4 +67,17 @@ describe('<LinkButton />', () => {
     expect(wrapper).to.have.className('keep');
     expect(wrapper).to.have.className('active');
   });
+
+  it('should accept a custom prompt function', () => {
+    spy(Mobiledoc.default.UI, 'toggleLink');
+    const myPrompt = spy();
+    editor.hasActiveMarkup.returns(false);
+
+    const context = { editor };
+    const wrapper = shallow(<LinkButton prompt={myPrompt} />, { context });
+    wrapper.find('button').simulate('click');
+
+    expect(Mobiledoc.default.UI.toggleLink).to.have.been.calledWith(editor, myPrompt);
+    Mobiledoc.default.UI.toggleLink.restore();
+  });
 });
