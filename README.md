@@ -31,6 +31,7 @@ your own editor UI.
 * [`Editor`](#editor)
 * [`Toolbar`](#toolbar)
 * [`SectionButton`](#sectionbutton)
+* [`SectionSelect`](#sectionselect)
 * [`MarkupButton`](#markupbutton)
 * [`LinkButton`](#linkbutton)
 
@@ -93,8 +94,11 @@ page in the wiki for more information on drag & drop.)
 
 #### `<Toolbar>`
 
-Creates a toolbar with the standard set of buttons. To customize the button
-set, see the [How To](https://github.com/upworthy/react-mobiledoc-editor/wiki/How-To#customizing-the-toolbar)
+Creates a toolbar with a basic set of editing controls. While this may be
+suitable for very limited implementations, the expectation is that most people
+will prefer to customize the toolbar and this component is primarily presented
+as a reference implementation. Please see the
+[How To](https://github.com/upworthy/react-mobiledoc-editor/wiki/How-To#customizing-the-toolbar)
 page in the wiki.
 
 #### `<SectionButton>`
@@ -119,6 +123,22 @@ than the tag name within the button:
   List
 </SectionButton>
 ```
+
+#### `<SectionSelect>`
+
+An alternative to `<SectionButton>`. Accepts an array of valid MobileDoc
+section-level tags (`p`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `blockquote`,
+`aside`) in addition to any known React props such as `className`. If the
+section under the editor cursor matches one of the supplied tags, the
+`<select>` component's value will be set to match. When changed, toggles
+the selected tag on the section under the editor cursor.
+
+```jsx
+<SectionSelect tags={["h1", "h2", "h3"]} />
+```
+
+(Does not support customization of the child `<option>` elements; primarily
+meant as a sample implementation.)
 
 #### `<MarkupButton>`
 
