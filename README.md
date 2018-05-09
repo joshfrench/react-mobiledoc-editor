@@ -320,9 +320,6 @@ mobiledoc-specific props:
   update the payload as it exists in the mobiledoc, use the `save` callback.
 - `save`: A callback which accepts a new payload for the card, then saves that
   value and payload to the underlying mobiledoc.
-- `cancel`: A callback for toggling this card to display mode without saving (a
-  no-op if the card is already in display mode).
-- `remove`: A callback for removing this card entirely.
 - `name`: The name of this card.
 - `onTeardown`: A callback that can be called when the rendered content is torn down.
 
