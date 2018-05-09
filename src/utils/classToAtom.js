@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const atomRenderer = (component) => ({env, options, payload, value}) => {
-  const {onTeardown} = env;
+const atomRenderer = (component) => ({ env, options, payload, value }) => {
+  const { onTeardown } = env;
 
   const element = React.createElement(component, {
     ...env,
     ...options,
     value,
-    payload: {...payload}
+    payload: { ...payload }
   });
 
   const targetNode = document.createElement('span');
