@@ -280,15 +280,3 @@ house style, but the linter can be run independently with `npm run lint`.
 A small demo of basic usage and simple card integration is available under the
 `/demo` directory. To start the demo server, run `npm start` from the project
 root.
-
-#### Getting Help
-
-If you'd like to report a bug or request a feature, please [open an
-issue](http://github.com/upworthy/react-mobiledoc-editor/issues) or
-email us at [opensource@upworthy.com](mailto:opensource@upworthy.com).
-
-#### Releasing a new version
-
-- Use `np` (`npm install -g np`)
-- `np <version>` (e.g. `np 0.2.0`)
-- `git push <origin> --tags`
