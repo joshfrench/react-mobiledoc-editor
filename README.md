@@ -285,19 +285,11 @@ import { classToDOMAtom } from 'react-mobiledoc-editor';
 class MyComponent extends React.Component<Props> {
   static displayName = 'MyComponent';
 
-  handleClick = () => {
-    let {payload, save, value} = this.props;
-    let clicks = (payload.clicks || 0) + 1;
-    save(value, {...payload, clicks}); // updates payload.clicks, rerenders button
-  };
-
   render() {
-    let { payload } = this.props;
+    let { value } = this.props;
 
     return (
-      <button onClick={this.handleClick}>
-        Clicks: {payload.clicks || 0}
-      </button>
+      @{value}
     );
   }
 }
@@ -334,7 +326,7 @@ house style, but the linter can be run independently with `npm run lint`.
 
 #### Running the Demo
 
-A small demo of basic usage and simple card integration is available under the
+A small demo of basic usage and simple card and atom integration is available under the
 `/demo` directory. To start the demo server, run `npm start` from the project
 root.
 

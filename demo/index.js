@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 import * as ReactMobiledoc from '../src';
 import ImageCard from './ImageCard';
+import ClickCounterAtom from './ClickCounterAtom';
 
 const mobiledoc = {
   version: "0.3.0",
@@ -21,6 +22,7 @@ const onChange = (doc) => { console.log(doc); };
 const config = {
   mobiledoc,
   cards: [ImageCard],
+  atoms: [ClickCounterAtom],
   placeholder: "Welcome to Mobiledoc!",
   willCreateEditor,
   didCreateEditor,
@@ -34,6 +36,12 @@ const ImageButton = ({ isEditing = true }, { editor }) => {
   return <button onClick={onClick}>Image</button>;
 };
 
+const ClickCounterButton = ({ isEditing = true }, { editor }) => {
+  console.log(arguments);
+  const onClick = () => editor.insertAtom('Counter', '', { count: 0 });
+  return <button onClick={onClick}>Click Counter</button>;
+};
+
 ImageButton.contextTypes = {
   editor: PropTypes.object
 };
@@ -41,6 +49,7 @@ ImageButton.contextTypes = {
 ReactDOM.render(<ReactMobiledoc.Container {...config}>
                   <ReactMobiledoc.Toolbar />
                   <ImageButton />
+                  <ClickCounterButton />
                   <ReactMobiledoc.Editor />
                 </ReactMobiledoc.Container>,
                 document.getElementById('root'));
