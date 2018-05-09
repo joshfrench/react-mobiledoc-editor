@@ -22,7 +22,7 @@ const atomRenderer = (component) => ({ env, options, payload, value }) => {
 export const classToDOMAtom = (component) => {
   if (!component.displayName) {
     throw new Error(
-      `Can't create atom from component, no displayName defined:  + ${component}`
+      `Can't create atom from component, no displayName defined: ${component}`
     );
   }
 
