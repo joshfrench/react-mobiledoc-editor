@@ -276,7 +276,7 @@ As stated in the [Mobiledoc Atom Documentation](https://github.com/bustle/mobile
 components as the display and update the content of an Atom.
 
 To wrap your own component in the Atom interface, simply call `classToDOMAtom`
-on it:
+on it. This example illustrates an Atom component which renders a button and saves the click count to the underlying mobiledoc:
 
 ```jsx
 import { Component } from 'react';
