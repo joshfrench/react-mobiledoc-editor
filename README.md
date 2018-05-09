@@ -288,7 +288,7 @@ class MyComponent extends React.Component<Props> {
   handleClick = () => {
     let {payload, save, value} = this.props;
     let clicks = (payload.clicks || 0) + 1;
-    save(value, {...payload, clicks});
+    save(value, {...payload, clicks}); // updates payload.clicks, rerenders button
   };
 
   render() {
