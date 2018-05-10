@@ -47,7 +47,7 @@ ImageButton.contextTypes = {
 
 const ClickCounterButton = (props, context) => {
   const { editor } = context;
-  const onClick = () => editor.insertAtom('Counter', '', { count: 0 });
+  const onClick = () => editor.insertAtom('Counter', '', { clicks: 0 });
   return <button onClick={onClick}>Click Counter Atom</button>;
 };
 
