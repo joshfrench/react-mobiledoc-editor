@@ -227,6 +227,8 @@ import { Component } from 'react';
 import { classToDOMCard } from 'react-mobiledoc-editor';
 
 class MyComponent extends Component {
+  static displayName = 'MyComponent'
+
   render() {
     let { isInEditor } = this.props;
     let text = isInEditor ? "This is the editable interface"
@@ -234,7 +236,6 @@ class MyComponent extends Component {
     return <p>{text}</p>;
   }
 }
-MyComponent.displayName = 'MyComponent';
 
 const MyComponentCard = classToDOMCard(MyComponent);
 ```
@@ -267,6 +268,54 @@ mobiledoc-specific props:
   interface or not.
 - `isEditing`: A bool indicating if the card is in Edit mode or not.
 
+## Component-based Atoms
+
+As stated in the [Mobiledoc Atom Documentation](https://github.com/bustle/mobiledoc-kit/blob/master/ATOMS.md), "Atoms are effectively read-only inline cards." They are sections of rich content that only spans the space of a word or a sentence within a paragraph. The common example is an `@` mention within a block of text.
+
+`react-mobiledoc-editor` comes with a helper for using your own React
+components as the display and update the content of an Atom.
+
+To wrap your own component in the Atom interface, simply call `classToDOMAtom`
+on it. This example illustrates an Atom component which renders a button and saves the click count to the underlying mobiledoc:
+
+```jsx
+import { Component } from 'react';
+import { classToDOMAtom } from 'react-mobiledoc-editor';
+
+class MyComponent extends React.Component<Props> {
+  static displayName = 'MyComponent';
+
+  render() {
+    let { value } = this.props;
+
+    return (
+      @{value}
+    );
+  }
+}
+
+const MyComponentAtom = classToDOMAtom(MyComponent);
+```
+
+As with Cards, note that your component MUST implement `displayName`. This is so the
+editor and other mobiledoc consumers can identify your custom atoms.
+
+Once your components have been wrapped in the atom interface, they should be
+passed to the Mobiledoc [`<Container>`](https://github.com/joshfrench/react-mobiledoc-editor#container) component via the `atoms` prop.
+
+Atom-based components will be instantiated with the following
+mobiledoc-specific props:
+
+- `value`: The textual representation to for this atom.
+- `payload`: The payload for this atom. Please note the payload object is
+  disconnected from the atom's representation in the serialized mobiledoc; to
+  update the payload as it exists in the mobiledoc, use the `save` callback.
+- `save`: A callback which accepts a new payload for the card, then saves that
+  value and payload to the underlying mobiledoc.
+- `name`: The name of this card.
+- `onTeardown`: A callback that can be called when the rendered content is torn down.
+
+
 ## Development
 
 #### Testing
@@ -277,6 +326,6 @@ house style, but the linter can be run independently with `npm run lint`.
 
 #### Running the Demo
 
-A small demo of basic usage and simple card integration is available under the
+A small demo of basic usage and simple card and atom integration is available under the
 `/demo` directory. To start the demo server, run `npm start` from the project
 root.

@@ -1,4 +1,5 @@
 import { classToDOMCard } from './utils/classToCard';
+import { classToDOMAtom } from './utils/classToAtom';
 import Container, { EMPTY_MOBILEDOC } from './components/Container';
 import Editor from './components/Editor';
 import LinkButton from './components/LinkButton';
@@ -9,6 +10,7 @@ import Toolbar from './components/Toolbar';
 
 export {
   classToDOMCard,
+  classToDOMAtom,
   Container,
   Editor,
   EMPTY_MOBILEDOC,
