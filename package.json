@@ -67,11 +67,11 @@
     "webpack-merge": "^0.14.0"
   },
   "contributors": [
-    "Josh French <josh@upworthy.com>"
+    "Josh French <joshfrench@gmail.com>"
   ],
-  "repository": "upworthy/react-mobiledoc-editor",
-  "homepage": "https://github.com/upworthy/react-mobiledoc-editor",
-  "bugs": "https://github.com/upworthy/react-mobiledoc-editor/issues",
+  "repository": "joshfrench/react-mobiledoc-editor",
+  "homepage": "https://github.com/joshfrench/react-mobiledoc-editor",
+  "bugs": "https://github.com/joshfrench/react-mobiledoc-editor/issues",
   "license": "BSD-3-Clause",
   "keywords": [
     "mobiledoc",
