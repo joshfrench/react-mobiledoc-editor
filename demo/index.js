@@ -31,20 +31,31 @@ const config = {
 
 const imgPayload = { caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200" };
 
-const ImageButton = ({ isEditing = true }, { editor }) => {
-  const onClick = () => editor.insertCard('ImageCard', imgPayload, isEditing);
-  return <button onClick={onClick}>Image</button>;
-};
 
-const ClickCounterButton = ({ isEditing = true }, { editor }) => {
-  console.log(arguments);
-  const onClick = () => editor.insertAtom('Counter', '', { count: 0 });
-  return <button onClick={onClick}>Click Counter</button>;
+const ImageButton = (props, context) => {
+  const { isEditing } = props;
+  const { editor } = context;
+
+  const onClick = () => editor.insertCard('ImageCard', imgPayload, isEditing);
+  return <button onClick={onClick}>Image Card</button>;
 };
 
 ImageButton.contextTypes = {
   editor: PropTypes.object
 };
+
+
+const ClickCounterButton = (props, context) => {
+  const { editor } = context;
+  const onClick = () => editor.insertAtom('Counter', '', { count: 0 });
+  return <button onClick={onClick}>Click Counter Atom</button>;
+};
+
+ClickCounterButton.contextTypes = {
+  editor: PropTypes.object
+};
+
+
 
 ReactDOM.render(<ReactMobiledoc.Container {...config}>
                   <ReactMobiledoc.Toolbar />

@@ -14,10 +14,12 @@ import { classToDOMAtom } from '../src';
  * - `name`: The name of this card.
  * - `onTeardown`: A callback that can be called when the rendered content is torn down.
  */
+
+
 const Counter = createReactClass({
   displayName: 'Counter',
 
-  handleClick: () => {
+  handleClick: function() {
     const { payload, save, value } = this.props;
     const clicks = (payload.clicks || 0) + 1;
     save(value, { ...payload, clicks }); // updates payload.clicks, rerenders button
