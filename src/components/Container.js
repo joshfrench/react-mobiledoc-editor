@@ -67,8 +67,14 @@ const Container = createReactClass({
       this.props.willCreateEditor();
     }
 
-    const mobiledoc = this.props.mobiledoc || EMPTY_MOBILEDOC;
+
+    let mobiledoc = this.props.mobiledoc;
     const { atoms, autofocus, cardProps, cards, html, placeholder, serializeVersion, spellcheck } = this.props;
+
+    if (! mobiledoc && ! html) {
+      mobiledoc = EMPTY_MOBILEDOC;
+    }
+
     const editorOptions = { ...this.props.options, atoms, autofocus, cardOptions: { cardProps }, cards, html, mobiledoc, placeholder, serializeVersion, spellcheck };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
