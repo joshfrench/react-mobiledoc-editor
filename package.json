@@ -8,10 +8,10 @@
     "lint": "eslint src",
     "test": "karma start --single-run && npm run test:build",
     "test:watch": "karma start",
-    "test:build": "yarn build && mocha test/build",
-    "posttest": "yarn lint",
+    "test:build": "npm run build && mocha test/build",
+    "posttest": "npm run lint",
     "build": "rm -rf ./dist && webpack --mode production",
-    "prepublish": "yarn build"
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "classnames": "^2.2.5",
