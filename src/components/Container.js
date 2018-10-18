@@ -94,7 +94,7 @@ const Container = createReactClass({
     /* eslint-disable no-unused-vars */
     /* deconstruct out non-React props before passing to children */
     const { atoms, autofocus, cardProps, cards, children, didCreateEditor, html, mobiledoc, options,
-            placeholder, serializeVersion, spellcheck, willCreateEditor, ...componentProps } = this.props;
+      placeholder, serializeVersion, spellcheck, willCreateEditor, ...componentProps } = this.props;
     /* eslint-enable no-unused-vars */
     return <div {...componentProps}>{children}</div>;
   },
