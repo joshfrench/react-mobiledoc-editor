@@ -6,27 +6,15 @@ import * as ReactMobiledoc from '../src';
 import ImageCard from './ImageCard';
 import ClickCounterAtom from './ClickCounterAtom';
 
-const mobiledoc = {
-  version: "0.3.0",
-  markups: [],
-  atoms: [],
-  cards: [],
-  sections: [
-  ]
-};
-
-const willCreateEditor = () => { console.log('creating editor...'); };
-const didCreateEditor = (e) => { console.log('created editor:', e); };
-const onChange = (doc) => { console.log(doc); };
 
 const config = {
-  mobiledoc,
   cards: [ImageCard],
   atoms: [ClickCounterAtom],
   placeholder: "Welcome to Mobiledoc!",
-  willCreateEditor,
-  didCreateEditor,
-  onChange
+  willCreateEditor:() => { console.log('creating editor...'); },
+  didCreateEditor:(e) => { console.log('created editor:', e); },
+  onChange:(doc) => { console.log(doc); },
+  autoFocus: true
 };
 
 const imgPayload = { caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200" };

@@ -73,7 +73,8 @@ The `Container` component accepts these Mobiledoc-specific props:
 - `options`: A hash of additional options that will be passed through to the
   Mobiledoc editor constructor.
 - `serializeVersion`: A string representing the mobiledoc version to serialize
-  to when firing the `onChange` action. Defaults to `0.3.0`.
+  to when firing the `onChange` action. Defaults to the latest version from
+  mobiledoc-kit (`0.3.1`).
 - `onChange`: A callback that will fire whenever the underlying document
   changes. Use this to persist and/or serialize your mobiledoc to another
   format as it's being edited. Will be called with the serialized mobiledoc.
