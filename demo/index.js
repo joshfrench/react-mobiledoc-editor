@@ -13,8 +13,7 @@ const config = {
   placeholder: "Welcome to Mobiledoc!",
   willCreateEditor:() => { console.log('creating editor...'); },
   didCreateEditor:(e) => { console.log('created editor:', e); },
-  onChange:(doc) => { console.log(doc); },
-  autoFocus: true
+  onChange:(doc) => { console.log(doc); }
 };
 
 const imgPayload = { caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200" };

@@ -1,4 +1,4 @@
-export const LATEST_MOBILEDOC_VERSION = require('mobiledoc-kit/dist/commonjs/mobiledoc-kit/renderers/mobiledoc').MOBILEDOC_VERSION;
+export const LATEST_MOBILEDOC_VERSION = "0.3.1";
 
 export const EMPTY_MOBILEDOC = {
   version: LATEST_MOBILEDOC_VERSION,
