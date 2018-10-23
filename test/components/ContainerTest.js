@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Container from '../../src/components/Container';
 import Editor from '../../src/components/Editor';
 import { classToDOMCard } from '../../src/utils/classToCard';
+import { LATEST_MOBILEDOC_VERSION } from '../../src/utils/mobiledoc';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
@@ -28,7 +29,7 @@ describe('<Container />', () => {
 
   it('should pass mobiledoc to editor', () => {
     const doc = {
-      version: "0.3.0",
+      version: "0.3.1",
       markups: [],
       atoms: [],
       cards: [],
@@ -92,7 +93,7 @@ describe('<Container />', () => {
       const section = postEditor.builder.createMarkupSection('p');
       postEditor.insertSection(section);
     });
-    expect(onChange).to.have.been.calledWithMatch({ version: "0.3.0" });
+    expect(onChange).to.have.been.calledWithMatch({ version: LATEST_MOBILEDOC_VERSION });
 
     wrapper = mount(<Container serializeVersion="0.2.0" onChange={onChange}><Editor /></Container>);
     editor = wrapper.instance().editor;
@@ -141,7 +142,7 @@ describe('<Container />', () => {
     const PropCard = classToDOMCard(Prop);
 
     const doc = {
-      version: '0.3.0',
+      version: '0.3.1',
       atoms: [],
       cards: [['PropCard', {}]],
       markups: [],

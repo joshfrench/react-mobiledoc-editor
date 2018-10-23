@@ -2,14 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import createReactClass from 'create-react-class';
 import Mobiledoc from 'mobiledoc-kit';
-
-export const EMPTY_MOBILEDOC = {
-  version: "0.3.0",
-  markups: [],
-  atoms: [],
-  cards: [],
-  sections: []
-};
+import { LATEST_MOBILEDOC_VERSION, EMPTY_MOBILEDOC } from '../utils/mobiledoc';
 
 const Container = createReactClass({
   displayName: 'Container',
@@ -42,7 +35,7 @@ const Container = createReactClass({
       cardProps: {},
       cards: [],
       placeholder: "",
-      serializeVersion: "0.3.0",
+      serializeVersion: LATEST_MOBILEDOC_VERSION,
       spellcheck: true
     };
   },
@@ -67,13 +60,8 @@ const Container = createReactClass({
       this.props.willCreateEditor();
     }
 
-
-    let mobiledoc = this.props.mobiledoc;
     const { atoms, autofocus, cardProps, cards, html, placeholder, serializeVersion, spellcheck } = this.props;
-
-    if (! mobiledoc && ! html) {
-      mobiledoc = EMPTY_MOBILEDOC;
-    }
+    const mobiledoc = this.props.mobiledoc || (html ? undefined : EMPTY_MOBILEDOC);
 
     const editorOptions = { ...this.props.options, atoms, autofocus, cardOptions: { cardProps }, cards, html, mobiledoc, placeholder, serializeVersion, spellcheck };
     this.editor = new Mobiledoc.Editor(editorOptions);
