@@ -72,8 +72,6 @@ class Container extends React.Component {
   }
 }
 
-Container.displayName = 'Container';
-
 Container.propTypes = {
   atoms: PropTypes.array,
   autofocus: PropTypes.bool,

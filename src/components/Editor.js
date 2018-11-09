@@ -15,8 +15,6 @@ class Editor extends React.Component {
   }
 }
 
-Editor.displayName = 'Editor';
-
 Editor.contextTypes = {
   editor: PropTypes.object
 };
