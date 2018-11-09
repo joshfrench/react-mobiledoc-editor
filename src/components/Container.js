@@ -1,51 +1,17 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import createReactClass from 'create-react-class';
+import PropTypes from 'prop-types';
 import Mobiledoc from 'mobiledoc-kit';
 import { LATEST_MOBILEDOC_VERSION, EMPTY_MOBILEDOC } from '../utils/mobiledoc';
 
-const Container = createReactClass({
-  displayName: 'Container',
-
-  propTypes: {
-    atoms: PropTypes.array,
-    autofocus: PropTypes.bool,
-    cards: PropTypes.array,
-    didCreateEditor: PropTypes.func,
-    html: PropTypes.string,
-    mobiledoc: PropTypes.object,
-    onChange: PropTypes.func,
-    options: PropTypes.object,
-    placeholder: PropTypes.string,
-    serializeVersion: PropTypes.string,
-    spellcheck: PropTypes.bool,
-    willCreateEditor: PropTypes.func
-  },
-
-  childContextTypes: {
-    editor: PropTypes.object,
-    activeMarkupTags: PropTypes.array,
-    activeSectionTags: PropTypes.array
-  },
-
-  getDefaultProps() {
-    return {
-      atoms: [],
-      autofocus: true,
-      cardProps: {},
-      cards: [],
-      placeholder: "",
-      serializeVersion: LATEST_MOBILEDOC_VERSION,
-      spellcheck: true
-    };
-  },
-
-  getInitialState() {
-    return {
+class Container extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       activeMarkupTags: [],
       activeSectionTags: []
     };
-  },
+    this.setActiveTags = this.setActiveTags.bind(this);
+  }
 
   getChildContext() {
     return {
@@ -53,7 +19,7 @@ const Container = createReactClass({
       activeMarkupTags: this.state.activeMarkupTags,
       activeSectionTags: this.state.activeSectionTags
     };
-  },
+  }
 
   componentWillMount() {
     if (typeof this.props.willCreateEditor === 'function') {
@@ -78,20 +44,20 @@ const Container = createReactClass({
     if (typeof this.props.didCreateEditor === 'function') {
       this.props.didCreateEditor(this.editor);
     }
-  },
+  }
 
   componentWillUnmount() {
     this.editor.destroy();
-  },
+  }
 
   render() {
     /* eslint-disable no-unused-vars */
     /* deconstruct out non-React props before passing to children */
     const { atoms, autofocus, cardProps, cards, children, didCreateEditor, html, mobiledoc, options,
       placeholder, serializeVersion, spellcheck, willCreateEditor, ...componentProps } = this.props;
-    /* eslint-enable no-unused-vars */
+      /* eslint-enable no-unused-vars */
     return <div {...componentProps}>{children}</div>;
-  },
+  }
 
   setActiveTags() {
     this.setState({
@@ -104,6 +70,39 @@ const Container = createReactClass({
       })
     });
   }
-});
+}
+
+Container.displayName = 'Container';
+
+Container.propTypes = {
+  atoms: PropTypes.array,
+  autofocus: PropTypes.bool,
+  cards: PropTypes.array,
+  didCreateEditor: PropTypes.func,
+  html: PropTypes.string,
+  mobiledoc: PropTypes.object,
+  onChange: PropTypes.func,
+  options: PropTypes.object,
+  placeholder: PropTypes.string,
+  serializeVersion: PropTypes.string,
+  spellcheck: PropTypes.bool,
+  willCreateEditor: PropTypes.func
+};
+
+Container.defaultProps = {
+  atoms: [],
+  autofocus: true,
+  cardProps: {},
+  cards: [],
+  placeholder: "",
+  serializeVersion: LATEST_MOBILEDOC_VERSION,
+  spellcheck: true
+};
+
+Container.childContextTypes = {
+  editor: PropTypes.object,
+  activeMarkupTags: PropTypes.array,
+  activeSectionTags: PropTypes.array
+};
 
 export default Container;
