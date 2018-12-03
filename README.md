@@ -109,7 +109,8 @@ under the editor cursor.
 Takes one required property: `tag`, the name of the section tag. Accepts any
 known React props, like `className` or `title`. The returned `<button>`
 component will have a class of `active` when the corresponding tag is active
-under the editor cursor.
+under the editor cursor. The active class name can be changed by setting the
+`activeClassName` prop.
 
 ```jsx
 <SectionButton tag="h2" />
@@ -148,7 +149,8 @@ range in the editor.
 Takes one required property: `tag`, the name of the markup tag. Accepts any
 known React props, like `className` or `title`. The returned `<button>`
 component will have a class of `active` when the corresponding tag is active
-under the editor cursor.
+under the editor cursor. The active class name can be changed by setting the
+`activeClassName` prop.
 
 ```jsx
 <MarkupButton tag="em" />

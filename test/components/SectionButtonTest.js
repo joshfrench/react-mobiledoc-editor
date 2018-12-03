@@ -43,5 +43,9 @@ describe('<SectionButton />', () => {
     const wrapper = shallow(<SectionButton tag='UL' className="keep" />, { context });
     expect(wrapper).to.have.className('keep');
     expect(wrapper).to.have.className('active');
+
+    const wrapperCustomActive = shallow(<SectionButton tag='UL' className="keep" activeClassName="aktiv" />, { context });
+    expect(wrapperCustomActive).to.have.className('keep');
+    expect(wrapperCustomActive).to.have.className('aktiv');
   });
 });
