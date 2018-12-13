@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MarkupButton /> should render 1`] = `
+<button
+  className=""
+  onClick={[Function]}
+  title="Link"
+  type="reset"
+>
+  A
+</button>
+`;
+
+exports[`<MarkupButton /> should render children 1`] = `
+<button
+  className=""
+  onClick={[Function]}
+  type="button"
+>
+  Link
+</button>
+`;
+
+exports[`<MarkupButton /> should set active class 1`] = `
+<button
+  className="keep active"
+  onClick={[Function]}
+  type="button"
+>
+  A
+</button>
+`;

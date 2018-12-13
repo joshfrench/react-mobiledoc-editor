@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolbar passes props to first child 1`] = `
+<ul
+  className="foo"
+>
+  <li>
+    <MarkupButton
+      tag="strong"
+    />
+  </li>
+  <li>
+    <MarkupButton
+      tag="em"
+    />
+  </li>
+  <li>
+    <LinkButton />
+  </li>
+  <li>
+    Style: 
+    <SectionSelect
+      tags={
+        Array [
+          "h1",
+          "h2",
+          "h3",
+        ]
+      }
+    />
+  </li>
+  <li>
+    <SectionButton
+      tag="blockquote"
+    />
+  </li>
+  <li>
+    <SectionButton
+      tag="ul"
+    >
+      UL
+    </SectionButton>
+  </li>
+  <li>
+    <SectionButton
+      tag="ol"
+    >
+      OL
+    </SectionButton>
+  </li>
+</ul>
+`;

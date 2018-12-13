@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SectionButton /> should render 1`] = `
+<button
+  className=""
+  onClick={[Function]}
+  title="List"
+  type="reset"
+>
+  UL
+</button>
+`;
+
+exports[`<SectionButton /> should render children 1`] = `
+<button
+  className=""
+  onClick={[Function]}
+  type="button"
+>
+  List
+</button>
+`;
+
+exports[`<SectionButton /> should set active class 1`] = `
+<button
+  className="keep active"
+  onClick={[Function]}
+  type="button"
+>
+  UL
+</button>
+`;
