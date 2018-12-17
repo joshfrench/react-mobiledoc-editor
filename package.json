@@ -1,6 +1,6 @@
 {
   "name": "react-mobiledoc-editor",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A Mobiledoc editor for React apps",
   "main": "dist/main.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "test:build": "npm run build && mocha test/build",
     "posttest": "npm run lint",
     "build": "rm -rf ./dist && webpack --mode production",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "classnames": "^2.2.6",
