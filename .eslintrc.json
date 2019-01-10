@@ -8,10 +8,13 @@
   },
   "parserOptions": {
     "sourceType": "module",
+    "ecmaVersion": 2018,
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
       "jsx": true
     }
+  },
+  "settings": {
+    "react": { "version": "detect" }
   },
   "plugins": [
     "react"
