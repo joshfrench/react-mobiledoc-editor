@@ -1,4 +1,3 @@
-import createReactClass from 'create-react-class';
 import React from 'react';
 import { classToDOMCard } from '../src';
 
@@ -24,10 +23,11 @@ import { classToDOMCard } from '../src';
  * - `isInEditor` A bool indicating if the card is displayed inside an
  *    editor interface or not.
  */
-const Image = createReactClass({
-  displayName: 'ImageCard',
+
+class ImageCard extends React.Component {
   render() {
     const { isInEditor, payload, save, edit, isEditing } = this.props;
+    
     if (isEditing) {
       return (
         <div>
@@ -47,8 +47,8 @@ const Image = createReactClass({
       );
     }
   }
-});
+}
 
-const ImageCard = classToDOMCard(Image);
+ImageCard.displayName = 'ImageCard';
 
-export default ImageCard;
+export default classToDOMCard(ImageCard);

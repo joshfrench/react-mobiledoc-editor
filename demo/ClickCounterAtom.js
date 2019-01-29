@@ -1,4 +1,3 @@
-import createReactClass from 'create-react-class';
 import React from 'react';
 import { classToDOMAtom } from '../src';
 
@@ -15,15 +14,12 @@ import { classToDOMAtom } from '../src';
  * - `onTeardown`: A callback that can be called when the rendered content is torn down.
  */
 
-
-const Counter = createReactClass({
-  displayName: 'Counter',
-
-  handleClick: function() {
+class Counter extends React.Component {
+  handleClick = () => {
     const { payload, save, value } = this.props;
     const clicks = (payload.clicks || 0) + 1;
     save(value, { ...payload, clicks }); // updates payload.clicks, rerenders button
-  },
+  }
 
   render() {
     const { payload } = this.props;
@@ -34,7 +30,9 @@ const Counter = createReactClass({
       </button>
     );
   }
-});
+}
+
+Counter.displayName = 'Counter'
 
 const ClickCounterAtom = classToDOMAtom(Counter);
 

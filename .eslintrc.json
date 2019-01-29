@@ -6,6 +6,7 @@
     "node": true,
     "mocha": true
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2018,
