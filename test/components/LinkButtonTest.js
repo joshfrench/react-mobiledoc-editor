@@ -66,6 +66,10 @@ describe('<LinkButton />', () => {
     const wrapper = shallow(<LinkButton className="keep" />, { context });
     expect(wrapper).to.have.className('keep');
     expect(wrapper).to.have.className('active');
+
+    const wrapperCustomActive = shallow(<LinkButton className="keep" activeClassName="aktiv" />, { context });
+    expect(wrapperCustomActive).to.have.className('keep');
+    expect(wrapperCustomActive).to.have.className('aktiv');
   });
 
   it('should accept a custom prompt function', () => {
