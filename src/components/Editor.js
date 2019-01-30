@@ -9,13 +9,12 @@ class Editor extends React.Component {
   componentDidMount() {
     const { editor } = this.context;
     if (editor) {
-      editor.render(this.refs.editor);
+      editor.render(this.editorEl);
     }
   }
 
   render() {
-    const props = { ...this.props, ref: "editor" };
-    return <div {...props} />;
+    return <div {...this.props} ref={r => (this.editorEl = r)} />;
   }
 }
 

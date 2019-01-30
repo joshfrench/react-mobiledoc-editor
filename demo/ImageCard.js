@@ -31,9 +31,9 @@ class ImageCard extends React.Component {
     if (isEditing) {
       return (
         <div>
-          <input type="text" ref="src" defaultValue={payload.src} /><br />
-          <input type="text" ref="caption" defaultValue={payload.caption} /><br />
-          <button onClick={() => save({ src: this.refs.src.value, caption: this.refs.caption.value })}>Save</button>
+          <input type="text" ref={r => (this.srcEl = r)} defaultValue={payload.src} /><br />
+          <input type="text" ref={r => (this.captionEl = r)} defaultValue={payload.caption} /><br />
+          <button onClick={() => save({ src: this.srcEl.value, caption: this.captionEl.value })}>Save</button>
         </div>
       );
     } else {
