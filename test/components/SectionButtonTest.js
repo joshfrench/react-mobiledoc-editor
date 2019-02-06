@@ -39,13 +39,21 @@ describe('<SectionButton />', () => {
   });
 
   it('should set active class', () => {
-    const context = { activeSectionTags: ['ul']};
-    const wrapper = shallow(<SectionButton tag='UL' className="keep" />, { context });
-    expect(wrapper).to.have.className('keep');
-    expect(wrapper).to.have.className('active');
+    const wrapper = shallow(<SectionButton tag='UL' className="keep" />);
+    expect(wrapper).to.have.attr('class', 'keep');
+
+    const context = { activeSectionTags: ['ul'] };
+
+    const wrapperActive = shallow(<SectionButton tag='UL' className="keep" />, { context });
+    expect(wrapperActive).to.have.attr('class', 'keep active');
+
+    const wrapperActive2 = shallow(<SectionButton tag='UL' />, { context });
+    expect(wrapperActive2).to.have.attr('class', 'active');
 
     const wrapperCustomActive = shallow(<SectionButton tag='UL' className="keep" activeClassName="aktiv" />, { context });
-    expect(wrapperCustomActive).to.have.className('keep');
-    expect(wrapperCustomActive).to.have.className('aktiv');
+    expect(wrapperCustomActive).to.have.attr('class', 'keep aktiv');
+
+    const wrapperCustomActive2 = shallow(<SectionButton tag='UL' activeClassName="aktiv" />, { context });
+    expect(wrapperCustomActive2).to.have.attr('class', 'aktiv');
   });
 });

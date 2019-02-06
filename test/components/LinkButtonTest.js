@@ -62,14 +62,22 @@ describe('<LinkButton />', () => {
   });
 
   it('should set active class', () => {
-    const context = { activeMarkupTags: ['a']};
-    const wrapper = shallow(<LinkButton className="keep" />, { context });
-    expect(wrapper).to.have.className('keep');
-    expect(wrapper).to.have.className('active');
+    const wrapper = shallow(<LinkButton className="keep" />);
+    expect(wrapper).to.have.attr('class', 'keep');
+
+    const context = { activeMarkupTags: ['a'] };
+
+    const wrapperActive = shallow(<LinkButton className="keep" />, { context });
+    expect(wrapperActive).to.have.attr('class', 'keep active');
+
+    const wrapperActive2 = shallow(<LinkButton />, { context });
+    expect(wrapperActive2).to.have.attr('class', 'active');
 
     const wrapperCustomActive = shallow(<LinkButton className="keep" activeClassName="aktiv" />, { context });
-    expect(wrapperCustomActive).to.have.className('keep');
-    expect(wrapperCustomActive).to.have.className('aktiv');
+    expect(wrapperCustomActive).to.have.attr('class', 'keep aktiv');
+
+    const wrapperCustomActive2 = shallow(<LinkButton activeClassName="aktiv" />, { context });
+    expect(wrapperCustomActive2).to.have.attr('class', 'aktiv');
   });
 
   it('should accept a custom prompt function', () => {

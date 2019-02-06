@@ -39,13 +39,21 @@ describe('<MarkupButton />', () => {
   });
 
   it('should set active class', () => {
-    const context = { activeMarkupTags: ['a']};
-    const wrapper = shallow(<MarkupButton tag='A' className="keep" />, { context });
-    expect(wrapper).to.have.className('keep');
-    expect(wrapper).to.have.className('active');
+    const wrapper = shallow(<MarkupButton tag='A' className="keep" />);
+    expect(wrapper).to.have.attr('class', 'keep');
+
+    const context = { activeMarkupTags: ['a'] };
+
+    const wrapperActive = shallow(<MarkupButton tag='A' className="keep" />, { context });
+    expect(wrapperActive).to.have.attr('class', 'keep active');
+
+    const wrapperActive2 = shallow(<MarkupButton tag='A' />, { context });
+    expect(wrapperActive2).to.have.attr('class', 'active');
 
     const wrapperCustomActive = shallow(<MarkupButton tag='A' className="keep" activeClassName="aktiv" />, { context });
-    expect(wrapperCustomActive).to.have.className('keep');
-    expect(wrapperCustomActive).to.have.className('aktiv');
+    expect(wrapperCustomActive).to.have.attr('class', 'keep aktiv');
+
+    const wrapperCustomActive2 = shallow(<MarkupButton tag='A' activeClassName="aktiv" />, { context });
+    expect(wrapperCustomActive2).to.have.attr('class', 'aktiv');
   });
 });
