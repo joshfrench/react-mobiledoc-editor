@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
 import { UI } from 'mobiledoc-kit';
 
 const LinkButton = ({ children = "Link", type = "button", handler, className, activeClassName = 'active', ...props }, { editor, activeMarkupTags = []}) => {
@@ -16,9 +15,7 @@ const LinkButton = ({ children = "Link", type = "button", handler, className, ac
     }
   };
 
-  className = classNames(className, {
-    [activeClassName]: activeMarkupTags.indexOf('a') > -1
-  });
+  className = [className, activeMarkupTags.indexOf('a') > -1 && activeClassName].filter(Boolean).join(' ');
 
   props = { type, ...props, onClick, className };
   return <button { ...props }>{children}</button>;
