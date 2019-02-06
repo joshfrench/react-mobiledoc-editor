@@ -1,51 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import createReactClass from 'create-react-class';
 import Mobiledoc from 'mobiledoc-kit';
 import { LATEST_MOBILEDOC_VERSION, EMPTY_MOBILEDOC } from '../utils/mobiledoc';
 
-const Container = createReactClass({
-  displayName: 'Container',
+class Container extends React.Component {
+  static defaultProps = {
+    atoms: [],
+    autofocus: true,
+    cardProps: {},
+    cards: [],
+    placeholder: "",
+    serializeVersion: LATEST_MOBILEDOC_VERSION,
+    spellcheck: true
+  }
 
-  propTypes: {
-    atoms: PropTypes.array,
-    autofocus: PropTypes.bool,
-    cards: PropTypes.array,
-    didCreateEditor: PropTypes.func,
-    html: PropTypes.string,
-    mobiledoc: PropTypes.object,
-    onChange: PropTypes.func,
-    options: PropTypes.object,
-    placeholder: PropTypes.string,
-    serializeVersion: PropTypes.string,
-    spellcheck: PropTypes.bool,
-    willCreateEditor: PropTypes.func
-  },
-
-  childContextTypes: {
+  static childContextTypes = {
     editor: PropTypes.object,
     activeMarkupTags: PropTypes.array,
     activeSectionTags: PropTypes.array
-  },
+  }
 
-  getDefaultProps() {
-    return {
-      atoms: [],
-      autofocus: true,
-      cardProps: {},
-      cards: [],
-      placeholder: "",
-      serializeVersion: LATEST_MOBILEDOC_VERSION,
-      spellcheck: true
-    };
-  },
-
-  getInitialState() {
-    return {
-      activeMarkupTags: [],
-      activeSectionTags: []
-    };
-  },
+  state = {
+    activeMarkupTags: [],
+    activeSectionTags: []
+  }
 
   getChildContext() {
     return {
@@ -53,7 +31,7 @@ const Container = createReactClass({
       activeMarkupTags: this.state.activeMarkupTags,
       activeSectionTags: this.state.activeSectionTags
     };
-  },
+  }
 
   componentWillMount() {
     if (typeof this.props.willCreateEditor === 'function') {
@@ -78,11 +56,11 @@ const Container = createReactClass({
     if (typeof this.props.didCreateEditor === 'function') {
       this.props.didCreateEditor(this.editor);
     }
-  },
+  }
 
   componentWillUnmount() {
     this.editor.destroy();
-  },
+  }
 
   render() {
     /* eslint-disable no-unused-vars */
@@ -91,9 +69,9 @@ const Container = createReactClass({
       placeholder, serializeVersion, spellcheck, willCreateEditor, ...componentProps } = this.props;
     /* eslint-enable no-unused-vars */
     return <div {...componentProps}>{children}</div>;
-  },
+  }
 
-  setActiveTags() {
+  setActiveTags = () => {
     this.setState({
       activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),
       // editor.activeSections are leaf sections.
@@ -104,6 +82,21 @@ const Container = createReactClass({
       })
     });
   }
-});
+}
+
+Container.propTypes = {
+  atoms: PropTypes.array,
+  autofocus: PropTypes.bool,
+  cards: PropTypes.array,
+  didCreateEditor: PropTypes.func,
+  html: PropTypes.string,
+  mobiledoc: PropTypes.object,
+  onChange: PropTypes.func,
+  options: PropTypes.object,
+  placeholder: PropTypes.string,
+  serializeVersion: PropTypes.string,
+  spellcheck: PropTypes.bool,
+  willCreateEditor: PropTypes.func
+};
 
 export default Container;

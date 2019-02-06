@@ -40,7 +40,6 @@ if (TARGET === 'build') {
     externals: {
       "react": "umd react",
       "react-dom": "umd react-dom",
-      "create-react-class": "umd create-react-class",
       "prop-types": "umd prop-types",
       "mobiledoc-kit": "umd mobiledoc-kit"
     },
