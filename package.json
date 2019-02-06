@@ -1,7 +1,21 @@
 {
   "name": "react-mobiledoc-editor",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "A Mobiledoc editor for React apps",
+  "repository": "joshfrench/react-mobiledoc-editor",
+  "homepage": "https://github.com/joshfrench/react-mobiledoc-editor",
+  "bugs": "https://github.com/joshfrench/react-mobiledoc-editor/issues",
+  "license": "BSD-3-Clause",
+  "contributors": [
+    "Josh French <joshfrench@gmail.com>",
+    "Garth Poitras <garth22@gmail.com>"
+  ],
+  "keywords": [
+    "mobiledoc",
+    "mobiledoc-editor",
+    "react-component",
+    "react"
+  ],
   "main": "dist/main.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --hot --progress",
@@ -59,18 +73,5 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1"
-  },
-  "contributors": [
-    "Josh French <joshfrench@gmail.com>"
-  ],
-  "repository": "joshfrench/react-mobiledoc-editor",
-  "homepage": "https://github.com/joshfrench/react-mobiledoc-editor",
-  "bugs": "https://github.com/joshfrench/react-mobiledoc-editor/issues",
-  "license": "BSD-3-Clause",
-  "keywords": [
-    "mobiledoc",
-    "mobiledoc-editor",
-    "react-component",
-    "react"
-  ]
+  }
 }
