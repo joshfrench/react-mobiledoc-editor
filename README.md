@@ -19,8 +19,7 @@ npm install react-mobiledoc-editor
 
 **Please note:** MobiledocKit and React are specified as peer dependencies,
 and **will not** be automatically installed. If you haven't already, please
-add `mobiledoc-kit` (>= 0.10.11), `react` (>= 15.0.0), and `react-dom` (>=
-15.0.0) to your `package.json`.
+add `mobiledoc-kit`, `react`, and `react-dom` to your `package.json`.
 
 ## Usage
 
