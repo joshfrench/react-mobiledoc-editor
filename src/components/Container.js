@@ -17,19 +17,22 @@ class Container extends React.Component {
   static childContextTypes = {
     editor: PropTypes.object,
     activeMarkupTags: PropTypes.array,
-    activeSectionTags: PropTypes.array
+    activeSectionTags: PropTypes.array,
+    activeSectionAttributes: PropTypes.array
   }
 
   state = {
     activeMarkupTags: [],
-    activeSectionTags: []
+    activeSectionTags: [],
+    activeSectionAttributes: []
   }
 
   getChildContext() {
     return {
       editor: this.editor,
       activeMarkupTags: this.state.activeMarkupTags,
-      activeSectionTags: this.state.activeSectionTags
+      activeSectionTags: this.state.activeSectionTags,
+      activeSectionAttributes: this.state.activeSectionAttributes
     };
   }
 
@@ -73,6 +76,9 @@ class Container extends React.Component {
 
   setActiveTags = () => {
     this.setState({
+      activeSectionAttributes: this.editor.activeSections.map(s => {
+        return s.attributes;
+      }),
       activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),
       // editor.activeSections are leaf sections.
       // Map parent section tag names (e.g. 'p', 'ul', 'ol') so that list buttons
