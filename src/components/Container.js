@@ -77,7 +77,7 @@ class Container extends React.Component {
   setActiveTags = () => {
     this.setState({
       activeSectionAttributes: this.editor.activeSections.map(s => {
-        return s.attributes;
+        return s.attributes || {};
       }),
       activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),
       // editor.activeSections are leaf sections.
