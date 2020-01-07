@@ -4,7 +4,6 @@ import SectionButton from './SectionButton';
 import LinkButton from './LinkButton';
 import SectionSelect from './SectionSelect';
 import AttributeSelect from './AttributeSelect';
-import AttributeButton from './AttributeButton';
 
 const Toolbar = (props) =>
   <ul {...props}>
