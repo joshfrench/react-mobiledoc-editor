@@ -100,40 +100,11 @@ as a reference implementation. Please see the
 [How To](https://github.com/upworthy/react-mobiledoc-editor/wiki/How-To#customizing-the-toolbar)
 page in the wiki.
 
-#### `<AttributeButton>`
-
-Creates a button that, when clicked, sets the specified attribute on the
-section under the editor cursor.
-
-Takes two required properties:
-
-* `attribute`, the name of the attribute to set.
-* `value`, the value of the attribute to set.
-
-`AttributeButton` also accepts any known React props, like `className` or
-`title`. The returned `<button>` component will have a class of `active` when
-the attribute under the editor cursor matches the provided attribute value.
-The active class name can be changed by setting the `activeClassName` prop.
-
-```jsx
-<AttributeButton attribute="text-align" value="center" />
-```
-
-Alternately, custom child node(s) may be yielded to render something other
-than the attribute value within the button:
-
-```jsx
-<AttributeButton attribute="text-align" value="left">
-  Align Left
-</SectionButton>
-```
-
 #### `<AttributeSelect>`
 
-An alternative to `<AttributeButton>`. Accepts an attribute name and an array
-of possible attribute values, in addition to any known React props such as
-`className`. When changed, sets the attribute on the section under the editor
-cursor to the selected value.
+Accepts an attribute name and an array of possible attribute values, in
+addition to any known React props such as `className`. When changed, sets the
+attribute on the section under the editor cursor to the selected value.
 
 If the attribute under the editor cursor matches one of the supplied
 attribute values, the `<select>` component's value will be set to match. If
