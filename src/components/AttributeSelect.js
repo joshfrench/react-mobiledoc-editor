@@ -10,7 +10,12 @@ const AttributeSelect = (
   const activeAttribute = getActiveAttribute(activeSectionAttributes, attribute, defaultValue);
 
   const onChange = event => {
-    editor.setAttribute(attribute, event.target.value);
+    const { value } = event.target;
+    if (value === defaultValue) {
+      editor.removeAttribute(attribute);
+    } else {
+      editor.setAttribute(attribute, value);
+    }
   };
 
   return (

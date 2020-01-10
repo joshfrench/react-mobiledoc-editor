@@ -115,6 +115,15 @@ shows an indeterminate state.
 <AttributeSelect attribute="text-align" values={["left", "center", "right"]} />
 ```
 
+By default, the first value in the `values` array is considered the "default"
+value. Selecting this value will remove the specified attribute, rather than
+setting its value. A custom "default" attribute value can be specified with
+the `defaultValue` prop:
+
+```jsx
+<AttributeSelect attribute="text-align" values={["left", "center", "right"]} defaultValue="right" />
+```
+
 (Does not support customization of the child `<option>` elements; primarily
 meant as a sample implementation.)
 

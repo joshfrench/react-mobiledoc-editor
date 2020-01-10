@@ -5,6 +5,7 @@ import Container from './components/Container';
 import Editor from './components/Editor';
 import LinkButton from './components/LinkButton';
 import MarkupButton from './components/MarkupButton';
+import AttributeSelect from './components/AttributeSelect';
 import SectionButton from './components/SectionButton';
 import SectionSelect from './components/SectionSelect';
 import Toolbar from './components/Toolbar';
@@ -17,6 +18,7 @@ export {
   Editor,
   LinkButton,
   MarkupButton,
+  AttributeSelect,
   SectionButton,
   SectionSelect,
   Toolbar

@@ -35,4 +35,14 @@ describe('<AttributeSelect />', () => {
     wrapper.find('select').simulate('change', { target: { value: 'center' }});
     expect(editor.setAttribute).to.be.calledWith('text-align', 'center');
   });
+
+  it('should remove the section attribute when the default value is selected', () => {
+    const editor = { setAttribute: spy(), removeAttribute: spy() };
+    const context = { editor };
+    const wrapper = shallow(<AttributeSelect attribute='text-align' values={['left', 'right', 'center']} />, { context });
+    wrapper.find('select').simulate('change', { target: { value: 'center' }});
+    expect(editor.setAttribute).to.be.calledWith('text-align', 'center');
+    wrapper.find('select').simulate('change', { target: { value: 'left' }});
+    expect(editor.removeAttribute).to.be.calledWith('text-align');
+  });
 });
