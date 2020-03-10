@@ -3,7 +3,7 @@ import LinkButton from '../../src/components/LinkButton';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { shallow } from 'enzyme';
-import Mobiledoc from 'mobiledoc-kit';
+import { UI } from 'mobiledoc-kit';
 
 describe('<LinkButton />', () => {
   const editor = {
@@ -50,15 +50,15 @@ describe('<LinkButton />', () => {
   });
 
   it('should delegate link creation to Mobiledoc.UI.toggleLink', () => {
-    spy(Mobiledoc.default.UI, 'toggleLink');
+    spy(UI, 'toggleLink');
     editor.hasActiveMarkup.returns(false);
 
     const context = { editor };
     const wrapper = shallow(<LinkButton />, { context });
     wrapper.find('button').simulate('click');
 
-    expect(Mobiledoc.default.UI.toggleLink).to.have.been.calledWith(editor);
-    Mobiledoc.default.UI.toggleLink.restore();
+    expect(UI.toggleLink).to.have.been.calledWith(editor);
+    UI.toggleLink.restore();
   });
 
   it('should set active class', () => {
@@ -81,7 +81,7 @@ describe('<LinkButton />', () => {
   });
 
   it('should accept a custom prompt function', () => {
-    spy(Mobiledoc.default.UI, 'toggleLink');
+    spy(UI, 'toggleLink');
     const myPrompt = spy();
     editor.hasActiveMarkup.returns(false);
 
@@ -89,7 +89,7 @@ describe('<LinkButton />', () => {
     const wrapper = shallow(<LinkButton handler={myPrompt} />, { context });
     wrapper.find('button').simulate('click');
 
-    expect(Mobiledoc.default.UI.toggleLink).to.have.been.calledWith(editor, myPrompt);
-    Mobiledoc.default.UI.toggleLink.restore();
+    expect(UI.toggleLink).to.have.been.calledWith(editor, myPrompt);
+    UI.toggleLink.restore();
   });
 });

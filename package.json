@@ -73,5 +73,8 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1"
+  },
+  "volta": {
+    "node": "13.9.0"
   }
 }
