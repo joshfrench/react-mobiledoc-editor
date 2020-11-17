@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/react-mobiledoc-editor
     docker:
-      - image: circleci/node:8.10-browsers
+      - image: circleci/node:12.16-browsers
     steps:
       - checkout
       - run: yarn install --pure-lockfile

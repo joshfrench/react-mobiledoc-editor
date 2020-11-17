@@ -4,6 +4,13 @@ import * as Mobiledoc from 'mobiledoc-kit';
 import { LATEST_MOBILEDOC_VERSION, EMPTY_MOBILEDOC } from '../utils/mobiledoc';
 
 class Container extends React.Component {
+  static childContextTypes = {
+    editor: PropTypes.object,
+    activeMarkupTags: PropTypes.array,
+    activeSectionTags: PropTypes.array,
+    activeSectionAttributes: PropTypes.array
+  }
+
   static defaultProps = {
     atoms: [],
     autofocus: true,
@@ -12,13 +19,6 @@ class Container extends React.Component {
     placeholder: "",
     serializeVersion: LATEST_MOBILEDOC_VERSION,
     spellcheck: true
-  }
-
-  static childContextTypes = {
-    editor: PropTypes.object,
-    activeMarkupTags: PropTypes.array,
-    activeSectionTags: PropTypes.array,
-    activeSectionAttributes: PropTypes.array
   }
 
   state = {

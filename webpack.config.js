@@ -1,10 +1,9 @@
-var webpack = require('webpack');
-var merge = require('webpack-merge');
+const webpack = require('webpack');
 
-var TARGET = process.env.npm_lifecycle_event; // start (demo server) or build (production bundle)
+const TARGET = process.env.npm_lifecycle_event; // start (demo server) or build (production bundle)
 process.env.BABEL_ENV = TARGET;
 
-var config = {
+const baseConfig = {
   output: {
     library: 'ReactMobiledocEditor',
     libraryTarget: 'umd',
@@ -24,19 +23,21 @@ var config = {
 
 // dev server
 if (TARGET === 'start' || !TARGET) {
-  module.exports = merge(config, {
+  module.exports = {
+    ...baseConfig,
     entry: './demo/index.js',
     devtool: 'inline-source-map',
     devServer: {
       contentBase: './demo',
       stats: 'errors-only'
     }
-  });
+  }
 }
 
 // production build
 if (TARGET === 'build') {
-  module.exports = merge(config, {
+  module.exports = {
+    ...baseConfig,
     externals: {
       "react": "umd react",
       "react-dom": "umd react-dom",
@@ -48,5 +49,5 @@ if (TARGET === 'build') {
         'process.env.NODE_ENV': '"production"'
       })
     ]
-  });
+  }
 }
