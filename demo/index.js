@@ -52,4 +52,4 @@ ReactDOM.render(<ReactMobiledoc.Container {...config}>
                 </ReactMobiledoc.Container>,
                 document.getElementById('root'));
 
-require("!style-loader!css-loader!../node_modules/mobiledoc-kit/dist/css/mobiledoc-kit.css");
+require("!style-loader!css-loader!../node_modules/mobiledoc-kit/dist/mobiledoc.css");
