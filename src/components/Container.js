@@ -21,22 +21,9 @@ class Container extends React.Component {
     spellcheck: true
   }
 
-  state = {
-    activeMarkupTags: [],
-    activeSectionTags: [],
-    activeSectionAttributes: []
-  }
+  constructor() {
+    super(...arguments);
 
-  getChildContext() {
-    return {
-      editor: this.editor,
-      activeMarkupTags: this.state.activeMarkupTags,
-      activeSectionTags: this.state.activeSectionTags,
-      activeSectionAttributes: this.state.activeSectionAttributes
-    };
-  }
-
-  componentWillMount() {
     if (typeof this.props.willCreateEditor === 'function') {
       this.props.willCreateEditor();
     }
@@ -59,6 +46,21 @@ class Container extends React.Component {
     if (typeof this.props.didCreateEditor === 'function') {
       this.props.didCreateEditor(this.editor);
     }
+  }
+
+  state = {
+    activeMarkupTags: [],
+    activeSectionTags: [],
+    activeSectionAttributes: []
+  }
+
+  getChildContext() {
+    return {
+      editor: this.editor,
+      activeMarkupTags: this.state.activeMarkupTags,
+      activeSectionTags: this.state.activeSectionTags,
+      activeSectionAttributes: this.state.activeSectionAttributes
+    };
   }
 
   componentWillUnmount() {
