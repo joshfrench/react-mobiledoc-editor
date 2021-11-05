@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as Mobiledoc from 'mobiledoc-kit';
 import { LATEST_MOBILEDOC_VERSION, EMPTY_MOBILEDOC } from '../utils/mobiledoc';
+import { ReactMobileDocContext } from "./Context";
 
 class Container extends React.Component {
   static childContextTypes = {
@@ -54,15 +55,6 @@ class Container extends React.Component {
     activeSectionAttributes: []
   }
 
-  getChildContext() {
-    return {
-      editor: this.editor,
-      activeMarkupTags: this.state.activeMarkupTags,
-      activeSectionTags: this.state.activeSectionTags,
-      activeSectionAttributes: this.state.activeSectionAttributes
-    };
-  }
-
   componentWillUnmount() {
     this.editor.destroy();
   }
@@ -73,7 +65,17 @@ class Container extends React.Component {
     const { atoms, autofocus, cardProps, cards, children, didCreateEditor, html, mobiledoc, options,
       placeholder, serializeVersion, spellcheck, willCreateEditor, ...componentProps } = this.props;
     /* eslint-enable no-unused-vars */
-    return <div {...componentProps}>{children}</div>;
+    return <div {...componentProps}>
+      <ReactMobileDocContext.Provider
+        value={{
+          editor: this.editor,
+          activeMarkupTags: this.state.activeMarkupTags,
+          activeSectionTags: this.state.activeSectionTags,
+          activeSectionAttributes: this.state.activeSectionAttributes
+        }}>
+        {children}
+      </ReactMobileDocContext.Provider>
+    </div>;
   }
 
   setActiveTags = () => {
