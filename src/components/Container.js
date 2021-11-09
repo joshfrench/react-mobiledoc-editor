@@ -29,13 +29,9 @@ class Container extends React.Component {
     this.editor = new Mobiledoc.Editor(editorOptions);
 
     this.editor.inputModeDidChange(this.setActiveTags);
-
-    if (typeof this.props.onChange === 'function') {
-      this.editor.postDidChange(() => {
-        const mobiledoc = this.editor.serialize(this.props.serializeVersion);
-        this.props.onChange(mobiledoc);
-      });
-    }
+    this.editor.postDidChange(() => {
+      this.handleChange();
+    });
 
     if (typeof this.props.didCreateEditor === 'function') {
       this.props.didCreateEditor(this.editor);
@@ -56,7 +52,7 @@ class Container extends React.Component {
     /* eslint-disable no-unused-vars */
     /* deconstruct out non-React props before passing to children */
     const { atoms, autofocus, cardProps, cards, children, didCreateEditor, html, mobiledoc, options,
-      placeholder, serializeVersion, spellcheck, willCreateEditor, ...componentProps } = this.props;
+      placeholder, serializeVersion, spellcheck, willCreateEditor, onChange, ...componentProps } = this.props;
     /* eslint-enable no-unused-vars */
     return <div {...componentProps}>
       <ReactMobileDocContext.Provider
@@ -85,6 +81,13 @@ class Container extends React.Component {
       })
     });
   }
+
+  handleChange = () => {
+    if (typeof this.props.onChange === 'function') {
+      const mobiledoc = this.editor.serialize(this.props.serializeVersion);
+      this.props.onChange(mobiledoc);
+    }
+  };
 }
 
 Container.propTypes = {

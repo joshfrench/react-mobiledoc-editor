@@ -12,7 +12,6 @@ const config = {
   placeholder: "Welcome to Mobiledoc!",
   willCreateEditor:() => { console.log('creating editor...'); },
   didCreateEditor:(e) => { console.log('created editor:', e); },
-  onChange:(doc) => { console.log(doc); }
 };
 
 const imgPayload = { caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200" };
@@ -33,16 +32,22 @@ const ClickCounterButton = () => {
   return <button onClick={onClick}>Click Counter Atom</button>;
 };
 
+const App = () => {
+  const [state, setState] = React.useState(undefined);
 
+  return (
+    <div>
+      <ReactMobiledoc.Container {...config} mobiledoc={state} onChange={setState}>
+        <ReactMobiledoc.Toolbar />
+        <ImageButton />
+        <ClickCounterButton />
+        <ReactMobiledoc.Editor />
+      </ReactMobiledoc.Container>
+      <pre>{JSON.stringify(state, null, 2)}</pre>
+    </div>
+  );
+};
 
-ReactDOM.render(
-  <ReactMobiledoc.Container {...config}>
-    <ReactMobiledoc.Toolbar />
-    <ImageButton />
-    <ClickCounterButton />
-    <ReactMobiledoc.Editor />
-  </ReactMobiledoc.Container>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 require("!style-loader!css-loader!../node_modules/mobiledoc-kit/dist/mobiledoc.css");
