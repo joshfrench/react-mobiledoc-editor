@@ -5,13 +5,6 @@ import { LATEST_MOBILEDOC_VERSION, EMPTY_MOBILEDOC } from '../utils/mobiledoc';
 import { ReactMobileDocContext } from "./Context";
 
 class Container extends React.Component {
-  static childContextTypes = {
-    editor: PropTypes.object,
-    activeMarkupTags: PropTypes.array,
-    activeSectionTags: PropTypes.array,
-    activeSectionAttributes: PropTypes.array
-  }
-
   static defaultProps = {
     atoms: [],
     autofocus: true,

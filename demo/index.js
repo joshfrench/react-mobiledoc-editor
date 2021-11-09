@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import * as ReactMobiledoc from '../src';
@@ -19,37 +18,31 @@ const config = {
 const imgPayload = { caption: "Edit this right meow!", src: "http://www.placekitten.com/200/200" };
 
 
-const ImageButton = (props, context) => {
+const ImageButton = (props) => {
   const { isEditing } = props;
-  const { editor } = context;
+  const { editor } = React.useContext(ReactMobiledoc.ReactMobileDocContext);
 
   const onClick = () => editor.insertCard('ImageCard', imgPayload, isEditing);
   return <button onClick={onClick}>Image Card</button>;
 };
 
-ImageButton.contextTypes = {
-  editor: PropTypes.object
-};
 
-
-const ClickCounterButton = (props, context) => {
-  const { editor } = context;
+const ClickCounterButton = () => {
+  const { editor } = React.useContext(ReactMobiledoc.ReactMobileDocContext);
   const onClick = () => editor.insertAtom('Counter', '', { clicks: 0 });
   return <button onClick={onClick}>Click Counter Atom</button>;
 };
 
-ClickCounterButton.contextTypes = {
-  editor: PropTypes.object
-};
 
 
-
-ReactDOM.render(<ReactMobiledoc.Container {...config}>
-                  <ReactMobiledoc.Toolbar />
-                  <ImageButton />
-                  <ClickCounterButton />
-                  <ReactMobiledoc.Editor />
-                </ReactMobiledoc.Container>,
-                document.getElementById('root'));
+ReactDOM.render(
+  <ReactMobiledoc.Container {...config}>
+    <ReactMobiledoc.Toolbar />
+    <ImageButton />
+    <ClickCounterButton />
+    <ReactMobiledoc.Editor />
+  </ReactMobiledoc.Container>,
+  document.getElementById('root')
+);
 
 require("!style-loader!css-loader!../node_modules/mobiledoc-kit/dist/mobiledoc.css");
