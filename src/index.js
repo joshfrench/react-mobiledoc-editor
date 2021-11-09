@@ -2,6 +2,7 @@ import { classToDOMCard } from './utils/classToCard';
 import { classToDOMAtom } from './utils/classToAtom';
 import { EMPTY_MOBILEDOC } from './utils/mobiledoc';
 import Container from './components/Container';
+import { ReactMobileDocContext } from "./components/Context";
 import Editor from './components/Editor';
 import LinkButton from './components/LinkButton';
 import MarkupButton from './components/MarkupButton';
@@ -21,5 +22,6 @@ export {
   AttributeSelect,
   SectionButton,
   SectionSelect,
-  Toolbar
+  Toolbar,
+  ReactMobileDocContext
 };
