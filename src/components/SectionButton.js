@@ -19,9 +19,4 @@ SectionButton.propTypes = {
   children: PropTypes.node
 };
 
-SectionButton.contextTypes = {
-  editor: PropTypes.object,
-  activeSectionTags: PropTypes.array
-};
-
 export default SectionButton;
