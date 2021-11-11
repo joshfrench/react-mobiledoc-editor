@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import Container from '../../src/components/Container';
-import Editor from '../../src/components/Editor';
-import { classToDOMCard } from '../../src/utils/classToCard';
-import { LATEST_MOBILEDOC_VERSION } from '../../src/utils/mobiledoc';
+import { Container, Editor, classToDOMCard } from 'react-mobiledoc-editor';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
@@ -29,15 +26,11 @@ describe('<Container />', () => {
 
   it('should pass mobiledoc to editor', () => {
     const doc = {
-      version: "0.3.1",
+      version: '0.3.1',
       markups: [],
       atoms: [],
       cards: [],
-      sections: [
-        [1, "p", [
-          [0, [], 0, "Ohai"]
-        ]]
-      ]
+      sections: [[1, 'p', [[0, [], 0, 'Ohai']]]],
     };
 
     const wrapper = mount(<Container mobiledoc={doc} />);
@@ -81,34 +74,48 @@ describe('<Container />', () => {
 
   it('should pass placeholder to editor', () => {
     const wrapper = mount(<Container placeholder="Say something" />);
-    expect(wrapper.instance().editor.placeholder).to.eq("Say something");
+    expect(wrapper.instance().editor.placeholder).to.eq('Say something');
   });
 
   it('should pass serializeVersion to editor', () => {
     const onChange = spy();
-    let wrapper = mount(<Container onChange={onChange}><Editor /></Container>);
+    let wrapper = mount(
+      <Container onChange={onChange}>
+        <Editor />
+      </Container>
+    );
     let editor = wrapper.instance().editor;
 
-    editor.run(postEditor => {
+    editor.run((postEditor) => {
       const section = postEditor.builder.createMarkupSection('p');
       postEditor.insertSection(section);
     });
-    expect(onChange).to.have.been.calledWithMatch({ version: LATEST_MOBILEDOC_VERSION });
+    expect(onChange).to.have.been.calledWithMatch({
+      version: '0.3.2',
+    });
 
-    wrapper = mount(<Container serializeVersion="0.2.0" onChange={onChange}><Editor /></Container>);
+    wrapper = mount(
+      <Container serializeVersion="0.2.0" onChange={onChange}>
+        <Editor />
+      </Container>
+    );
     editor = wrapper.instance().editor;
 
-    editor.run(postEditor => {
+    editor.run((postEditor) => {
       const section = postEditor.builder.createMarkupSection('p');
       postEditor.insertSection(section);
     });
-    expect(onChange).to.have.been.calledWithMatch({ "version": "0.2.0" });
+    expect(onChange).to.have.been.calledWithMatch({ version: '0.2.0' });
   });
 
   it('should pass onChange to editor', () => {
     const onChange = spy();
-    const wrapper = mount(<Container onChange={onChange}><Editor /></Container>);
-    wrapper.instance().editor.run(postEditor => {
+    const wrapper = mount(
+      <Container onChange={onChange}>
+        <Editor />
+      </Container>
+    );
+    wrapper.instance().editor.run((postEditor) => {
       const section = postEditor.builder.createMarkupSection('p');
       postEditor.insertSection(section);
     });
@@ -146,13 +153,19 @@ describe('<Container />', () => {
       atoms: [],
       cards: [['PropCard', {}]],
       markups: [],
-      sections: [[10, 0]]
+      sections: [[10, 0]],
     };
 
     const callback = spy();
-    mount(<Container cardProps={{ didMount: callback }} mobiledoc={doc} cards={[PropCard]}>
-            <Editor />
-          </Container>);
+    mount(
+      <Container
+        cardProps={{ didMount: callback }}
+        mobiledoc={doc}
+        cards={[PropCard]}
+      >
+        <Editor />
+      </Container>
+    );
 
     expect(callback).to.have.been.called;
   });

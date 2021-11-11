@@ -1,4 +1,4 @@
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './test',
@@ -8,9 +8,7 @@ module.exports = function(config) {
     frameworks: ['mocha'],
 
     // list of files / patterns to load in the browser
-    files: [
-      'setup.js'
-    ],
+    files: ['setup.js'],
 
     // list of files to exclude
     exclude: [],
@@ -18,25 +16,30 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*': ['webpack', 'sourcemap']
+      '**/*': ['webpack', 'sourcemap'],
     },
 
     webpack: {
       mode: 'development',
       devtool: 'inline-source-map',
+      resolve: {
+        alias: {
+          'react-mobiledoc-editor': __dirname,
+        },
+      },
       module: {
         rules: [
           {
             test: /\.js$/,
             loader: 'babel-loader',
-            exclude: /node_modules\//
-          }
-        ]
-      }
+            exclude: /node_modules\//,
+          },
+        ],
+      },
     },
 
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
     },
 
     // test results reporter to use
@@ -64,6 +67,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
   });
 };

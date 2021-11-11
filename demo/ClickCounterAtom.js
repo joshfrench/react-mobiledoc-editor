@@ -1,5 +1,5 @@
 import React from 'react';
-import { classToDOMAtom } from '../src';
+import { classToDOMAtom } from 'react-mobiledoc-editor';
 
 /**
  * Component-based atoms are rendered with these props:
@@ -19,20 +19,18 @@ class Counter extends React.Component {
     const { payload, save, value } = this.props;
     const clicks = (payload.clicks || 0) + 1;
     save(value, { ...payload, clicks }); // updates payload.clicks, rerenders button
-  }
+  };
 
   render() {
     const { payload } = this.props;
 
     return (
-      <button onClick={this.handleClick}>
-        Clicks: {payload.clicks || 0}
-      </button>
+      <button onClick={this.handleClick}>Clicks: {payload.clicks || 0}</button>
     );
   }
 }
 
-Counter.displayName = 'Counter'
+Counter.displayName = 'Counter';
 
 const ClickCounterAtom = classToDOMAtom(Counter);
 

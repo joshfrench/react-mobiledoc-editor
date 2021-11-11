@@ -1,6 +1,5 @@
 import React from 'react';
-import AttributeSelect from '../../src/components/AttributeSelect';
-import { ReactMobileDocContext } from "../../src/components/Context";
+import { AttributeSelect, ReactMobileDocContext } from 'react-mobiledoc-editor';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { mount } from 'enzyme';
@@ -11,10 +10,14 @@ describe('<AttributeSelect />', () => {
     const context = { activeSectionAttributes };
     const wrapper = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <AttributeSelect attribute='text-align' values={['left', 'right']} />
+        <AttributeSelect attribute="text-align" values={['left', 'right']} />
       </ReactMobileDocContext.Provider>
     );
-    const option = <option value="left" key="left">Left</option>;
+    const option = (
+      <option value="left" key="left">
+        Left
+      </option>
+    );
     expect(wrapper.containsMatchingElement(option)).to.be.true;
     expect(wrapper.find('select')).to.have.prop('value', 'left');
   });
@@ -24,17 +27,25 @@ describe('<AttributeSelect />', () => {
     const context = { activeSectionAttributes };
     const wrapper = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <AttributeSelect attribute='text-align' values={['left', 'right']} />
+        <AttributeSelect attribute="text-align" values={['left', 'right']} />
       </ReactMobileDocContext.Provider>
     );
-    const option = <option value="right" key="right">Right</option>;
+    const option = (
+      <option value="right" key="right">
+        Right
+      </option>
+    );
     expect(wrapper.containsMatchingElement(option)).to.be.true;
     expect(wrapper.find('select')).to.have.prop('value', 'right');
   });
 
   it('should pass props to <select>', () => {
     const wrapper = mount(
-      <AttributeSelect attribute='text-align' values={['left', 'right', 'center']} className="alignment" />
+      <AttributeSelect
+        attribute="text-align"
+        values={['left', 'right', 'center']}
+        className="alignment"
+      />
     );
     expect(wrapper).to.have.className('alignment');
   });
@@ -44,10 +55,13 @@ describe('<AttributeSelect />', () => {
     const context = { editor };
     const wrapper = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <AttributeSelect attribute='text-align' values={['left', 'right', 'center']} />
+        <AttributeSelect
+          attribute="text-align"
+          values={['left', 'right', 'center']}
+        />
       </ReactMobileDocContext.Provider>
     );
-    wrapper.find('select').simulate('change', { target: { value: 'center' }});
+    wrapper.find('select').simulate('change', { target: { value: 'center' } });
     expect(editor.setAttribute).to.be.calledWith('text-align', 'center');
   });
 
@@ -56,12 +70,15 @@ describe('<AttributeSelect />', () => {
     const context = { editor };
     const wrapper = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <AttributeSelect attribute='text-align' values={['left', 'right', 'center']} />
+        <AttributeSelect
+          attribute="text-align"
+          values={['left', 'right', 'center']}
+        />
       </ReactMobileDocContext.Provider>
     );
-    wrapper.find('select').simulate('change', { target: { value: 'center' }});
+    wrapper.find('select').simulate('change', { target: { value: 'center' } });
     expect(editor.setAttribute).to.be.calledWith('text-align', 'center');
-    wrapper.find('select').simulate('change', { target: { value: 'left' }});
+    wrapper.find('select').simulate('change', { target: { value: 'left' } });
     expect(editor.removeAttribute).to.be.calledWith('text-align');
   });
 });

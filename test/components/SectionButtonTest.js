@@ -1,9 +1,8 @@
-import React from 'react';
-import { ReactMobileDocContext } from "../../src/components/Context";
-import SectionButton from '../../src/components/SectionButton';
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import { mount } from 'enzyme';
+import React from 'react';
+import { ReactMobileDocContext, SectionButton } from 'react-mobiledoc-editor';
+import { spy } from 'sinon';
 
 describe('<SectionButton />', () => {
   it('should render a button by default', () => {
@@ -36,7 +35,7 @@ describe('<SectionButton />', () => {
     const context = { editor };
     const wrapper = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <SectionButton tag='UL' />
+        <SectionButton tag="UL" />
       </ReactMobileDocContext.Provider>
     );
     wrapper.find('button').simulate('click');
@@ -44,35 +43,35 @@ describe('<SectionButton />', () => {
   });
 
   it('should set active class', () => {
-    const wrapper = mount(<SectionButton tag='UL' className="keep" />);
+    const wrapper = mount(<SectionButton tag="UL" className="keep" />);
     expect(wrapper).to.have.attr('class', 'keep');
 
-    const context = { activeSectionTags: ['ul']};
+    const context = { activeSectionTags: ['ul'] };
 
     const wrapperActive = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <SectionButton tag='UL' className="keep" />
+        <SectionButton tag="UL" className="keep" />
       </ReactMobileDocContext.Provider>
     );
     expect(wrapperActive).to.have.attr('class', 'keep active');
 
     const wrapperActive2 = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <SectionButton tag='UL' />
+        <SectionButton tag="UL" />
       </ReactMobileDocContext.Provider>
     );
     expect(wrapperActive2).to.have.attr('class', 'active');
 
     const wrapperCustomActive = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <SectionButton tag='UL' className="keep" activeClassName="aktiv" />
+        <SectionButton tag="UL" className="keep" activeClassName="aktiv" />
       </ReactMobileDocContext.Provider>
     );
     expect(wrapperCustomActive).to.have.attr('class', 'keep aktiv');
 
     const wrapperCustomActive2 = mount(
       <ReactMobileDocContext.Provider value={context}>
-        <SectionButton tag='UL' activeClassName="aktiv" />
+        <SectionButton tag="UL" activeClassName="aktiv" />
       </ReactMobileDocContext.Provider>
     );
     expect(wrapperCustomActive2).to.have.attr('class', 'aktiv');
