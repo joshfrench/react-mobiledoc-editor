@@ -1,6 +1,7 @@
 import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
 import path from 'path';
 import { defineConfig } from 'rollup';
@@ -70,6 +71,7 @@ export default defineConfig([
         },
         preventAssignment: true,
       }),
+      terser(),
     ],
   },
 ]);
