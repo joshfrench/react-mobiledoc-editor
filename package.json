@@ -19,8 +19,10 @@
   "main": "dist/main.js",
   "module": "dist/react-mobiledoc-editor.esm.js",
   "exports": {
-    "import": "./dist/react-mobiledoc-editor.esm.js",
-    "require": "./dist/main.js"
+    ".": {
+      "import": "./dist/react-mobiledoc-editor.esm.js",
+      "require": "./dist/main.js"
+    }
   },
   "scripts": {
     "start": "concurrently \"npm:start:demo\" \"npm:build:watch\"",
