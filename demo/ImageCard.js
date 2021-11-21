@@ -1,5 +1,5 @@
 import React from 'react';
-import { classToDOMCard } from '../src';
+import { classToDOMCard } from 'react-mobiledoc-editor';
 
 /**
  * Component-based cards are rendered with these props:
@@ -27,21 +27,39 @@ import { classToDOMCard } from '../src';
 class ImageCard extends React.Component {
   render() {
     const { isInEditor, payload, save, edit, isEditing } = this.props;
-    
+
     if (isEditing) {
       return (
         <div>
-          <input type="text" ref={r => (this.srcEl = r)} defaultValue={payload.src} /><br />
-          <input type="text" ref={r => (this.captionEl = r)} defaultValue={payload.caption} /><br />
-          <button onClick={() => save({ src: this.srcEl.value, caption: this.captionEl.value })}>Save</button>
+          <input
+            type="text"
+            ref={(r) => (this.srcEl = r)}
+            defaultValue={payload.src}
+          />
+          <br />
+          <input
+            type="text"
+            ref={(r) => (this.captionEl = r)}
+            defaultValue={payload.caption}
+          />
+          <br />
+          <button
+            onClick={() =>
+              save({ src: this.srcEl.value, caption: this.captionEl.value })
+            }
+          >
+            Save
+          </button>
         </div>
       );
     } else {
       const onClick = isInEditor ? edit : null;
       return (
         <div>
-          <img src={payload.src} onClick={onClick} /><br />
-          <small>{payload.caption}</small><br />
+          <img src={payload.src} onClick={onClick} />
+          <br />
+          <small>{payload.caption}</small>
+          <br />
           {isInEditor && <button onClick={onClick}>Edit</button>}
         </div>
       );

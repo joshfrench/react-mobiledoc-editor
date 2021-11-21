@@ -9,5 +9,5 @@ Enzyme.configure({ adapter: new Adapter() });
 chai.use(chaiEnzyme());
 chai.use(sinonChai);
 
-const testsContext = require.context(".", true, /Test$/);
+const testsContext = require.context('.', true, /Test$/);
 testsContext.keys().forEach(testsContext);

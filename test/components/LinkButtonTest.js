@@ -1,18 +1,17 @@
-import React from 'react';
-import { ReactMobileDocContext } from "../../src/components/Context";
-import LinkButton from '../../src/components/LinkButton';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
 import { mount } from 'enzyme';
 import { UI } from 'mobiledoc-kit';
+import React from 'react';
+import { LinkButton, ReactMobileDocContext } from 'react-mobiledoc-editor';
+import { spy, stub } from 'sinon';
 
 describe('<LinkButton />', () => {
   const editor = {
     hasCursor: stub().returns(true),
     hasActiveMarkup: stub(),
     range: {
-      isCollapsed: stub().returns(false)
-    }
+      isCollapsed: stub().returns(false),
+    },
   };
 
   it('should render a button by default', () => {
@@ -74,7 +73,7 @@ describe('<LinkButton />', () => {
     const wrapper = mount(<LinkButton className="keep" />);
     expect(wrapper).to.have.attr('class', 'keep');
 
-    const context = { activeMarkupTags: ['a']};
+    const context = { activeMarkupTags: ['a'] };
 
     const wrapperActive = mount(
       <ReactMobileDocContext.Provider value={context}>

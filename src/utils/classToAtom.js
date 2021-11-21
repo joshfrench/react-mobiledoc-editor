@@ -1,23 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const atomRenderer = (component) => ({ env, options, payload, value }) => {
-  const { onTeardown } = env;
+const atomRenderer =
+  (component) =>
+  ({ env, options, payload, value }) => {
+    const { onTeardown } = env;
 
-  const element = React.createElement(component, {
-    ...env,
-    ...options,
-    value,
-    payload: { ...payload }
-  });
+    const element = React.createElement(component, {
+      ...env,
+      ...options,
+      value,
+      payload: { ...payload },
+    });
 
-  const targetNode = document.createElement('span');
-  ReactDOM.render(element, targetNode);
+    const targetNode = document.createElement('span');
+    ReactDOM.render(element, targetNode);
 
-  onTeardown(() => ReactDOM.unmountComponentAtNode(targetNode));
+    onTeardown(() => ReactDOM.unmountComponentAtNode(targetNode));
 
-  return targetNode;
-};
+    return targetNode;
+  };
 
 export const classToDOMAtom = (component) => {
   if (!component.displayName) {
@@ -30,6 +32,6 @@ export const classToDOMAtom = (component) => {
     name: component.displayName,
     component,
     type: 'dom',
-    render: atomRenderer(component)
+    render: atomRenderer(component),
   };
 };

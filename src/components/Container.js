@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as Mobiledoc from 'mobiledoc-kit';
 import { LATEST_MOBILEDOC_VERSION, EMPTY_MOBILEDOC } from '../utils/mobiledoc';
-import { ReactMobileDocContext } from "./Context";
+import { ReactMobileDocContext } from './Context';
 
 class Container extends React.Component {
   static defaultProps = {
@@ -10,10 +10,10 @@ class Container extends React.Component {
     autofocus: true,
     cardProps: {},
     cards: [],
-    placeholder: "",
+    placeholder: '',
     serializeVersion: LATEST_MOBILEDOC_VERSION,
-    spellcheck: true
-  }
+    spellcheck: true,
+  };
 
   constructor() {
     super(...arguments);
@@ -22,10 +22,31 @@ class Container extends React.Component {
       this.props.willCreateEditor();
     }
 
-    const { atoms, autofocus, cardProps, cards, html, placeholder, serializeVersion, spellcheck } = this.props;
-    const mobiledoc = this.props.mobiledoc || (html ? undefined : EMPTY_MOBILEDOC);
+    const {
+      atoms,
+      autofocus,
+      cardProps,
+      cards,
+      html,
+      placeholder,
+      serializeVersion,
+      spellcheck,
+    } = this.props;
+    const mobiledoc =
+      this.props.mobiledoc || (html ? undefined : EMPTY_MOBILEDOC);
 
-    const editorOptions = { ...this.props.options, atoms, autofocus, cardOptions: { cardProps }, cards, html, mobiledoc, placeholder, serializeVersion, spellcheck };
+    const editorOptions = {
+      ...this.props.options,
+      atoms,
+      autofocus,
+      cardOptions: { cardProps },
+      cards,
+      html,
+      mobiledoc,
+      placeholder,
+      serializeVersion,
+      spellcheck,
+    };
     this.editor = new Mobiledoc.Editor(editorOptions);
 
     this.editor.inputModeDidChange(this.setActiveTags);
@@ -41,8 +62,8 @@ class Container extends React.Component {
   state = {
     activeMarkupTags: [],
     activeSectionTags: [],
-    activeSectionAttributes: []
-  }
+    activeSectionAttributes: [],
+  };
 
   componentWillUnmount() {
     this.editor.destroy();
@@ -51,36 +72,54 @@ class Container extends React.Component {
   render() {
     /* eslint-disable no-unused-vars */
     /* deconstruct out non-React props before passing to children */
-    const { atoms, autofocus, cardProps, cards, children, didCreateEditor, html, mobiledoc, options,
-      placeholder, serializeVersion, spellcheck, willCreateEditor, onChange, ...componentProps } = this.props;
+    const {
+      atoms,
+      autofocus,
+      cardProps,
+      cards,
+      children,
+      didCreateEditor,
+      html,
+      mobiledoc,
+      options,
+      placeholder,
+      serializeVersion,
+      spellcheck,
+      willCreateEditor,
+      onChange,
+      ...componentProps
+    } = this.props;
     /* eslint-enable no-unused-vars */
-    return <div {...componentProps}>
-      <ReactMobileDocContext.Provider
-        value={{
-          editor: this.editor,
-          activeMarkupTags: this.state.activeMarkupTags,
-          activeSectionTags: this.state.activeSectionTags,
-          activeSectionAttributes: this.state.activeSectionAttributes
-        }}>
-        {children}
-      </ReactMobileDocContext.Provider>
-    </div>;
+    return (
+      <div {...componentProps}>
+        <ReactMobileDocContext.Provider
+          value={{
+            editor: this.editor,
+            activeMarkupTags: this.state.activeMarkupTags,
+            activeSectionTags: this.state.activeSectionTags,
+            activeSectionAttributes: this.state.activeSectionAttributes,
+          }}
+        >
+          {children}
+        </ReactMobileDocContext.Provider>
+      </div>
+    );
   }
 
   setActiveTags = () => {
     this.setState({
-      activeSectionAttributes: this.editor.activeSections.map(s => {
+      activeSectionAttributes: this.editor.activeSections.map((s) => {
         return s.attributes || {};
       }),
-      activeMarkupTags: this.editor.activeMarkups.map(m => m.tagName),
+      activeMarkupTags: this.editor.activeMarkups.map((m) => m.tagName),
       // editor.activeSections are leaf sections.
       // Map parent section tag names (e.g. 'p', 'ul', 'ol') so that list buttons
       // are updated.
-      activeSectionTags: this.editor.activeSections.map(s => {
+      activeSectionTags: this.editor.activeSections.map((s) => {
         return s.isNested ? s.parent.tagName : s.tagName;
-      })
+      }),
     });
-  }
+  };
 
   handleChange = () => {
     if (typeof this.props.onChange === 'function') {
@@ -102,7 +141,7 @@ Container.propTypes = {
   placeholder: PropTypes.string,
   serializeVersion: PropTypes.string,
   spellcheck: PropTypes.bool,
-  willCreateEditor: PropTypes.func
+  willCreateEditor: PropTypes.func,
 };
 
 export default Container;

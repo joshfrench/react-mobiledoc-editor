@@ -1,6 +1,6 @@
 export default (activeSectionAttributes, attribute, defaultValue) => {
   const attributes = activeSectionAttributes.map(
-    a => a[`data-md-${attribute}`] || defaultValue
+    (a) => a[`data-md-${attribute}`] || defaultValue
   );
 
   let activeAttribute = attributes[0];

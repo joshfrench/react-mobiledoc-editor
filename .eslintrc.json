@@ -1,5 +1,5 @@
 {
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "env": {
     "es6": true,
     "browser": true,
@@ -17,31 +17,16 @@
   "settings": {
     "react": { "version": "detect" }
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
     "eqeqeq": 2,
     "no-const-assign": 2,
     "prefer-const": 2,
-    "semi": [2, "always"],
-
     "array-bracket-spacing": [1, "never"],
-    "arrow-spacing": 1,
-    "brace-style": [1, "1tbs", {"allowSingleLine": true}],
-    "comma-style": [1, "last"],
-    "indent": [1, 2],
-    "keyword-spacing": 1,
-    "linebreak-style": [1, "unix"],
     "no-console": 1,
     "no-unused-vars": 1,
     "no-trailing-spaces": 1,
-    "object-curly-spacing": [1, "always", {"objectsInObjects": false, "arraysInObjects": false}],
     "padded-blocks": [1, "never"],
-    "space-before-blocks": 1,
-    "space-in-parens": 1,
-    "space-infix-ops": 1,
-
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/jsx-no-undef": 2,
@@ -49,8 +34,11 @@
     "react/no-did-update-set-state": 2,
     "react/no-direct-mutation-state": 2,
     "react/no-unknown-property": 2,
-    "react/sort-comp": [1, {
-      "order": ["static-methods", "lifecycle", "render", "everything-else"]
-    }]
+    "react/sort-comp": [
+      1,
+      {
+        "order": ["static-methods", "lifecycle", "render", "everything-else"]
+      }
+    ]
   }
 }
