@@ -17,7 +17,64 @@ class Container extends React.Component {
 
   constructor() {
     super(...arguments);
+    this.createEditor();
 
+    this.state = {
+      editor: this.editor,
+      activeMarkupTags: [],
+      activeSectionTags: [],
+      activeSectionAttributes: [],
+    };
+  }
+
+  componentWillUnmount() {
+    this.editor.destroy();
+  }
+
+  render() {
+    /* eslint-disable no-unused-vars */
+    /* deconstruct out non-React props before passing to children */
+    const {
+      atoms,
+      autofocus,
+      cardProps,
+      cards,
+      children,
+      didCreateEditor,
+      html,
+      mobiledoc,
+      options,
+      placeholder,
+      serializeVersion,
+      spellcheck,
+      willCreateEditor,
+      onChange,
+      ...componentProps
+    } = this.props;
+    /* eslint-enable no-unused-vars */
+    return (
+      <div {...componentProps}>
+        <ReactMobileDocContext.Provider
+          value={{
+            editor: this.state.editor,
+            activeMarkupTags: this.state.activeMarkupTags,
+            activeSectionTags: this.state.activeSectionTags,
+            activeSectionAttributes: this.state.activeSectionAttributes,
+          }}
+        >
+          {children}
+        </ReactMobileDocContext.Provider>
+      </div>
+    );
+  }
+
+  recreateEditor = () => {
+    this.editor.destroy();
+    this.createEditor();
+    this.setState({ editor: this.editor });
+  };
+
+  createEditor = () => {
     if (typeof this.props.willCreateEditor === 'function') {
       this.props.willCreateEditor();
     }
@@ -57,54 +114,7 @@ class Container extends React.Component {
     if (typeof this.props.didCreateEditor === 'function') {
       this.props.didCreateEditor(this.editor);
     }
-  }
-
-  state = {
-    activeMarkupTags: [],
-    activeSectionTags: [],
-    activeSectionAttributes: [],
   };
-
-  componentWillUnmount() {
-    this.editor.destroy();
-  }
-
-  render() {
-    /* eslint-disable no-unused-vars */
-    /* deconstruct out non-React props before passing to children */
-    const {
-      atoms,
-      autofocus,
-      cardProps,
-      cards,
-      children,
-      didCreateEditor,
-      html,
-      mobiledoc,
-      options,
-      placeholder,
-      serializeVersion,
-      spellcheck,
-      willCreateEditor,
-      onChange,
-      ...componentProps
-    } = this.props;
-    /* eslint-enable no-unused-vars */
-    return (
-      <div {...componentProps}>
-        <ReactMobileDocContext.Provider
-          value={{
-            editor: this.editor,
-            activeMarkupTags: this.state.activeMarkupTags,
-            activeSectionTags: this.state.activeSectionTags,
-            activeSectionAttributes: this.state.activeSectionAttributes,
-          }}
-        >
-          {children}
-        </ReactMobileDocContext.Provider>
-      </div>
-    );
-  }
 
   setActiveTags = () => {
     this.setState({
