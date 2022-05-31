@@ -1,6 +1,6 @@
 {
   "name": "react-mobiledoc-editor",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "A Mobiledoc editor for React apps",
   "repository": "joshfrench/react-mobiledoc-editor",
   "homepage": "https://github.com/joshfrench/react-mobiledoc-editor",
@@ -43,7 +43,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "mobiledoc-kit": "^0.12.2 || ^0.13.0",
+    "mobiledoc-kit": "^0.12.2 || ^0.13.0 || ^0.14.0",
     "react": "^16.3.0 || ^17.0.0",
     "react-dom": "^16.3.0 || ^17.0.0"
   },
