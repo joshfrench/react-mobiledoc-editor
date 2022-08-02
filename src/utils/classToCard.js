@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { reactDomRender, reactDomUnmount } from './react';
 
 const cardRenderer =
   (component, isEditing = false) =>
   ({ env, options, payload }) => {
     const targetNode = document.createElement('div');
     const { didRender, onTeardown } = env;
+    let root;
 
     didRender(() => {
       payload = { ...payload }; // deref payload
@@ -16,10 +17,10 @@ const cardRenderer =
         payload,
         isEditing,
       });
-      ReactDOM.render(element, targetNode);
+      root = reactDomRender(element, targetNode);
     });
 
-    onTeardown(() => ReactDOM.unmountComponentAtNode(targetNode));
+    onTeardown(() => reactDomUnmount(root, targetNode));
 
     return targetNode;
   };

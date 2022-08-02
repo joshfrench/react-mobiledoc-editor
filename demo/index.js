@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import '../node_modules/mobiledoc-kit/dist/mobiledoc.css';
 
 import * as ReactMobiledoc from 'react-mobiledoc-editor';
@@ -57,4 +57,5 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);

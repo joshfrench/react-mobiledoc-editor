@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { reactDomRender, reactDomUnmount } from './react';
 
 const atomRenderer =
   (component) =>
@@ -14,9 +14,9 @@ const atomRenderer =
     });
 
     const targetNode = document.createElement('span');
-    ReactDOM.render(element, targetNode);
+    const root = reactDomRender(element, targetNode);
 
-    onTeardown(() => ReactDOM.unmountComponentAtNode(targetNode));
+    onTeardown(() => reactDomUnmount(root, targetNode));
 
     return targetNode;
   };
