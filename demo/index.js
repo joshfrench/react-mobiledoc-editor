@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'mobiledoc-kit/dist/mobiledoc.css';
+import '../node_modules/mobiledoc-kit/dist/mobiledoc.css';
 
 import * as ReactMobiledoc from 'react-mobiledoc-editor';
 import ImageCard from './ImageCard';
