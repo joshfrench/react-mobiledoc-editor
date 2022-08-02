@@ -40,7 +40,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "mobiledoc-kit": "^0.12.2 || ^0.13.0 || ^0.14.0",
