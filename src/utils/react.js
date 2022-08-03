@@ -1,18 +1,18 @@
 import ReactDOM from 'react-dom';
 
-const supportsReact18 = !!ReactDOM.createRoot;
-
-export function reactDomRender(element, target) {
-  if (supportsReact18) {
-    const root = ReactDOM.createRoot(target);
+export function reactDomRender(CustomReactDOM, element, target) {
+  const ResolvedReactDOM = CustomReactDOM || ReactDOM;
+  const createRoot = ResolvedReactDOM.createRoot; // React 18+
+  if (createRoot) {
+    const root = createRoot(target);
     root.render(element);
     return root;
   } else {
-    ReactDOM.render(element, target);
+    ResolvedReactDOM.render(element, target);
   }
 }
 
-export function reactDomUnmount(root, target) {
+export function reactDomUnmount(CustomReactDOM, root, target) {
   if (root) root.unmount();
-  else ReactDOM.unmountComponentAtNode(target);
+  else (CustomReactDOM || ReactDOM).unmountComponentAtNode(target);
 }

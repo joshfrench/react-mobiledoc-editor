@@ -2,7 +2,7 @@ import React from 'react';
 import { reactDomRender, reactDomUnmount } from './react';
 
 const atomRenderer =
-  (component) =>
+  (ReactDOM, component) =>
   ({ env, options, payload, value }) => {
     const { onTeardown } = env;
 
@@ -14,14 +14,14 @@ const atomRenderer =
     });
 
     const targetNode = document.createElement('span');
-    const root = reactDomRender(element, targetNode);
+    const root = reactDomRender(ReactDOM, element, targetNode);
 
-    onTeardown(() => reactDomUnmount(root, targetNode));
+    onTeardown(() => reactDomUnmount(ReactDOM, root, targetNode));
 
     return targetNode;
   };
 
-export const classToDOMAtom = (component) => {
+export const classToDOMAtom = (component, ReactDOM) => {
   if (!component.displayName) {
     throw new Error(
       `Can't create atom from component, no displayName defined: ${component}`
@@ -32,6 +32,6 @@ export const classToDOMAtom = (component) => {
     name: component.displayName,
     component,
     type: 'dom',
-    render: atomRenderer(component),
+    render: atomRenderer(ReactDOM, component),
   };
 };
