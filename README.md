@@ -26,13 +26,13 @@ add `mobiledoc-kit`, `react`, and `react-dom` to your `package.json`.
 This package contains a number of React components suitable for building
 your own editor UI.
 
-- [`Container`](#container)
-- [`Editor`](#editor)
-- [`Toolbar`](#toolbar)
-- [`SectionButton`](#sectionbutton)
-- [`SectionSelect`](#sectionselect)
-- [`MarkupButton`](#markupbutton)
-- [`LinkButton`](#linkbutton)
+* [`Container`](#container)
+* [`Editor`](#editor)
+* [`Toolbar`](#toolbar)
+* [`SectionButton`](#sectionbutton)
+* [`SectionSelect`](#sectionselect)
+* [`MarkupButton`](#markupbutton)
+* [`LinkButton`](#linkbutton)
 
 The most basic usage with standard toolbar and empty editor is:
 
@@ -82,6 +82,7 @@ The `Container` component accepts these Mobiledoc-specific props:
   has been created. Will be called with the editor instance and may be used
   to configure it further.
 
+
 #### `<Editor>`
 
 The `Editor` component is the actual editor interface. In its most basic form
@@ -111,7 +112,7 @@ multiple sections with different attribute values are selected, the component
 shows an indeterminate state.
 
 ```jsx
-<AttributeSelect attribute="text-align" values={['left', 'center', 'right']} />
+<AttributeSelect attribute="text-align" values={["left", "center", "right"]} />
 ```
 
 By default, the first value in the `values` array is considered the "default"
@@ -120,11 +121,7 @@ setting its value. A custom "default" attribute value can be specified with
 the `defaultValue` prop:
 
 ```jsx
-<AttributeSelect
-  attribute="text-align"
-  values={['left', 'center', 'right']}
-  defaultValue="right"
-/>
+<AttributeSelect attribute="text-align" values={["left", "center", "right"]} defaultValue="right" />
 ```
 
 (Does not support customization of the child `<option>` elements; primarily
@@ -149,7 +146,9 @@ Alternately, custom child node(s) may be yielded to render something other
 than the tag name within the button:
 
 ```jsx
-<SectionButton tag="ul">List</SectionButton>
+<SectionButton tag="ul">
+  List
+</SectionButton>
 ```
 
 #### `<SectionSelect>`
@@ -162,7 +161,7 @@ section under the editor cursor matches one of the supplied tags, the
 the selected tag on the section under the editor cursor.
 
 ```jsx
-<SectionSelect tags={['h1', 'h2', 'h3']} />
+<SectionSelect tags={["h1", "h2", "h3"]} />
 ```
 
 (Does not support customization of the child `<option>` elements; primarily
@@ -187,7 +186,9 @@ Alternately, custom child node(s) may be yielded to render something other
 than the tag name within the button:
 
 ```jsx
-<MarkupButton tag="strong">Bold</MarkupButton>
+<MarkupButton tag="strong">
+  Bold
+</MarkupButton>
 ```
 
 #### `<LinkButton>`
@@ -218,10 +219,10 @@ should take three arguments:
 
 - `message`: This is the default text prompt ("Enter a URL".)
 - `defaultUrl`: If the currently selected text appears to be a URL, it will
-  be passed in this parameter. Useful for auto-linking.
+be passed in this parameter. Useful for auto-linking.
 - `promptCallback`: Once you've processed any user input (or the `defaultUrl`
-  param) you must pass the final URL to this callback in order to actually
-  link the selected text.
+param) you must pass the final URL to this callback in order to actually
+link the selected text.
 
 ```jsx
 function myPrompt(message, defaultURL, promptCallback) {
@@ -234,7 +235,7 @@ function myPrompt(message, defaultURL, promptCallback) {
   }
 }
 
-<LinkButton handler={myPrompt} />;
+<LinkButton handler={myPrompt} />
 ```
 
 ## Component-based Cards
@@ -254,13 +255,12 @@ import { Component } from 'react';
 import { classToDOMCard } from 'react-mobiledoc-editor';
 
 class MyComponent extends Component {
-  static displayName = 'MyComponent';
+  static displayName = 'MyComponent'
 
   render() {
     let { isInEditor } = this.props;
-    let text = isInEditor
-      ? 'This is the editable interface'
-      : 'This is the display version';
+    let text = isInEditor ? "This is the editable interface"
+                          : "This is the display version";
     return <p>{text}</p>;
   }
 }
@@ -345,15 +345,15 @@ mobiledoc-specific props:
 
 ### React 18 Support
 
-To use the `classToDOMCard` & `classToDOMAtom` helpers in React 18 without warnings, you can pass a custom ReactDOM as a second argument:
+ To use the `classToDOMCard` & `classToDOMAtom` helpers in React 18 without warnings, you can pass a custom ReactDOM as a second argument:
 
-```js
-import ReactDOM from 'react-dom/client';
+ ```js
+ import ReactDOM from 'react-dom/client';
 
-const MyComponentCard = classToDOMCard(MyComponent, ReactDOM);
-```
+ const MyComponentCard = classToDOMCard(MyComponent, ReactDOM);
+ ```
 
-Notice the React 18 specific import path. The helpers will use the new `createRoot` API if available and fallback to the legacy `render` method.
+ Notice the React 18 specific import path. The helpers will use the new `createRoot` API if available and fallback to the legacy `render` method.
 
 ## Development
 
