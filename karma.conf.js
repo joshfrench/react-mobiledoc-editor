@@ -25,6 +25,12 @@ module.exports = function (config) {
       resolve: {
         alias: {
           'react-mobiledoc-editor': __dirname,
+          ...(process.env.REACT_17 && {
+            react: 'react-17',
+            'react-dom': 'react-dom-17',
+            '@cfaester/enzyme-adapter-react-18':
+              '@wojtekmaj/enzyme-adapter-react-17',
+          }),
         },
       },
       module: {

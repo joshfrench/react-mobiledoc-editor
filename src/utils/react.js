@@ -1,12 +1,6 @@
-let ReactDOM;
-let supportsReact18 = false;
+import ReactDOM from 'react-dom';
 
-try {
-  ReactDOM = require('react-dom/client');
-  supportsReact18 = true;
-} catch {
-  ReactDOM = require('react-dom');
-}
+const supportsReact18 = !!ReactDOM.createRoot;
 
 export function reactDomRender(element, target) {
   if (supportsReact18) {
