@@ -31,7 +31,7 @@ class Container extends React.Component {
       placeholder,
       serializeVersion,
       spellcheck,
-      ReactDOM,
+      createRoot,
     } = this.props;
     const mobiledoc =
       this.props.mobiledoc || (html ? undefined : EMPTY_MOBILEDOC);
@@ -40,7 +40,7 @@ class Container extends React.Component {
       ...this.props.options,
       atoms,
       autofocus,
-      cardOptions: { cardProps, ReactDOM },
+      cardOptions: { cardProps, createRoot },
       cards,
       html,
       mobiledoc,
@@ -88,7 +88,7 @@ class Container extends React.Component {
       spellcheck,
       willCreateEditor,
       onChange,
-      ReactDOM,
+      createRoot,
       ...componentProps
     } = this.props;
     /* eslint-enable no-unused-vars */

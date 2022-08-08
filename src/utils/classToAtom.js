@@ -5,7 +5,7 @@ const atomRenderer =
   (component) =>
   ({ env, options, payload, value }) => {
     const { onTeardown } = env;
-    const { ReactDOM } = options;
+    const { createRoot } = options;
 
     const element = React.createElement(component, {
       ...env,
@@ -15,9 +15,9 @@ const atomRenderer =
     });
 
     const targetNode = document.createElement('span');
-    const root = reactDomRender(ReactDOM, element, targetNode);
+    const root = reactDomRender(createRoot, element, targetNode);
 
-    onTeardown(() => reactDomUnmount(ReactDOM, root, targetNode));
+    onTeardown(() => reactDomUnmount(root, targetNode));
 
     return targetNode;
   };

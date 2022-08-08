@@ -345,15 +345,14 @@ mobiledoc-specific props:
 
 ### React 18 Support
 
- To use custom card & atom components in React 18 without warnings, you can pass a specific ReactDOM version as a prop on the Container:
+ To use custom card & atom components with React 18 without warnings, you can pass an instance of `createRoot` from react-dom v18 as a prop on the `Container`. Internally, components will render with `createRoot` if available and fallback to the legacy `render`:
 
  ```js
- import ReactDOM from 'react-dom/client';
+ import { createRoot } from 'react-dom/client';
 
- <Container ReactDOM={ReactDOM}>...</Container>;
+ <Container createRoot={createRoot}>...</Container>;
  ```
 
- Notice the React 18 specific import path. Internally, components will render with the new `createRoot` API if available and fallback to the legacy `render` method.
 
 ## Development
 
