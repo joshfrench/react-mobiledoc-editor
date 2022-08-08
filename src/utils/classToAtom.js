@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { reactDomRender, reactDomUnmount } from './react';
 
 const atomRenderer =
   (component) =>
   ({ env, options, payload, value }) => {
     const { onTeardown } = env;
+    const { ReactDOM } = options;
 
     const element = React.createElement(component, {
       ...env,
@@ -14,9 +15,9 @@ const atomRenderer =
     });
 
     const targetNode = document.createElement('span');
-    ReactDOM.render(element, targetNode);
+    const root = reactDomRender(ReactDOM, element, targetNode);
 
-    onTeardown(() => ReactDOM.unmountComponentAtNode(targetNode));
+    onTeardown(() => reactDomUnmount(ReactDOM, root, targetNode));
 
     return targetNode;
   };

@@ -343,6 +343,17 @@ mobiledoc-specific props:
 - `name`: The name of this card.
 - `onTeardown`: A callback that can be called when the rendered content is torn down.
 
+### React 18 Support
+
+ To use custom card & atom components in React 18 without warnings, you can pass a specific ReactDOM version as a prop on the Container:
+
+ ```js
+ import ReactDOM from 'react-dom/client';
+
+ <Container ReactDOM={ReactDOM}>...</Container>;
+ ```
+
+ Notice the React 18 specific import path. Internally, components will render with the new `createRoot` API if available and fallback to the legacy `render` method.
 
 ## Development
 

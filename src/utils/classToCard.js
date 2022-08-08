@@ -1,25 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { reactDomRender, reactDomUnmount } from './react';
 
 const cardRenderer =
   (component, isEditing = false) =>
   ({ env, options, payload }) => {
     const targetNode = document.createElement('div');
     const { didRender, onTeardown } = env;
+    const { cardProps, ReactDOM } = options;
+    let root;
 
     didRender(() => {
       payload = { ...payload }; // deref payload
-      const { cardProps } = options;
       const element = React.createElement(component, {
         ...env,
         ...cardProps,
         payload,
         isEditing,
       });
-      ReactDOM.render(element, targetNode);
+      root = reactDomRender(ReactDOM, element, targetNode);
     });
 
-    onTeardown(() => ReactDOM.unmountComponentAtNode(targetNode));
+    onTeardown(() => reactDomUnmount(ReactDOM, root, targetNode));
 
     return targetNode;
   };
