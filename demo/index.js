@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 import '../node_modules/mobiledoc-kit/dist/mobiledoc.css';
 
 import * as ReactMobiledoc from 'react-mobiledoc-editor';
@@ -46,6 +46,7 @@ const App = () => {
         {...config}
         mobiledoc={state}
         onChange={setState}
+        ReactDOM={ReactDOM}
       >
         <ReactMobiledoc.Toolbar />
         <ImageButton />
@@ -57,5 +58,5 @@ const App = () => {
   );
 };
 
-const root = createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);

@@ -345,15 +345,15 @@ mobiledoc-specific props:
 
 ### React 18 Support
 
- To use the `classToDOMCard` & `classToDOMAtom` helpers in React 18 without warnings, you can pass a custom ReactDOM as a second argument:
+ To use custom card & atom components in React 18 without warnings, you can pass a specific ReactDOM version as a prop on the Container:
 
  ```js
  import ReactDOM from 'react-dom/client';
 
- const MyComponentCard = classToDOMCard(MyComponent, ReactDOM);
+ <Container ReactDOM={ReactDOM}>...</Container>;
  ```
 
- Notice the React 18 specific import path. The helpers will use the new `createRoot` API if available and fallback to the legacy `render` method.
+ Notice the React 18 specific import path. Internally, components will render with the new `createRoot` API if available and fallback to the legacy `render` method.
 
 ## Development
 

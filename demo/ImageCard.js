@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { classToDOMCard } from 'react-mobiledoc-editor';
 
 /**
@@ -70,4 +69,4 @@ class ImageCard extends React.Component {
 
 ImageCard.displayName = 'ImageCard';
 
-export default classToDOMCard(ImageCard, ReactDOM);
+export default classToDOMCard(ImageCard);

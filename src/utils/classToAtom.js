@@ -2,9 +2,10 @@ import React from 'react';
 import { reactDomRender, reactDomUnmount } from './react';
 
 const atomRenderer =
-  (ReactDOM, component) =>
+  (component) =>
   ({ env, options, payload, value }) => {
     const { onTeardown } = env;
+    const { ReactDOM } = options;
 
     const element = React.createElement(component, {
       ...env,
@@ -21,7 +22,7 @@ const atomRenderer =
     return targetNode;
   };
 
-export const classToDOMAtom = (component, ReactDOM) => {
+export const classToDOMAtom = (component) => {
   if (!component.displayName) {
     throw new Error(
       `Can't create atom from component, no displayName defined: ${component}`
@@ -32,6 +33,6 @@ export const classToDOMAtom = (component, ReactDOM) => {
     name: component.displayName,
     component,
     type: 'dom',
-    render: atomRenderer(ReactDOM, component),
+    render: atomRenderer(component),
   };
 };

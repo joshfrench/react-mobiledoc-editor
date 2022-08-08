@@ -2,15 +2,15 @@ import React from 'react';
 import { reactDomRender, reactDomUnmount } from './react';
 
 const cardRenderer =
-  (ReactDOM, component, isEditing = false) =>
+  (component, isEditing = false) =>
   ({ env, options, payload }) => {
     const targetNode = document.createElement('div');
     const { didRender, onTeardown } = env;
+    const { cardProps, ReactDOM } = options;
     let root;
 
     didRender(() => {
       payload = { ...payload }; // deref payload
-      const { cardProps } = options;
       const element = React.createElement(component, {
         ...env,
         ...cardProps,
@@ -25,7 +25,7 @@ const cardRenderer =
     return targetNode;
   };
 
-export const classToDOMCard = (component, ReactDOM) => {
+export const classToDOMCard = (component) => {
   if (!component.displayName) {
     throw new Error(
       "Can't create card from component, no displayName defined: " + component
@@ -36,7 +36,7 @@ export const classToDOMCard = (component, ReactDOM) => {
     name: component.displayName,
     component,
     type: 'dom',
-    render: cardRenderer(ReactDOM, component),
-    edit: cardRenderer(ReactDOM, component, true),
+    render: cardRenderer(component),
+    edit: cardRenderer(component, true),
   };
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { classToDOMAtom } from 'react-mobiledoc-editor';
 
 /**
@@ -33,6 +32,6 @@ class Counter extends React.Component {
 
 Counter.displayName = 'Counter';
 
-const ClickCounterAtom = classToDOMAtom(Counter, ReactDOM);
+const ClickCounterAtom = classToDOMAtom(Counter);
 
 export default ClickCounterAtom;
