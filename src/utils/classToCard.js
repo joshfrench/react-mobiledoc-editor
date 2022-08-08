@@ -6,7 +6,7 @@ const cardRenderer =
   ({ env, options, payload }) => {
     const targetNode = document.createElement('div');
     const { didRender, onTeardown } = env;
-    const { cardProps, ReactDOM } = options;
+    const { cardProps, createRoot } = options;
     let root;
 
     didRender(() => {
@@ -17,10 +17,10 @@ const cardRenderer =
         payload,
         isEditing,
       });
-      root = reactDomRender(ReactDOM, element, targetNode);
+      root = reactDomRender(createRoot, element, targetNode);
     });
 
-    onTeardown(() => reactDomUnmount(ReactDOM, root, targetNode));
+    onTeardown(() => reactDomUnmount(root, targetNode));
 
     return targetNode;
   };

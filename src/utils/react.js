@@ -1,18 +1,17 @@
 import ReactDOM from 'react-dom';
 
-export function reactDomRender(CustomReactDOM, element, target) {
-  const ResolvedReactDOM = CustomReactDOM || ReactDOM;
-  const createRoot = ResolvedReactDOM.createRoot; // React 18+
+export function reactDomRender(createRoot, element, target) {
+  // React 18+
   if (createRoot) {
     const root = createRoot(target);
     root.render(element);
     return root;
   } else {
-    ResolvedReactDOM.render(element, target);
+    ReactDOM.render(element, target);
   }
 }
 
-export function reactDomUnmount(CustomReactDOM, root, target) {
+export function reactDomUnmount(root, target) {
   if (root) root.unmount();
-  else (CustomReactDOM || ReactDOM).unmountComponentAtNode(target);
+  else ReactDOM.unmountComponentAtNode(target);
 }
