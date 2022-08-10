@@ -26,14 +26,14 @@ const LinkButton = ({
           }
         };
 
-        className = [
+        const currentClassName = [
           className,
           activeMarkupTags.indexOf('a') > -1 && activeClassName,
         ]
           .filter(Boolean)
           .join(' ');
 
-        props = { type, ...props, onClick, className };
+        props = { type, ...props, onClick, className: currentClassName };
         return <button {...props}>{children}</button>;
       }}
     </ReactMobileDocContext.Consumer>
