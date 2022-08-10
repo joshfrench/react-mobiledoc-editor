@@ -15,13 +15,13 @@ const SectionButton = ({
     <ReactMobileDocContext.Consumer>
       {({ editor, activeSectionTags = [] }) => {
         const onClick = () => editor.toggleSection(tag);
-        className = [
+        const currentClassName = [
           className,
           activeSectionTags.indexOf(tag.toLowerCase()) > -1 && activeClassName,
         ]
           .filter(Boolean)
           .join(' ');
-        props = { type, ...props, onClick, className };
+        props = { type, ...props, onClick, className: currentClassName };
         return <button {...props}>{children}</button>;
       }}
     </ReactMobileDocContext.Consumer>
