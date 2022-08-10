@@ -1,7 +1,6 @@
 # react-mobiledoc-editor
 
 ![Build status](https://circleci.com/gh/joshfrench/react-mobiledoc-editor.svg?style=svg)
-![Dependency status](https://david-dm.org/upworthy/react-mobiledoc-editor.svg)
 
 A toolkit for Mobiledoc editors written using React and
 [Mobiledoc Kit](https://github.com/bustlelabs/mobiledoc-kit).
