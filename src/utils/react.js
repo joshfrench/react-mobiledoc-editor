@@ -12,6 +12,6 @@ export function reactDomRender(createRoot, element, target) {
 }
 
 export function reactDomUnmount(root, target) {
-  if (root) root.unmount();
+  if (root) root.render(null); // React 18+
   else ReactDOM.unmountComponentAtNode(target);
 }
